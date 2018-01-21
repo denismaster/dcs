@@ -10,6 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
+import { SharedModule } from './shared/shared.module';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -19,9 +21,8 @@ import { CounterComponent } from './components/counter/counter.component';
         HomeComponent
     ],
     imports: [
-        CommonModule,
+        SharedModule,
         HttpModule,
-        FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
