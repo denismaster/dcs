@@ -1,0 +1,7 @@
+<div class="form-group" [class.has-error]="!control.valid && control.touched">
+    <label class="control-label">{{title}}</label>
+    <input [name]="name" [placeholder]="placeholder" class="form-control" type="text" [formControl]="control" />
+    <div class="text-danger help-block">
+        <ng-content></ng-content>
+    </div>
+</div>
