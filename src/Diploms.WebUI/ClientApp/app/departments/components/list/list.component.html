@@ -1,0 +1,33 @@
+<card>
+    <card-header>Кафедры
+        <div class="btn-group btn-group-sm pull-right">
+            <a type="button" class="btn btn-default" [routerLink]="['/departments/new']">
+                <i class="fa fa-plus"></i>
+                Добавить
+            </a>
+        </div>
+    </card-header>
+    <card-body>
+        <p *ngIf="!forecasts">
+            <em>Loading...</em>
+        </p>
+        <table class='table table-bordered table-striped' *ngIf="forecasts">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temp. (C)</th>
+                    <th>Temp. (F)</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let forecast of forecasts">
+                    <td>{{ forecast.dateFormatted }}</td>
+                    <td>{{ forecast.temperatureC }}</td>
+                    <td>{{ forecast.temperatureF }}</td>
+                    <td>{{ forecast.summary }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </card-body>
+</card>
