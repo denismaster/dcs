@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -11,6 +11,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
 import { SharedModule } from './shared/shared.module';
+import { DepartmentsModule } from './departments/departments.module';
 
 @NgModule({
     declarations: [
@@ -21,8 +22,9 @@ import { SharedModule } from './shared/shared.module';
         HomeComponent
     ],
     imports: [
-        SharedModule,
         HttpModule,
+        SharedModule,
+        DepartmentsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
@@ -30,7 +32,8 @@ import { SharedModule } from './shared/shared.module';
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
         ])
-    ]
+    ],
+    schemas : [ NO_ERRORS_SCHEMA ]
 })
 export class AppModuleShared {
 }
