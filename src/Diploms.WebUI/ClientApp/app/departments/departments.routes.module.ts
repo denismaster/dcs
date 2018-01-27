@@ -2,6 +2,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DepartmentsListComponent } from './components/list/list.component';
 import { DepartmentsAddComponent } from './components/add/add.component';
+import { DepartmentsEditComponent } from './components/edit/edit.component';
 
 const routes: Routes = [
     {
@@ -14,7 +15,7 @@ const routes: Routes = [
     },
     {
         path: 'departments/:id',
-        component: DepartmentsAddComponent,
+        component: DepartmentsEditComponent,
     },
 ];
 
