@@ -12,6 +12,10 @@ const routes: Routes = [
         path: 'departments/new',
         component: DepartmentsAddComponent,
     },
+    {
+        path: 'departments/:id',
+        component: DepartmentsAddComponent,
+    },
 ];
 
 export const DepartmentsRoutesModule: ModuleWithProviders = RouterModule.forRoot(routes);
