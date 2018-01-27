@@ -22,10 +22,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let department of departments">
-                    <td>{{ department.dateFormatted }}</td>
-                    <td>{{ department.temperatureC }}</td>
-                    <td>{{ department.temperatureF }}</td>
-                    <td>{{ department.summary }}</td>
+                    <td>{{ department.id }}</td>
+                    <td>{{ department.name }}</td>
+                    <td>{{ department.shortName }}</td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
