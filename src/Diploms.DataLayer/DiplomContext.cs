@@ -11,7 +11,7 @@ namespace Diploms.DataLayer
     {
         public DbSet<Department> Departments { get; set; }
         
-        public DiplomContext(DbContextOptions<DiplomContext> options) : base(options)
+        public DiplomContext() : base()
         {
         }
 
