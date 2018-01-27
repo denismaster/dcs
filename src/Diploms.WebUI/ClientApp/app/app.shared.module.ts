@@ -12,6 +12,7 @@ import { CounterComponent } from './components/counter/counter.component';
 
 import { SharedModule } from './shared/shared.module';
 import { DepartmentsModule } from './departments/departments.module';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { DepartmentsModule } from './departments/departments.module';
         NavMenuComponent,
         CounterComponent,
         FetchDataComponent,
+        SignInComponent,
         HomeComponent
     ],
     imports: [
@@ -30,6 +32,7 @@ import { DepartmentsModule } from './departments/departments.module';
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'sign-in', component: SignInComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ],
