@@ -1,7 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
@@ -24,7 +24,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
         HomeComponent
     ],
     imports: [
-        HttpModule,
+        HttpClientModule,
         SharedModule,
         DepartmentsModule,
         RouterModule.forRoot([
