@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Diploms.Core;
 
 namespace Diploms.WebUI.Controllers
 {
@@ -29,13 +30,6 @@ namespace Diploms.WebUI.Controllers
                     ShortName = "УВТ"
                 }
             };
-        }
-
-        public class Department
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string ShortName { get; set; }
         }
     }
 }
