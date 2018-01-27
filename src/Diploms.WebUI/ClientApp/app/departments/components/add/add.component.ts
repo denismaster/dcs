@@ -11,7 +11,7 @@ export class DepartmentsAddComponent {
     constructor(private formBuilder: FormBuilder) {
         this.form = this.formBuilder.group({
             "name": ["", Validators.required],
-            "institute": ["", Validators.required]
+            "shortName": [""]
         });
     }
 }

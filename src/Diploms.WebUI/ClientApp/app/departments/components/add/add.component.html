@@ -3,6 +3,7 @@
         <card-header>Новая кафедра</card-header>
         <card-body>
             <input-text title="Название" placeholder="Введите название" [control]="form.controls['name']"></input-text>
+            <input-text title="Краткое название" [control]="form.controls['shortName']"></input-text>
         </card-body>
         <card-footer>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Добавить</button>
