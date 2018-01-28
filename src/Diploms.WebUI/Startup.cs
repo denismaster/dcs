@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Diploms.DataLayer;
 using Diploms.WebUI.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace Diploms.WebUI
         {
             services.AddMvc();
             services.AddDepartments();
+            services.AddDbContext<DiplomContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
