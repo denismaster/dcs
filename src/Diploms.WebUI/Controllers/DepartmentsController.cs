@@ -10,26 +10,44 @@ namespace Diploms.WebUI.Controllers
     [Route("api/[controller]")]
     public class DepartmentsController : Controller
     {
-        [HttpGet("")]
-        public IEnumerable<Department> GetDepartments()
+        private readonly IRepository<Department> _repository;
+
+        public DepartmentsController(IRepository<Department> repository)
         {
-            return new List<Department>{
-                new Department {
-                    Id = 1,
-                    Name = "Информационных систем",
-                    ShortName = "ИС"
-                },
-                new Department {
-                    Id = 2,
-                    Name = "Информационных технологий и компьютерных систем",
-                    ShortName = "ИТиКС"
-                },
-                new Department {
-                    Id = 3,
-                    Name = "Управление в технических системах",
-                    ShortName = "УВТ"
-                }
-            };
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
+
+        [HttpGet("")]
+        public async Task<IActionResult> GetDepartments()
+        {
+            return Ok(await _repository.Get());
+        }
+
+        [HttpPut("add")]
+        public async Task<IActionResult> AddDepartment([FromBody] DepartmentAddDto model)
+        {
+            var department = new Department
+            {
+                Name = model.Name,
+                ShortName = model.ShortName,
+                CreateDate = DateTime.UtcNow
+            };
+            try
+            {
+                _repository.Add(department);
+                await _repository.SaveChanges();
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+    }
+
+    public class DepartmentAddDto
+    {
+        public string Name { get; set; }
+        public string ShortName { get; set; }
     }
 }
