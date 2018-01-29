@@ -6,6 +6,7 @@ import { CardComponent } from './card/card.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TextInputComponent } from './forms/input-text/input-text.component';
 import { LoadingIndicatorComponent } from './loading-indicator';
+import { AlertComponent } from './alert/alert.component';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -17,6 +18,7 @@ import { LoadingIndicatorComponent } from './loading-indicator';
         CardComponent,
         LoadingIndicatorComponent,
         TextInputComponent,
+        AlertComponent
     ],
     exports: [
         CommonModule,
@@ -26,8 +28,10 @@ import { LoadingIndicatorComponent } from './loading-indicator';
         CardComponent,
         LoadingIndicatorComponent,
         TextInputComponent,
+        AlertComponent,
     ],
-    providers: [],
+    providers: [
+    ],
     schemas: [NO_ERRORS_SCHEMA]
 })
 export class SharedModule {

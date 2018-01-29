@@ -13,6 +13,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { SharedModule } from './shared/shared.module';
 import { DepartmentsModule } from './departments/departments.module';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { AlertService } from './shared/alert/services/alert.service';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,9 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
         FetchDataComponent,
         SignInComponent,
         HomeComponent
+    ],
+    providers:[
+        AlertService
     ],
     imports: [
         HttpClientModule,
