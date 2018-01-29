@@ -8,9 +8,7 @@
         </div>
     </card-header>
     <card-body>
-        <p *ngIf="!departments">
-            <em>Loading...</em>
-        </p>
+        <loading *ngIf="!departments"></loading>
         <table class='table table-bordered table-striped' *ngIf="departments">
             <thead>
                 <tr>

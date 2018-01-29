@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { CardComponent } from './card/card.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TextInputComponent } from './forms/input-text/input-text.component';
+import { LoadingIndicatorComponent } from './loading-indicator';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -14,6 +15,7 @@ import { TextInputComponent } from './forms/input-text/input-text.component';
     imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
     declarations: [
         CardComponent,
+        LoadingIndicatorComponent,
         TextInputComponent,
     ],
     exports: [
@@ -22,6 +24,7 @@ import { TextInputComponent } from './forms/input-text/input-text.component';
         RouterModule,
         ReactiveFormsModule,
         CardComponent,
+        LoadingIndicatorComponent,
         TextInputComponent,
     ],
     providers: [],
