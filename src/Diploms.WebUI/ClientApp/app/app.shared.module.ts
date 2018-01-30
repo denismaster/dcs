@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
 import { SharedModule } from './shared/shared.module';
@@ -20,7 +19,6 @@ import { AlertService } from './shared/alert/services/alert.service';
         AppComponent,
         NavMenuComponent,
         CounterComponent,
-        FetchDataComponent,
         SignInComponent,
         HomeComponent
     ],
@@ -35,7 +33,6 @@ import { AlertService } from './shared/alert/services/alert.service';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
             { path: 'sign-in', component: SignInComponent },
             { path: '**', redirectTo: 'home' }
         ])
