@@ -12,4 +12,8 @@ export class DepartmentsService {
     public getDepartments(): Observable<Department[]>{
         return this.http.get<Department[]>(this.baseUrl + 'api/departments');
     }
+
+    public getDepartment(id:number|string): Observable<Department>{
+        return this.http.get<Department>(this.baseUrl + 'api/departments/'+id);
+    }
 }
