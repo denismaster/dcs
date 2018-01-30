@@ -23,6 +23,17 @@ namespace Diploms.WebUI.Controllers
             return Ok(await _repository.Get());
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetDepartment(int id)
+        {
+            var result = await _repository.Get(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound();
+        }
+
         [HttpPut("add")]
         public async Task<IActionResult> AddDepartment([FromBody] DepartmentAddDto model)
         {
