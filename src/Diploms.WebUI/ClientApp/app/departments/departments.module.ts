@@ -4,6 +4,7 @@ import { DepartmentsListComponent } from './components/list/list.component';
 import { DepartmentsRoutesModule } from './departments.routes.module';
 import { DepartmentsAddComponent } from './components/add/add.component';
 import { DepartmentsEditComponent } from './components/edit/edit.component';
+import { DepartmentsService } from './services/departments.service';
 
 @NgModule({
     imports: [
@@ -20,7 +21,7 @@ import { DepartmentsEditComponent } from './components/edit/edit.component';
         DepartmentsAddComponent,
         DepartmentsEditComponent
     ],
-    providers: [],
+    providers: [ DepartmentsService ],
     schemas: [NO_ERRORS_SCHEMA]
 })
 export class DepartmentsModule { }

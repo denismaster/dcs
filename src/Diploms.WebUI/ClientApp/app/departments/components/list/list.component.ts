@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AlertService } from '../../../shared/alert/services/alert.service';
+import { DepartmentsService } from '../../services/departments.service';
 
 @Component({ 
     selector: 'departments-list',
@@ -9,8 +10,8 @@ import { AlertService } from '../../../shared/alert/services/alert.service';
 export class DepartmentsListComponent {
     public departments: Department[];
 
-    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private alertService: AlertService) {
-        http.get<Department[]>(baseUrl + 'api/departments').subscribe(result => {
+    constructor(private departmentsService: DepartmentsService, private alertService: AlertService) {
+        this.departmentsService.getDepartments().subscribe(result => {
             this.departments = result
         }, error => {
             this.alertService.error(error.name);
@@ -19,7 +20,7 @@ export class DepartmentsListComponent {
     }
 }
 
-interface Department {
+export interface Department {
     id: number;
     name: string;
     shortName: string;
