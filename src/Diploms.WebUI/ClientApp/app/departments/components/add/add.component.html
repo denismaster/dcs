@@ -6,8 +6,8 @@
             <input-text title="Краткое название" [control]="form.controls['shortName']"></input-text>
         </card-body>
         <card-footer>
-            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Добавить</button>
-            <a [routerLink]="['/departments']" class="btn btn-default">Отмена</a>
+            <ok-cancel-buttons (okClick)="submit(form.value)" [okDisabled]="!form.valid" (cancelClick)="goBack()"></ok-cancel-buttons>
+            <error-list [errors]="errors"></error-list>
         </card-footer>
     </card>
 </form>

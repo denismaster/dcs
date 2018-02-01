@@ -7,6 +7,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TextInputComponent } from './forms/input-text/input-text.component';
 import { LoadingIndicatorComponent } from './loading-indicator';
 import { AlertComponent } from './alert/alert.component';
+import { OkCancelEditButtonsComponent } from './edit-buttons/ok-cancel-edit-buttons.component';
+import { ErrorListComponent } from './error-list/error-list.component';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -18,6 +20,8 @@ import { AlertComponent } from './alert/alert.component';
         CardComponent,
         LoadingIndicatorComponent,
         TextInputComponent,
+        OkCancelEditButtonsComponent,
+        ErrorListComponent,
         AlertComponent
     ],
     exports: [
@@ -26,6 +30,8 @@ import { AlertComponent } from './alert/alert.component';
         RouterModule,
         ReactiveFormsModule,
         CardComponent,
+        OkCancelEditButtonsComponent,
+        ErrorListComponent,
         LoadingIndicatorComponent,
         TextInputComponent,
         AlertComponent,
