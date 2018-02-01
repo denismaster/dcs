@@ -2,6 +2,7 @@ import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Department } from "../components/list/list.component";
+import { OperationResult } from "../../shared/models/operation-result";
 
 @Injectable()
 export class DepartmentsService {
@@ -15,5 +16,9 @@ export class DepartmentsService {
 
     public getDepartment(id:number|string): Observable<Department>{
         return this.http.get<Department>(this.baseUrl + 'api/departments/'+id);
+    }
+
+    public addDepartment(model:any): Observable<OperationResult>{
+        return this.http.put<OperationResult>("/api/departments/add", model);
     }
 }
