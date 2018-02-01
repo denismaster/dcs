@@ -15,7 +15,7 @@ export class DepartmentsEditComponent implements OnInit {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private formBuilder: FormBuilder,
-        private departmentsService: DepartmentsService
+        private service: DepartmentsService
     ) {
         this.id = activatedRoute.snapshot.params['id'];
         if (!this.id) {
@@ -29,8 +29,11 @@ export class DepartmentsEditComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.departmentsService.getDepartment(this.id).subscribe(result => {
+        this.service.getDepartment(this.id).subscribe(result => {
             this.form.setValue(result);
         })
     }
+
+
+    
 }
