@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AlertService } from '../../../shared/alert/services/alert.service';
 import { DepartmentsService } from '../../services/departments.service';
+import { Observable } from "rxjs/Observable";
 
 @Component({ 
     selector: 'departments-list',
@@ -9,15 +9,14 @@ import { DepartmentsService } from '../../services/departments.service';
 })
 export class DepartmentsListComponent {
     public departments: Department[];
+    public isLoading: boolean = true;
 
-    constructor(private departmentsService: DepartmentsService, private alertService: AlertService) {
-        this.departmentsService.getDepartments().subscribe(result => {
-            this.departments = result
-        }, error => {
-            this.alertService.error(error.name);
-            console.error(error)
-        });
-    }
+    constructor(private departmentsService: DepartmentsService, private alertService: AlertService) {  }
+
+    getDepartments = (request:any): Observable<Department[]> => {
+        this.isLoading = true;
+        return this.departmentsService.getDepartments();
+    }   
 }
 
 export interface Department {

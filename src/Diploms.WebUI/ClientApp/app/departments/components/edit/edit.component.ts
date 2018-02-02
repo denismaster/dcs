@@ -32,8 +32,5 @@ export class DepartmentsEditComponent implements OnInit {
         this.service.getDepartment(this.id).subscribe(result => {
             this.form.setValue(result);
         })
-    }
-
-
-    
+    } 
 }

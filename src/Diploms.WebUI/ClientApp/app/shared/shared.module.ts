@@ -9,13 +9,19 @@ import { LoadingIndicatorComponent } from './loading-indicator';
 import { AlertComponent } from './alert/alert.component';
 import { OkCancelEditButtonsComponent } from './edit-buttons/ok-cancel-edit-buttons.component';
 import { ErrorListComponent } from './error-list/error-list.component';
-
+import { RTModule } from 'right-angled/right-angled';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 
 @NgModule({
-    imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
+    imports: [
+        CommonModule, 
+        RouterModule, 
+        FormsModule, 
+        ReactiveFormsModule,
+        RTModule
+    ],
     declarations: [
         CardComponent,
         LoadingIndicatorComponent,
@@ -29,6 +35,7 @@ import { ErrorListComponent } from './error-list/error-list.component';
         FormsModule,
         RouterModule,
         ReactiveFormsModule,
+        RTModule,
         CardComponent,
         OkCancelEditButtonsComponent,
         ErrorListComponent,
