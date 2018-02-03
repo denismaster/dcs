@@ -25,4 +25,8 @@ export class DepartmentsService {
     public editDepartment(id: number | string, model: any): Observable<OperationResult> {
         return this.http.post<OperationResult>(`/api/departments/edit/${id}`, model);
     }
+
+    public deleteDepartment(id:number|string): Observable<OperationResult>{
+        return this.http.delete<OperationResult>(`/api/departments/delete/${id}`);
+    }
 }

@@ -77,6 +77,22 @@ namespace Diploms.WebUI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpDelete("delete/{id:int}")]
+        public async Task<IActionResult> DeleteDepartment(int id)
+        {
+            var department = new Department { Id = id };
+            try
+            {
+                _repository.Delete(department);
+                await _repository.SaveChanges();
+                return Ok(new OperationResult());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 
     public class DepartmentAddDto

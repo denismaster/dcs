@@ -1,5 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="submit(form.value)">
     <card title="Кафедра">
+        <card-header>
+            <div class="btn-group btn-group-sm pull-right">
+                <button type="button" class="btn btn-danger" (click)="remove()">
+                    <i class="fa fa-trash"></i>
+                    Удалить
+                </button>
+            </div>
+        </card-header>
         <card-body>
             <input-text title="Название" placeholder="Введите название" [control]="form.controls['name']"></input-text>
             <input-text title="Краткое название" [control]="form.controls['shortName']"></input-text>

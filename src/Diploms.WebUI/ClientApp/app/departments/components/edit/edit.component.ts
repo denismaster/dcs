@@ -54,4 +54,8 @@ export class DepartmentsEditComponent implements OnInit {
             this.errors = result.errors;
         }
     }
+
+    remove(){
+        this.service.deleteDepartment(this.id).subscribe(result=> this.checkResult(result));
+    }
 }
