@@ -54,6 +54,28 @@ namespace Diploms.WebUI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPut("edit/{id:int}")]
+        public async Task<IActionResult> EditDepartment(int id, [FromBody] DepartmentAddDto model)
+        {
+            var department = new Department
+            {
+                Id = id,
+                Name = model.Name,
+                ShortName = model.ShortName,
+                ChangeDate = DateTime.UtcNow
+            };
+            try
+            {
+                _repository.Update(department);
+                await _repository.SaveChanges();
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 
     public class DepartmentAddDto
