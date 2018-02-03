@@ -2,12 +2,14 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DepartmentsService } from '../../services/departments.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { OperationResult } from '../../../shared/models/operation-result';
 
 @Component({
     selector: 'departments-edit',
     templateUrl: './edit.component.html'
 })
 export class DepartmentsEditComponent implements OnInit {
+    errors: string[] | undefined = undefined;
     form: FormGroup;
     id: number;
 
@@ -33,4 +35,23 @@ export class DepartmentsEditComponent implements OnInit {
             this.form.setValue(result);
         })
     } 
+    
+    submit(form: any) {
+        this.service.editDepartment(this.id, form).subscribe(result => this.checkResult(result));
+    }
+
+    public goBack(): void {
+        this.router.navigate(['/departments']);
+    }
+
+    public checkResult(result:OperationResult):void{
+        if(!result.hasErrors)
+        {
+            this.goBack();
+        }
+        else
+        {
+            this.errors = result.errors;
+        }
+    }
 }

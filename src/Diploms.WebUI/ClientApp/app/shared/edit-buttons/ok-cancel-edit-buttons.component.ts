@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     `
 })
 export class OkCancelEditButtonsComponent {
-    @Input() okTitle:string = "Сохранить";
+    @Input() okTitle:string = "ОК";
     @Input() cancelTitle:string = "Отмена";
     @Input() okDisabled: boolean = false;
 

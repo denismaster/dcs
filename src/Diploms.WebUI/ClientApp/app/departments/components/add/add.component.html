@@ -5,7 +5,7 @@
             <input-text title="Краткое название" [control]="form.controls['shortName']"></input-text>
         </card-body>
         <card-footer>
-            <ok-cancel-buttons (okClick)="submit(form.value)" [okDisabled]="!form.valid" (cancelClick)="goBack()"></ok-cancel-buttons>
+            <ok-cancel-buttons okTitle="Добавить" (okClick)="submit(form.value)" [okDisabled]="!form.valid" (cancelClick)="goBack()"></ok-cancel-buttons>
             <error-list [errors]="errors"></error-list>
         </card-footer>
     </card>
