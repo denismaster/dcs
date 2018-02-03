@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DepartmentsService } from '../../services/departments.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OperationResult } from '../../../shared/models/operation-result';
+import { AlertService } from '../../../shared/alert/services/alert.service';
 
 @Component({
     selector: 'departments-edit',
@@ -17,7 +18,8 @@ export class DepartmentsEditComponent implements OnInit {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private formBuilder: FormBuilder,
-        private service: DepartmentsService
+        private service: DepartmentsService,
+        private alertSerivce: AlertService,
     ) {
         this.id = activatedRoute.snapshot.params['id'];
         if (!this.id) {
@@ -48,6 +50,7 @@ export class DepartmentsEditComponent implements OnInit {
         if(!result.hasErrors)
         {
             this.goBack();
+            this.alertSerivce.info("Данные успешно обновлены", true);
         }
         else
         {

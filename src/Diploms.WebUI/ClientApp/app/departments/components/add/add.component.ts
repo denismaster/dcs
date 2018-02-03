@@ -34,7 +34,7 @@ export class DepartmentsAddComponent {
         if (result.hasErrors) {
             this.errors = result.errors;
         } else {
-            this.alertService.success("Запись успешно добавлена", true);
+            this.alertService.info("Запись успешно добавлена", true);
             this.goBack();
         }
     }
