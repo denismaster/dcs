@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Diploms.Core;
+using Diploms.Dto;
 
 namespace Diploms.WebUI.Controllers
 {
@@ -47,7 +48,7 @@ namespace Diploms.WebUI.Controllers
             {
                 _repository.Add(department);
                 await _repository.SaveChanges();
-                return Ok();
+                return Ok(new OperationResult());
             }
             catch
             {
@@ -55,7 +56,7 @@ namespace Diploms.WebUI.Controllers
             }
         }
 
-        [HttpPut("edit/{id:int}")]
+        [HttpPost("edit/{id:int}")]
         public async Task<IActionResult> EditDepartment(int id, [FromBody] DepartmentAddDto model)
         {
             var department = new Department
@@ -69,7 +70,7 @@ namespace Diploms.WebUI.Controllers
             {
                 _repository.Update(department);
                 await _repository.SaveChanges();
-                return Ok();
+                return Ok(new OperationResult());
             }
             catch
             {
