@@ -8,9 +8,9 @@
         </div>
     </card-header>
     <card-body>
-        <loading *ngIf="departments"></loading>
+        <loading *ngIf="isLoading"></loading>
     </card-body>
-    <table card-table class='table table-bordered table-striped'>
+    <table card-table class='table table-bordered table-striped' *ngIf="!isLoading">
         <thead>
             <tr>
                 <th>№</th>
@@ -24,7 +24,9 @@
                 <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.shortName }}</td>
-                <td><a [routerLink]="['/departments', item.id]">Редактировать</a></td>
+                <td>
+                    <a [routerLink]="['/departments', item.id]">Редактировать</a>
+                </td>
             </tr>
         </tbody>
     </table>

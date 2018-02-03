@@ -15,7 +15,7 @@ export class DepartmentsListComponent {
 
     getDepartments = (request:any): Observable<Department[]> => {
         this.isLoading = true;
-        return this.departmentsService.getDepartments();
+        return this.departmentsService.getDepartments().do(_=>this.isLoading=false);
     }   
 }
 
