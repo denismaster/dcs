@@ -1,6 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="submit(form.value)">
-    <card>
-        <card-header>Новая кафедра</card-header>
+    <card title="Новая кафедра">
         <card-body>
             <input-text title="Название" placeholder="Введите название" [control]="form.controls['name']"></input-text>
             <input-text title="Краткое название" [control]="form.controls['shortName']"></input-text>
