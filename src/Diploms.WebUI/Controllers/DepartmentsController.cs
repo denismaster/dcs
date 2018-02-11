@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Diploms.Core;
 using Diploms.Dto;
+using Diploms.Dto.Departments;
 
 namespace Diploms.WebUI.Controllers
 {
@@ -36,7 +37,7 @@ namespace Diploms.WebUI.Controllers
         }
 
         [HttpPut("add")]
-        public async Task<IActionResult> AddDepartment([FromBody] DepartmentAddDto model)
+        public async Task<IActionResult> AddDepartment([FromBody] DepartmentEditDto model)
         {
             var department = new Department
             {
@@ -57,7 +58,7 @@ namespace Diploms.WebUI.Controllers
         }
 
         [HttpPost("edit/{id:int}")]
-        public async Task<IActionResult> EditDepartment(int id, [FromBody] DepartmentAddDto model)
+        public async Task<IActionResult> EditDepartment(int id, [FromBody] DepartmentEditDto model)
         {
             var department = new Department
             {
@@ -93,11 +94,5 @@ namespace Diploms.WebUI.Controllers
                 return BadRequest();
             }
         }
-    }
-
-    public class DepartmentAddDto
-    {
-        public string Name { get; set; }
-        public string ShortName { get; set; }
     }
 }
