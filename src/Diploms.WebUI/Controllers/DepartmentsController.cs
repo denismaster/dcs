@@ -39,6 +39,12 @@ namespace Diploms.WebUI.Controllers
         [HttpPut("add")]
         public async Task<IActionResult> AddDepartment([FromBody] DepartmentEditDto model)
         {
+            var result = new OperationResult();
+            if(!ModelState.IsValid)
+            {
+                this.GetErrors(model, result);
+                return BadRequest(result);
+            }
             var department = new Department
             {
                 Name = model.Name,
@@ -60,6 +66,12 @@ namespace Diploms.WebUI.Controllers
         [HttpPost("edit/{id:int}")]
         public async Task<IActionResult> EditDepartment(int id, [FromBody] DepartmentEditDto model)
         {
+            var result = new OperationResult();
+            if(!ModelState.IsValid)
+            {
+                this.GetErrors(model, result);
+                return BadRequest(result);
+            }
             var department = new Department
             {
                 Id = id,
