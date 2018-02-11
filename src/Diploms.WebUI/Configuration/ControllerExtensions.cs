@@ -18,8 +18,13 @@ namespace Diploms.WebUI
             result.Errors.AddRange(controller.ModelState.Values.SelectMany(v => v.Errors
               .Where(b => !string.IsNullOrEmpty(b.ErrorMessage))
               .Select(b => b.ErrorMessage)));
-              
+
             return result;
+        }
+
+        public static IActionResult Unprocessable(this Controller controller, object value)
+        {
+            return controller.StatusCode(422, value);
         }
     }
 }
