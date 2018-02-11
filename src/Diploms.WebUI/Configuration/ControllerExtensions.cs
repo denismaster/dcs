@@ -22,7 +22,7 @@ namespace Diploms.WebUI
             return result;
         }
 
-        public static IActionResult Unprocessable(this Controller controller, object value)
+        public static IActionResult Unprocessable(this ControllerBase controller, object value)
         {
             return controller.StatusCode(422, value);
         }

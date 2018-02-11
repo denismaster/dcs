@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Diploms.Core;
 using Diploms.Dto;
 using Diploms.Dto.Departments;
+using Diploms.Services.Departments;
 
 namespace Diploms.WebUI.Controllers
 {
@@ -13,10 +14,12 @@ namespace Diploms.WebUI.Controllers
     public class DepartmentsController : Controller
     {
         private readonly IRepository<Department> _repository;
+        private readonly DepartmentsService _service;
 
-        public DepartmentsController(IRepository<Department> repository)
+        public DepartmentsController(IRepository<Department> repository, DepartmentsService service)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         [HttpGet("")]
@@ -43,22 +46,13 @@ namespace Diploms.WebUI.Controllers
             {
                 return BadRequest(this.GetErrors(model));
             }
-            var department = new Department
-            {
-                Name = model.Name,
-                ShortName = model.ShortName,
-                CreateDate = DateTime.UtcNow
-            };
-            try
-            {
-                _repository.Add(department);
-                await _repository.SaveChanges();
-                return Ok(new OperationResult());
-            }
-            catch
-            {
-                return BadRequest();
-            }
+
+            OperationResult result = await _service.Add(model);
+
+            if(result.HasError) 
+                return this.Unprocessable(result);
+            
+            return Ok(result);
         }
 
         [HttpPost("edit/{id:int}")]
@@ -68,23 +62,13 @@ namespace Diploms.WebUI.Controllers
             {
                 return BadRequest(this.GetErrors(model));
             }
-            var department = new Department
-            {
-                Id = id,
-                Name = model.Name,
-                ShortName = model.ShortName,
-                ChangeDate = DateTime.UtcNow
-            };
-            try
-            {
-                _repository.Update(department);
-                await _repository.SaveChanges();
-                return Ok(new OperationResult());
-            }
-            catch
-            {
-                return BadRequest();
-            }
+
+            OperationResult result = await _service.Edit(model);
+
+            if(result.HasError) 
+                return this.Unprocessable(result);
+            
+            return Ok(result);
         }
 
         [HttpDelete("delete/{id:int}")]
