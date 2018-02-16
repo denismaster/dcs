@@ -17,6 +17,8 @@ namespace Diploms.WebUI.Authentication
         {
             return service.AddAuthorization(options =>
             {
+                options.AddPolicy(AuthConsts.PolicyAdmin,
+                    policy => policy.RequireClaim(AuthConsts.ClaimUserType,AuthConsts.Admin));
             });
         }
 
