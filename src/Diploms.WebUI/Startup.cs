@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Diploms.DataLayer;
 using Diploms.WebUI.Configuration;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
 
 namespace Diploms.WebUI
 {
@@ -24,7 +26,10 @@ namespace Diploms.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services
+                .AddMvc()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddAutoMapper();
             services.AddDepartments();
             services.AddDbContext<DiplomContext>();
         }

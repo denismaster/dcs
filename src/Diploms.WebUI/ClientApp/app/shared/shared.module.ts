@@ -10,6 +10,9 @@ import { AlertComponent } from './alert/alert.component';
 import { OkCancelEditButtonsComponent } from './edit-buttons/ok-cancel-edit-buttons.component';
 import { ErrorListComponent } from './error-list/error-list.component';
 import { RTModule } from 'right-angled/right-angled';
+import { TablePaginationComponent } from './table-pagination/table-pagination.component';
+import { TableStateComponent } from './table-state/table-state.component';
+import { TableFooterComponent } from './table-footer.component';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -28,7 +31,10 @@ import { RTModule } from 'right-angled/right-angled';
         TextInputComponent,
         OkCancelEditButtonsComponent,
         ErrorListComponent,
-        AlertComponent
+        AlertComponent,
+        TablePaginationComponent,
+        TableStateComponent,
+        TableFooterComponent,
     ],
     exports: [
         CommonModule,
@@ -42,6 +48,9 @@ import { RTModule } from 'right-angled/right-angled';
         LoadingIndicatorComponent,
         TextInputComponent,
         AlertComponent,
+        TablePaginationComponent,
+        TableStateComponent,
+        TableFooterComponent,
     ],
     providers: [
     ],

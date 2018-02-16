@@ -1,4 +1,4 @@
-<card title="Кафедры" [rtList]="getDepartments" #list="rtList">
+<card title="Кафедры" [rtList]="getDepartments" #list="rtList" [showBody]="false">
     <card-header>
         <div class="btn-group btn-group-sm pull-right">
             <a type="button" class="btn btn-default" [routerLink]="['/departments/new']">
@@ -7,10 +7,7 @@
             </a>
         </div>
     </card-header>
-    <card-body>
-        <loading *ngIf="isLoading"></loading>
-    </card-body>
-    <table card-table class='table table-bordered table-striped' *ngIf="!isLoading">
+    <table card-table class='table table-bordered table-striped'>
         <thead>
             <tr>
                 <th>№</th>
@@ -29,5 +26,9 @@
                 </td>
             </tr>
         </tbody>
+        <tfoot table-footer [colCount]="4" *ngIf="isLoading"></tfoot>
     </table>
+    <card-footer>
+        <table-pagination></table-pagination>
+    </card-footer>
 </card>

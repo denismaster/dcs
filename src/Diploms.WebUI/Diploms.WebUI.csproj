@@ -8,6 +8,7 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="7.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
@@ -21,6 +22,7 @@
     <ProjectReference Include="..\Diploms.Core\Diploms.Core.csproj" />
     <ProjectReference Include="..\Diploms.DataLayer\Diploms.DataLayer.csproj" />
     <ProjectReference Include="..\Diploms.Dto\Diploms.Dto.csproj" />
+    <ProjectReference Include="..\Diploms.Services\Diploms.Services.csproj" />
   </ItemGroup>
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->
