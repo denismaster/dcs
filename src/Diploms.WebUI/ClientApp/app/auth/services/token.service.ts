@@ -41,14 +41,20 @@ export class TokenService {
 
         const request = new HttpRequest("POST", this.refreshUrl, JSON.stringify(refreshToken), { headers, responseType: "json" });
 
-        return this.http.handle(request)
+        let a =  this.http.handle(request)
             .filter(event => event.type === HttpEventType.Response)
+            .map((res:any)=>res.body)
             .map((res) => {
                 console.log(res);
                 localStorage.setItem(USER_AUTH_KEY, JSON.stringify(res));
+                this.setRefreshing(false)
                 return null;
             })
             .finally(() => this.setRefreshing(false))
+        
+            a.subscribe(e=>{})
+
+        return a;
     }
 
     private setRefreshing(value: boolean) {
