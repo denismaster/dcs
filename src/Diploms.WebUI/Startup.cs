@@ -52,6 +52,11 @@ namespace Diploms.WebUI
                 {
                     HotModuleReplacement = true
                 });
+
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    serviceScope.ServiceProvider.GetService<DiplomContext>().EnsureSeedData();
+                }
             }
             else
             {
