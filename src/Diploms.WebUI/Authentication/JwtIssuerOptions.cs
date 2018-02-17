@@ -77,6 +77,11 @@ namespace Diploms.WebUI.Authentication
         public TimeSpan ValidFor { get; set; } = TimeSpan.FromMinutes(30);
 
         /// <summary>
+        /// Set the timespan the access_token will be valid for (default is 5 min)
+        /// </summary>
+        public TimeSpan TokenValidFor { get; set; } = TimeSpan.FromMinutes(5);
+
+        /// <summary>
         /// "exp" (Expiration Time) Claim (returns IssuedAt + ValidFor)
         /// </summary>
         /// <remarks>The "exp" (expiration time) claim identifies the expiration time on
@@ -89,6 +94,8 @@ namespace Diploms.WebUI.Authentication
         public DateTime RememberExpiration => IssuedAt.Add(RememberValidFor);
 
         public DateTime Expiration => IssuedAt.Add(ValidFor);
+
+        public DateTime TokenExpiration => IssuedAt.Add(TokenValidFor);
 
         /// <summary>
         /// "jti" (JWT ID) Claim (default ID is a GUID)
