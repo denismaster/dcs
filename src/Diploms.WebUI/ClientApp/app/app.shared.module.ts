@@ -13,6 +13,8 @@ import { SharedModule } from './shared/shared.module';
 import { DepartmentsModule } from './departments/departments.module';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AlertService } from './shared/alert/services/alert.service';
+import { AuthModule } from './auth/auth.module';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
     declarations: [
@@ -23,10 +25,13 @@ import { AlertService } from './shared/alert/services/alert.service';
         HomeComponent
     ],
     providers:[
-        AlertService
+        AlertService,
     ],
     imports: [
         HttpClientModule,
+        HttpModule,
+        AuthModule,
+        AuthModule.forRoot(),
         SharedModule,
         DepartmentsModule,
         RouterModule.forRoot([
