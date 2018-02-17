@@ -35,11 +35,23 @@ namespace Diploms.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddMvc()
+                .AddMvc(config =>
+                {
+                    var policy = new AuthorizationPolicyBuilder()
+                                    .RequireAuthenticatedUser()
+                                    .Build();
+                    config.Filters.Add(new AuthorizeFilter(policy));
+                })
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+
             services.AddAutoMapper();
+
             services.AddDepartments();
+
             services.AddDbContext<DiplomContext>();
+
+            services.AddJWTTokens().AddAuthPolicy()
+                .ConfigureJwtIssuerOptions(Configuration, _signingKey);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +76,8 @@ namespace Diploms.WebUI
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
