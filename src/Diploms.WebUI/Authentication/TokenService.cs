@@ -55,16 +55,20 @@ namespace Diploms.WebUI.Authentication
                 identity.FindFirst(AuthConsts.ClaimUserType)
             };
 
-            var encodedJwt = CreateJWTToken(claims, user.RememberMe, _jwtOptions);
+            var expiration = user.RememberMe ? _jwtOptions.Expiration : _jwtOptions.RememberExpiration;
 
-            return TokenResult(encodedJwt, user.RememberMe ? (int)_jwtOptions.RememberValidFor.TotalSeconds : (int)_jwtOptions.ValidFor.TotalSeconds, _jwtOptions, _serializerSettings);
+            var encodedJwt = CreateJWTToken(claims, _jwtOptions.TokenExpiration , _jwtOptions);
+            var encodedRefreshToken = CreateJWTToken(claims, expiration , _jwtOptions);
+
+            return TokenResult(encodedJwt, encodedRefreshToken, user.RememberMe ? (int)_jwtOptions.RememberValidFor.TotalSeconds : (int)_jwtOptions.ValidFor.TotalSeconds, _jwtOptions, _serializerSettings);
         }
 
-        private ObjectResult TokenResult(string token, double expires, JwtIssuerOptions _jwtOptions, JsonSerializerSettings _serializerSettings)
+        private ObjectResult TokenResult(string token, string refreshToken, double expires, JwtIssuerOptions _jwtOptions, JsonSerializerSettings _serializerSettings)
         {
             var response = new
             {
                 token = token,
+                refreshToken = refreshToken,
                 expires = expires
             };
             var json = JsonConvert.SerializeObject(response, _serializerSettings);
@@ -74,13 +78,6 @@ namespace Diploms.WebUI.Authentication
         public async Task<ObjectResult> RefreshToken(string token, JwtIssuerOptions _jwtOptions, JsonSerializerSettings _serializerSettings)
         {
             JwtSecurityToken tok = new JwtSecurityTokenHandler().ReadJwtToken(token);
-
-            // if remember token and token expire balance > expire of short token - return
-            // in other cases extend short token or convert remember token to short (to live working session)
-            if (tok.ValidTo - tok.ValidFrom == _jwtOptions.RememberValidFor && (tok.ValidTo - _jwtOptions.IssuedAt) > _jwtOptions.ValidFor)
-            {
-                return TokenResult(token, (int)_jwtOptions.RememberValidFor.TotalSeconds, _jwtOptions, _serializerSettings);
-            }
 
             // extend token's expiration
             var expiration = _jwtOptions.Expiration;
@@ -104,10 +101,11 @@ namespace Diploms.WebUI.Authentication
                 new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
                 identity.FindFirst(AuthConsts.ClaimUserType)
             };
+            
+            var encodedJwt = CreateJWTToken(claims, _jwtOptions.TokenExpiration , _jwtOptions);
+            var encodedRefreshToken = CreateJWTToken(claims, expiration , _jwtOptions);
 
-            var encodedJwt = RefreshJWTToken(claims, expiration, _jwtOptions);
-
-            return TokenResult(encodedJwt, (int)_jwtOptions.ValidFor.TotalSeconds, _jwtOptions, _serializerSettings);
+            return TokenResult(encodedJwt, encodedRefreshToken, (int)_jwtOptions.ValidFor.TotalSeconds, _jwtOptions, _serializerSettings);
         }
 
         public void ThrowIfInvalidOptions(JwtIssuerOptions options)
@@ -135,7 +133,7 @@ namespace Diploms.WebUI.Authentication
             }
         }
 
-        private string RefreshJWTToken(Claim[] claims, DateTime expiration, JwtIssuerOptions _jwtOptions)
+        private string CreateJWTToken(Claim[] claims, DateTime expiration, JwtIssuerOptions _jwtOptions)
         {
             var jwt = new JwtSecurityToken(
                 issuer: _jwtOptions.Issuer,
@@ -143,20 +141,6 @@ namespace Diploms.WebUI.Authentication
                 claims: claims,
                 notBefore: _jwtOptions.NotBefore,
                 expires: expiration,
-                signingCredentials: _jwtOptions.SigningCredentials);
-
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-            return encodedJwt;
-        }
-
-        private string CreateJWTToken(Claim[] claims, bool rememberMe, JwtIssuerOptions _jwtOptions)
-        {
-            var jwt = new JwtSecurityToken(
-                issuer: _jwtOptions.Issuer,
-                audience: _jwtOptions.Audience,
-                claims: claims,
-                notBefore: _jwtOptions.NotBefore,
-                expires: rememberMe ? _jwtOptions.RememberExpiration : _jwtOptions.Expiration,
                 signingCredentials: _jwtOptions.SigningCredentials);
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
