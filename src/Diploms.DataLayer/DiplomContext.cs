@@ -18,6 +18,22 @@ namespace Diploms.DataLayer
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserRole>()
+                            .HasKey(t => new { t.UserId, t.RoleId });
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(pt => pt.User)
+                .WithMany(p => p.Roles)
+                .HasForeignKey(pt => pt.RoleId);
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(pt => pt.Role)
+                .WithMany(t => t.Users)
+                .HasForeignKey(pt => pt.UserId);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //TODO: Use appsettings.json or environment variable, not the string here.
