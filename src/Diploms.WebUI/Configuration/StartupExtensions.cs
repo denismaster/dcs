@@ -1,6 +1,7 @@
 using Diploms.Core;
 using Diploms.DataLayer;
 using Diploms.Services.Departments;
+using Diploms.WebUI.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Diploms.WebUI.Configuration
@@ -11,6 +12,13 @@ namespace Diploms.WebUI.Configuration
         {
             services.AddScoped<IRepository<Department>, RepositoryBase<Department>>();
             services.AddScoped<DepartmentsService>();
+            return services;
+        }
+
+        public static IServiceCollection AddJWTTokens(this IServiceCollection services)
+        {
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
     }
