@@ -5,6 +5,8 @@ import { JwtHelper } from './helpers/jwt.helper';
 import { TokenService } from './services/token.service';
 import { AuthService } from './services/auth.service';
 import { RefreshInterceptor } from './interceptors/refresh.interceptor';
+import { AuthInfoService } from './services/auth-info.service';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import { RefreshInterceptor } from './interceptors/refresh.interceptor';
     providers: [
         JwtHelper,
         AuthService,
+        AuthInfoService,
         TokenService,
         {
             provide: HTTP_INTERCEPTORS,
@@ -25,6 +28,7 @@ import { RefreshInterceptor } from './interceptors/refresh.interceptor';
             useClass: TokenInterceptor,
             multi: true
         },
+        AuthGuard
     ],
 })
 export class AuthModule {
