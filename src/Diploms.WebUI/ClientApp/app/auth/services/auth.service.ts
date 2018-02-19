@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { JwtHelper } from "../helpers/jwt.helper";
 import { HttpClient } from "@angular/common/http";
 import { UserAuthInfo } from "./token.service";
+import { AuthInfoService } from './auth-info.service';
 
 export const USER_AUTH_KEY: string = "currentUser"
 
@@ -29,15 +30,23 @@ export function getUserAuthInfo(): UserAuthInfo | null {
  */
 @Injectable()
 export class AuthService {
-    constructor(private jwtHelper: JwtHelper, private http: HttpClient) { }
+    constructor(
+        private jwtHelper: JwtHelper, 
+        private http: HttpClient,
+        private authInfo: AuthInfoService,
+    ) { }
 
     public login(details: AuthRequest) {
-        return this.http.post<UserAuthInfo>("api/account/login", details)
-            .map(result=> localStorage.setItem(USER_AUTH_KEY, JSON.stringify(result)));
+        return this.http.post<UserAuthInfo>("api/token/login", details)
+            .map(result=> {
+                localStorage.setItem(USER_AUTH_KEY, JSON.stringify(result));
+                this.authInfo.updateInfo(result);
+            });
     }
 
     public logout(): void {
         localStorage.removeItem(USER_AUTH_KEY);
+        this.authInfo.clear();
     }
 
     public isAuthenticated(): boolean {
