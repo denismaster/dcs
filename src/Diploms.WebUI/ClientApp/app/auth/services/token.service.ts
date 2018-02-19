@@ -19,12 +19,18 @@ export class TokenService {
     constructor(private http: HttpBackend) { }
 
     public refreshAuthentication(refreshToken: string): Observable<null> {
-        if (!this.isRefreshing) return this.tryRefreshToken(refreshToken);
+        if (!this.isRefreshing){ 
+            console.log("no request pending, starting refreshing");
+            return this.tryRefreshToken(refreshToken);
+            
+        }
 
+        console.log("Waiting for end of refreshing");
         return new Observable((observer: Observer<null>) => {
             this.refreshingStream.subscribe(result => {
                 if (!result) {
                     observer.next(null);
+                    console.log("request can now be handled");
                     observer.complete();
                 }
             })
@@ -41,23 +47,18 @@ export class TokenService {
 
         const request = new HttpRequest("POST", this.refreshUrl, JSON.stringify(refreshToken), { headers, responseType: "json" });
 
-        let a =  this.http.handle(request)
+        return this.http.handle(request)
             .filter(event => event.type === HttpEventType.Response)
-            .map((res:any)=>res.body)
+            .map((res: any) => res.body)
             .map((res) => {
-                console.log(res);
                 localStorage.setItem(USER_AUTH_KEY, JSON.stringify(res));
-                this.setRefreshing(false)
                 return null;
             })
             .finally(() => this.setRefreshing(false))
-        
-            a.subscribe(e=>{})
-
-        return a;
     }
 
     private setRefreshing(value: boolean) {
+        if(value===false) console.log("refreshing complete");
         this.isRefreshing = value;
         this.refreshingStream.next(this.isRefreshing);
     }
