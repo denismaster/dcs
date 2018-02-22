@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, getUserAuthInfo } from '../../auth/services/auth.service';
-import { AuthInfoService } from '../../auth/services/auth-info.service';
+import { AuthStore } from '../../auth/services/auth.store';
 
 @Component({
     selector: 'nav-menu',
@@ -10,10 +10,10 @@ import { AuthInfoService } from '../../auth/services/auth-info.service';
 export class NavMenuComponent {
 
     username: string | undefined;
-    constructor(private authInfo: AuthInfoService, private authService: AuthService) { }
+    constructor(private auth: AuthStore, private authService: AuthService) { }
 
     ngOnInit() {
-        this.authInfo.getUserAuthInfo().subscribe(info => {
+        this.auth.authStateChanges$.subscribe(info => {
             if (!info) {
                 this.username = undefined;
                 return;

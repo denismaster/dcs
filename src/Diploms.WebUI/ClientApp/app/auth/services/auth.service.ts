@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { JwtHelper } from "../helpers/jwt.helper";
 import { HttpClient } from "@angular/common/http";
 import { UserAuthInfo } from "./token.service";
-import { AuthInfoService } from './auth-info.service';
+import { AuthStore } from './auth.store';
 
 export const USER_AUTH_KEY: string = "currentUser"
 
@@ -33,20 +33,20 @@ export class AuthService {
     constructor(
         private jwtHelper: JwtHelper, 
         private http: HttpClient,
-        private authInfo: AuthInfoService,
+        private authInfo: AuthStore,
     ) { }
 
     public login(details: AuthRequest) {
         return this.http.post<UserAuthInfo>("api/token/login", details)
             .map(result=> {
                 localStorage.setItem(USER_AUTH_KEY, JSON.stringify(result));
-                this.authInfo.updateInfo(result);
+                this.authInfo.setAuthState(result);
             });
     }
 
     public logout(): void {
         localStorage.removeItem(USER_AUTH_KEY);
-        this.authInfo.clear();
+        this.authInfo.logout();
     }
 
     public isAuthenticated(): boolean {
