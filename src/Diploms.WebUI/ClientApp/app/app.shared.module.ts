@@ -15,6 +15,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AlertService } from './shared/alert/services/alert.service';
 import { AuthModule } from './auth/auth.module';
 import { HttpModule } from '@angular/http';
+import { LoginGuard } from './auth/guards/login.guard';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,7 @@ import { HttpModule } from '@angular/http';
         SignInComponent,
         HomeComponent
     ],
-    providers:[
+    providers: [
         AlertService,
     ],
     imports: [
@@ -38,11 +39,11 @@ import { HttpModule } from '@angular/http';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
-            { path: 'sign-in', component: SignInComponent },
+            { path: 'sign-in', component: SignInComponent, canActivate: [LoginGuard] },
             { path: '**', redirectTo: 'home' }
         ])
     ],
-    schemas : [ NO_ERRORS_SCHEMA ]
+    schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModuleShared {
 }
