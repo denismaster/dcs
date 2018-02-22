@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { UserAuthInfo } from './token.service';
+import { AuthStateInfo } from './token.service';
 import { USER_AUTH_KEY } from '../services/auth.service';
 
 @Injectable()
 export class AuthStore {
-    private subject = new BehaviorSubject<UserAuthInfo|undefined>(undefined);
+    private subject = new BehaviorSubject<AuthStateInfo|undefined>(undefined);
 
     constructor(){
         //when we use serverside rendering there is now window object. here is a code to find out is there a window object or not
@@ -17,7 +17,7 @@ export class AuthStore {
             if(!storageValue) return;
 
             try{
-                const state = JSON.parse(storageValue) as UserAuthInfo;
+                const state = JSON.parse(storageValue) as AuthStateInfo;
                 this.setAuthState(state);
             }
             catch(err){
@@ -26,7 +26,7 @@ export class AuthStore {
         }
     }
 
-    get authState(): UserAuthInfo | undefined {
+    get authState(): AuthStateInfo | undefined {
         return this.subject.getValue();
     }
 
@@ -34,7 +34,7 @@ export class AuthStore {
         return this.subject.asObservable();
     }
 
-    setAuthState(newState: UserAuthInfo) {
+    setAuthState(newState: AuthStateInfo) {
         const state = Object.assign(this.authState || {}, newState);
         this.subject.next(state);
     }

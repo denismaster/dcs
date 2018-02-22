@@ -18,7 +18,6 @@ export class NavMenuComponent {
                 this.username = undefined;
                 return;
             }
-
             this.username = "logged in"
         })
     }

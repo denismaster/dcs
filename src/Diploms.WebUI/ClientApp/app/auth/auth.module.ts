@@ -12,8 +12,6 @@ import { LoginGuard } from './guards/login.guard';
 
 @NgModule({
     imports: [],
-    declarations: [],
-    exports: [],
     providers: [
         JwtHelper,
         AuthService,

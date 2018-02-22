@@ -6,9 +6,11 @@ import { HttpBackend, HttpRequest } from "@angular/common/http";
 import { HttpHeaders } from "@angular/common/http";
 import { HttpEventType } from "@angular/common/http";
 
-export class UserAuthInfo {
+export class AuthStateInfo {
     token: string = "";
     refreshToken: string = "";
+    userName: string = "";
+    userId: number = 0;
 }
 
 @Injectable()

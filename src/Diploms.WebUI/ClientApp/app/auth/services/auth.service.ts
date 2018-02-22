@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { JwtHelper } from "../helpers/jwt.helper";
 import { HttpClient } from "@angular/common/http";
-import { UserAuthInfo } from "./token.service";
+import { AuthStateInfo } from "./token.service";
 import { AuthStore } from './auth.store';
 
 export const USER_AUTH_KEY: string = "currentUser"
@@ -12,13 +12,13 @@ export interface AuthRequest{
     rememberMe: boolean; 
 }
 
-export function getUserAuthInfo(): UserAuthInfo | null {
+export function getUserAuthInfo(): AuthStateInfo | null {
     const storageValue = localStorage.getItem(USER_AUTH_KEY);
 
     if (!storageValue) return null;
 
     try {
-        const model = JSON.parse(storageValue) as UserAuthInfo;
+        const model = JSON.parse(storageValue) as AuthStateInfo;
         return model;
     }
     catch (error) {
@@ -37,7 +37,7 @@ export class AuthService {
     ) { }
 
     public login(details: AuthRequest) {
-        return this.http.post<UserAuthInfo>("api/token/login", details)
+        return this.http.post<AuthStateInfo>("api/token/login", details)
             .map(result=> {
                 localStorage.setItem(USER_AUTH_KEY, JSON.stringify(result));
                 this.authInfo.setAuthState(result);
