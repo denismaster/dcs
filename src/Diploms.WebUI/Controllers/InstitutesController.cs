@@ -28,6 +28,17 @@ namespace Diploms.WebUI.Controllers
             return Ok(await _repository.Get());
         }
 
+        [HttpGet("select-list")]
+        public async Task<IActionResult> GetAsSelectList()
+        {
+            return Ok((await _repository.Get()).Select(item=>{
+                return new SelectListItem{
+                    Text = item.Name,
+                    Value = item.Id.ToString()
+                };
+            }));
+        }
+
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetOne(int id)
         {
