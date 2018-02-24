@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { DepartmentsModule } from './departments/departments.module';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AlertService } from './shared/alert/services/alert.service';
+import { InstitutesModule } from './institutes/institutes.module';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { AlertService } from './shared/alert/services/alert.service';
     imports: [
         HttpClientModule,
         SharedModule,
+        InstitutesModule,
         DepartmentsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
