@@ -7,15 +7,26 @@ using Diploms.Dto.Departments;
 
 namespace Diploms.Services
 {
-    public class CrudService<TEntity, TAddModel, TEditModel> where TEntity : BaseEntity
+    public class CrudService<TEntity, TGetOneModel, TAddModel, TEditModel> 
+        : ICrudService<TEntity,TGetOneModel, TAddModel, TEditModel>
+        where TEntity : BaseEntity
     {
-        private readonly IMapper _mapper;
-        private readonly IRepository<TEntity> _repository;
+        protected readonly IMapper _mapper;
+        protected readonly IRepository<TEntity> _repository;
 
         public CrudService(IRepository<TEntity> repository, IMapper mapper)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
+
+        public async Task<TGetOneModel> GetOne(int id)
+        {
+            var entity = await _repository.Get(id);
+
+            if(entity==null) return default(TGetOneModel);
+
+            return _mapper.Map<TGetOneModel>(entity);
         }
 
         public virtual async Task<OperationResult> Add(TAddModel model)
