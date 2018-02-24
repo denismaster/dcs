@@ -13,6 +13,7 @@ import { RTModule } from 'right-angled/right-angled';
 import { TablePaginationComponent } from './table-pagination/table-pagination.component';
 import { TableStateComponent } from './table-state/table-state.component';
 import { TableFooterComponent } from './table-footer.component';
+import { InputSelectComponent } from './forms/input-select/input-select.component';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -29,6 +30,7 @@ import { TableFooterComponent } from './table-footer.component';
         CardComponent,
         LoadingIndicatorComponent,
         TextInputComponent,
+        InputSelectComponent,
         OkCancelEditButtonsComponent,
         ErrorListComponent,
         AlertComponent,
@@ -47,6 +49,7 @@ import { TableFooterComponent } from './table-footer.component';
         ErrorListComponent,
         LoadingIndicatorComponent,
         TextInputComponent,
+        InputSelectComponent,
         AlertComponent,
         TablePaginationComponent,
         TableStateComponent,

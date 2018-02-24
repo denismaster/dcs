@@ -1,0 +1,9 @@
+<div class="form-group" [class.has-error]="!control.valid && control.touched">
+    <label class="control-label">{{ title }}</label>
+    <select class="form-control" [formControl]="control">
+        <option disabled selected value="">{{ placeholder }}</option>
+        <option *ngFor = "let option of options" [value]="option.value">
+            {{option.text}}
+        </option>
+    </select>
+</div>

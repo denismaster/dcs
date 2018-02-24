@@ -9,5 +9,5 @@ export class TextInputComponent {
     @Input() title: string = "";
     @Input() name: string = "textBox";
     @Input() placeholder: string = "Введите значение";
-    @Input() control: AbstractControl = new FormControl;
+    @Input() control: AbstractControl = new FormControl("");
 }
