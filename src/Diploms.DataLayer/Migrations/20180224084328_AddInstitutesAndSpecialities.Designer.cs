@@ -11,9 +11,10 @@ using System;
 namespace Diploms.DataLayer.Migrations
 {
     [DbContext(typeof(DiplomContext))]
-    partial class DiplomContextModelSnapshot : ModelSnapshot
+    [Migration("20180224084328_AddInstitutesAndSpecialities")]
+    partial class AddInstitutesAndSpecialities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
