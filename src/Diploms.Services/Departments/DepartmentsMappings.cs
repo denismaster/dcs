@@ -9,6 +9,7 @@ namespace Diploms.Services.Departments
         public DepartmentsMappings()
         {
             CreateMap<DepartmentEditDto, Department>();
+            CreateMap<Department, DepartmentEditDto>();
         }
     }
 }
