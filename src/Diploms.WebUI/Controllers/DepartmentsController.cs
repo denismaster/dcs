@@ -23,15 +23,15 @@ namespace Diploms.WebUI.Controllers
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> GetDepartments()
+        public async Task<IActionResult> GetAll()
         {
             return Ok(await _repository.Get());
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetDepartment(int id)
+        public async Task<IActionResult> GetOne(int id)
         {
-            var result = await _repository.Get(id);
+            var result = await _service.GetOne(id);
             if (result != null)
             {
                 return Ok(result);
@@ -40,7 +40,7 @@ namespace Diploms.WebUI.Controllers
         }
 
         [HttpPut("add")]
-        public async Task<IActionResult> AddDepartment([FromBody] DepartmentEditDto model)
+        public async Task<IActionResult> Add([FromBody] DepartmentEditDto model)
         {
             if(!ModelState.IsValid)
             {
@@ -56,7 +56,7 @@ namespace Diploms.WebUI.Controllers
         }
 
         [HttpPost("edit/{id:int}")]
-        public async Task<IActionResult> EditDepartment(int id, [FromBody] DepartmentEditDto model)
+        public async Task<IActionResult> Edit(int id, [FromBody] DepartmentEditDto model)
         {
             if(!ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace Diploms.WebUI.Controllers
         }
 
         [HttpDelete("delete/{id:int}")]
-        public async Task<IActionResult> DeleteDepartment(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var department = new Department { Id = id };
             try
