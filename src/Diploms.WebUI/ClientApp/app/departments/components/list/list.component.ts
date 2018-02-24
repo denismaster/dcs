@@ -8,7 +8,7 @@ import { Observable } from "rxjs/Observable";
     templateUrl: './list.component.html'
 })
 export class DepartmentsListComponent {
-    public departments: Department[];
+    public departments: Department[] = [];
     public isLoading: boolean = true;
 
     constructor(private departmentsService: DepartmentsService, private alertService: AlertService) {  }

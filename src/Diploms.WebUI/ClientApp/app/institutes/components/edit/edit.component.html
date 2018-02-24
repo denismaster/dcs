@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+    <card title="Институт">
+        <card-header>
+            <div class="btn-group btn-group-sm pull-right">
+                <button type="button" class="btn btn-danger" (click)="remove()">
+                    <i class="fa fa-trash"></i>
+                    Удалить
+                </button>
+            </div>
+        </card-header>
+        <card-body>
+            <input-text title="Название" placeholder="Введите название" [control]="form.controls['name']"></input-text>
+            <input-text title="Краткое название" [control]="form.controls['shortName']"></input-text>
+        </card-body>
+        <card-footer>
+            <ok-cancel-buttons okTitle="Редактировать" (okClick)="submit(form.value)" [okDisabled]="!form.valid" (cancelClick)="goBack()"></ok-cancel-buttons>
+            <error-list [errors]="errors"></error-list>
+        </card-footer>
+    </card>
+</form>

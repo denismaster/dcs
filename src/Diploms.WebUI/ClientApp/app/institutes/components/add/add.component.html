@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+    <card title="Новый институт">
+        <card-body>
+            <input-text title="Название" placeholder="Введите название" [control]="form.controls['name']"></input-text>
+            <input-text title="Краткое название" [control]="form.controls['shortName']"></input-text>
+        </card-body>
+        <card-footer>
+            <ok-cancel-buttons okTitle="Добавить" (okClick)="submit(form.value)" [okDisabled]="!form.valid" (cancelClick)="goBack()"></ok-cancel-buttons>
+            <error-list [errors]="errors"></error-list>
+        </card-footer>
+    </card>
+</form>
