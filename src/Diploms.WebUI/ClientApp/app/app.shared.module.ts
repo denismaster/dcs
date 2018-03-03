@@ -14,6 +14,7 @@ import { DepartmentsModule } from './departments/departments.module';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AlertService } from './shared/alert/services/alert.service';
 import { InstitutesModule } from './institutes/institutes.module';
+import { SpecialitiesModule } from './specialities/specialities.module';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { InstitutesModule } from './institutes/institutes.module';
         SharedModule,
         InstitutesModule,
         DepartmentsModule,
+        SpecialitiesModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

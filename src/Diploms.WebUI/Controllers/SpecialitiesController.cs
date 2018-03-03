@@ -5,34 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Diploms.Core;
 using Diploms.Dto;
-using Diploms.Dto.Departments;
-using Diploms.Services.Departments;
+using Diploms.Dto.Specialities;
+using Diploms.Services.Specialities;
 
 namespace Diploms.WebUI.Controllers
 {
     [Route("api/[controller]")]
-    public class DepartmentsController : Controller
+    public class SpecialitiesController : Controller
     {
-        private readonly IRepository<Department> _repository;
-        private readonly DepartmentsService _service;
+        private readonly IRepository<Speciality> _repository;
+        private readonly SpecialitiesService _service;
 
-        public DepartmentsController(IRepository<Department> repository, DepartmentsService service)
+        public SpecialitiesController(IRepository<Speciality> repository, SpecialitiesService service)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        [HttpGet("select-list")]
-        public async Task<IActionResult> GetAsSelectList()
-        {
-            return Ok((await _repository.Get()).Select(item=>{
-                return new SelectListItem{
-                    Text = item.Name,
-                    Value = item.Id.ToString()
-                };
-            }));
-        }
-        
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
@@ -51,7 +40,7 @@ namespace Diploms.WebUI.Controllers
         }
 
         [HttpPut("add")]
-        public async Task<IActionResult> Add([FromBody] DepartmentEditDto model)
+        public async Task<IActionResult> Add([FromBody] SpecialityEditDto model)
         {
             if(!ModelState.IsValid)
             {
@@ -67,7 +56,7 @@ namespace Diploms.WebUI.Controllers
         }
 
         [HttpPost("edit/{id:int}")]
-        public async Task<IActionResult> Edit(int id, [FromBody] DepartmentEditDto model)
+        public async Task<IActionResult> Edit(int id, [FromBody] SpecialityEditDto model)
         {
             if(!ModelState.IsValid)
             {
@@ -85,7 +74,7 @@ namespace Diploms.WebUI.Controllers
         [HttpDelete("delete/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var department = new Department { Id = id };
+            var department = new Speciality { Id = id };
             try
             {
                 _repository.Delete(department);
