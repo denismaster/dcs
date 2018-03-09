@@ -12,9 +12,28 @@ namespace Diploms.DataLayer
         public DbSet<Institute> Institutes { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Speciality> Specialities { get; set; }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
         
         public DiplomContext() : base()
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserRole>()
+                            .HasKey(t => new { t.UserId, t.RoleId });
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(pt => pt.User)
+                .WithMany(p => p.Roles)
+                .HasForeignKey(pt => pt.RoleId);
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(pt => pt.Role)
+                .WithMany(t => t.Users)
+                .HasForeignKey(pt => pt.UserId);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -7,10 +7,13 @@ using Diploms.Core;
 using Diploms.Dto;
 using Diploms.Dto.Departments;
 using Diploms.Services.Departments;
+using Microsoft.AspNetCore.Authorization;
+using Diploms.WebUI.Authentication;
 
 namespace Diploms.WebUI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(Policy=AuthConsts.PolicyAdmin)]
     public class DepartmentsController : Controller
     {
         private readonly IRepository<Department> _repository;

@@ -11,9 +11,10 @@ using System;
 namespace Diploms.DataLayer.Migrations
 {
     [DbContext(typeof(DiplomContext))]
-    partial class DiplomContextModelSnapshot : ModelSnapshot
+    [Migration("20180216213101_AddUsersAndRoles")]
+    partial class AddUsersAndRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,8 +30,6 @@ namespace Diploms.DataLayer.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
-                    b.Property<int>("InstituteId");
-
                     b.Property<string>("Name");
 
                     b.Property<DateTime?>("RemoveDate");
@@ -38,93 +37,9 @@ namespace Diploms.DataLayer.Migrations
                     b.Property<string>("ShortName");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InstituteId");
 
                     b.ToTable("Departments");
                 });
-
-            modelBuilder.Entity("Diploms.Core.Institute", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime?>("ChangeDate");
-
-                    b.Property<DateTime>("CreateDate");
-
-                    b.Property<string>("Name");
-
-                    b.Property<DateTime?>("RemoveDate");
-
-                    b.Property<string>("ShortName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Institutes");
-                });
-
-            modelBuilder.Entity("Diploms.Core.Speciality", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime?>("ChangeDate");
-
-                    b.Property<DateTime>("CreateDate");
-
-                    b.Property<int>("DepartmentId");
-
-                    b.Property<string>("Name");
-
-                    b.Property<DateTime?>("RemoveDate");
-
-                    b.Property<string>("ShortName");
-
-                    b.Property<string>("Сode");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("Specialities");
-                });
-
-            modelBuilder.Entity("Diploms.Core.Department", b =>
-                {
-                    b.HasOne("Diploms.Core.Institute", "Institute")
-                        .WithMany("Departments")
-                        .HasForeignKey("InstituteId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Diploms.Core.Speciality", b =>
-                {
-                    b.HasOne("Diploms.Core.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Diploms.Core.Department", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
-
-                b.Property<DateTime?>("ChangeDate");
-
-                b.Property<DateTime>("CreateDate");
-
-                b.Property<string>("Name");
-
-                b.Property<DateTime?>("RemoveDate");
-
-                b.Property<string>("ShortName");
-
-                b.HasKey("Id");
-
-                b.ToTable("Departments");
-            });
 
             modelBuilder.Entity("Diploms.Core.Role", b =>
                 {
@@ -183,7 +98,6 @@ namespace Diploms.DataLayer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
-
 #pragma warning restore 612, 618
         }
     }

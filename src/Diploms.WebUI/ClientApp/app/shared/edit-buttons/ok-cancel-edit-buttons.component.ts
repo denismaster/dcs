@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
     selector: 'ok-cancel-buttons',
     template: `
-        <button class="btn btn-primary" [disabled]="okDisabled" (click)="okClick.emit()">{{okTitle}}</button>
+        <button type="button" class="btn btn-primary" [disabled]="okDisabled" (click)="okClick.emit()">{{okTitle}}</button>
         <button type="button" class="btn btn-default" (click)="cancelClick.emit()">{{cancelTitle}}</button>
     `
 })

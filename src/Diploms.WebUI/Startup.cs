@@ -11,11 +11,19 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
+using Diploms.WebUI.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Diploms.WebUI
 {
     public class Startup
     {
+        private const string SecretKey = "someverystrongkey";
+        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,13 +35,23 @@ namespace Diploms.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddMvc()
+                .AddMvc(config =>
+                {
+                    var policy = new AuthorizationPolicyBuilder()
+                                    .RequireAuthenticatedUser()
+                                    .Build();
+                    config.Filters.Add(new AuthorizeFilter(policy));
+                })
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+
             services.AddAutoMapper();
             services.AddInstitutes();
             services.AddDepartments();
             services.AddSpecialities();
             services.AddDbContext<DiplomContext>();
+
+            services.AddJWTTokens().AddAuthPolicy()
+                .ConfigureJwtIssuerOptions(Configuration, _signingKey);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +64,11 @@ namespace Diploms.WebUI
                 {
                     HotModuleReplacement = true
                 });
+
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    serviceScope.ServiceProvider.GetService<DiplomContext>().EnsureSeedData();
+                }
             }
             else
             {
@@ -53,6 +76,8 @@ namespace Diploms.WebUI
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
