@@ -18,11 +18,13 @@ import { SpecialitiesModule } from './specialities/specialities.module';
 import { AuthModule } from './auth/auth.module';
 import { HttpModule } from '@angular/http';
 import { LoginGuard } from './auth/guards/login.guard';
+import { UserMenuComponent } from './components/navmenu/user-menu.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
+        UserMenuComponent,
         CounterComponent,
         SignInComponent,
         HomeComponent

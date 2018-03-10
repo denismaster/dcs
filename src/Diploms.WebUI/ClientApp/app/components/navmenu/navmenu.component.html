@@ -20,46 +20,29 @@
                     </a>
                 </li>
                 <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class='fa fa-gear'></span> Настройки <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a [routerLink]="['/institutes']">Институты</a></li>
-                          <li><a [routerLink]="['/departments']">Кафедры</a></li>
-                          <li><a [routerLink]="['/specialities']">Специальности</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li><a>Параметры</a></li>
-                        </ul>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class='fa fa-gear'></span> Настройки
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a [routerLink]="['/institutes']">Институты</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/departments']">Кафедры</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/specialities']">Специальности</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a>Параметры</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <div class="navbar-right">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown" *ngIf="username">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            {{username}}<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">
-                                    <span class='fa fa-gear'></span>
-                                    Настройки
-                                </a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a (click)="logout()">
-                                    <span class='fa fa-sign-out'></span>
-                                    Выйти
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li [routerLinkActive]="['link-active']" *ngIf="!username">
-                        <a [routerLink]="['/sign-in']">
-                            <span class='fa fa-sign-in'></span> Войти
-                        </a>
-                    </li>
-                </ul>
+                <UserMenu></UserMenu>
             </div>
         </div>
     </div>
