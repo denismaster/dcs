@@ -6,21 +6,21 @@ import { USER_AUTH_KEY } from '../services/auth.service';
 
 @Injectable()
 export class AuthStore {
-    private subject = new BehaviorSubject<AuthStateInfo|undefined>(undefined);
+    private subject = new BehaviorSubject<AuthStateInfo | undefined>(undefined);
 
-    constructor(){
+    constructor() {
         //when we use serverside rendering there is now window object. here is a code to find out is there a window object or not
-        var w = (1,eval)("this");
-        if(w && w.localStorage){
+        var w = (1, eval)("this");
+        if (w && w.localStorage) {
             const storageValue = w.localStorage.getItem(USER_AUTH_KEY);
 
-            if(!storageValue) return;
+            if (!storageValue) return;
 
-            try{
+            try {
                 const state = JSON.parse(storageValue) as AuthStateInfo;
                 this.setAuthState(state);
             }
-            catch(err){
+            catch (err) {
 
             }
         }
@@ -30,7 +30,7 @@ export class AuthStore {
         return this.subject.getValue();
     }
 
-    get authStateChanges$(): Observable<any> {
+    get authStateChanges$(): Observable<AuthStateInfo | undefined> {
         return this.subject.asObservable();
     }
 

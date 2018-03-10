@@ -28,12 +28,12 @@ namespace Diploms.DataLayer
             modelBuilder.Entity<UserRole>()
                 .HasOne(pt => pt.User)
                 .WithMany(p => p.Roles)
-                .HasForeignKey(pt => pt.RoleId);
+                .HasForeignKey(pt => pt.UserId);
 
             modelBuilder.Entity<UserRole>()
                 .HasOne(pt => pt.Role)
                 .WithMany(t => t.Users)
-                .HasForeignKey(pt => pt.UserId);
+                .HasForeignKey(pt => pt.RoleId);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

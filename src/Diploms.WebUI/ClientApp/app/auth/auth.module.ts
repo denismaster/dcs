@@ -8,6 +8,7 @@ import { RefreshInterceptor } from './interceptors/refresh.interceptor';
 import { AuthStore } from './services/auth.store';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
+import { IfAuthDirective } from './directives/if-auth.directive';
 
 
 @NgModule({
@@ -28,8 +29,10 @@ import { LoginGuard } from './guards/login.guard';
             multi: true
         },
         AuthGuard,
-        LoginGuard
+        LoginGuard,
     ],
+    declarations:[ IfAuthDirective],
+    exports: [ IfAuthDirective]
 })
 export class AuthModule {
     static forRoot(): ModuleWithProviders {
