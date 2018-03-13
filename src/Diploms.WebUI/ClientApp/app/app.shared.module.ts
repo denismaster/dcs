@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './components/counter/counter.component';
 
 import { SharedModule } from './shared/shared.module';
@@ -19,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
 import { HttpModule } from '@angular/http';
 import { LoginGuard } from './auth/guards/login.guard';
 import { UserMenuComponent } from './components/navmenu/user-menu.component';
+import { NormControlModule } from './norm-control/norm-control.module';
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import { UserMenuComponent } from './components/navmenu/user-menu.component';
         InstitutesModule,
         DepartmentsModule,
         SpecialitiesModule,
+        NormControlModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
