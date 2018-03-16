@@ -1,4 +1,4 @@
-namespace DiplomContentSystem.Dto
+namespace Diploms.Dto
 {
     public class TeacherListItem
     {
