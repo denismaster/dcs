@@ -12,6 +12,16 @@ namespace Diploms.DataLayer
         public DbSet<Institute> Institutes { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Speciality> Specialities { get; set; }
+        public DbSet<TeacherPosition> TeachersPositions { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Period> Periods { get; set; }
+        public DbSet<DiplomWork> DiplomWorks { get; set; }
+        public DbSet<DiplomWorkMaterial> DiplomWorkMaterials { get; set; }
+        public DbSet<GostControlTry> GostControlTries { get; set; }
+        public DbSet<ImplementationStage> ImplementationStages { get; set; }
+        public DbSet<CustomStage> CustomStages { get; set; }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
