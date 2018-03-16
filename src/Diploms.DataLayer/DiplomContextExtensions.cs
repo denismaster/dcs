@@ -1,7 +1,9 @@
+using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Diploms.Core;
+using System.Collections.Generic;
 
 namespace Diploms.DataLayer
 {
@@ -15,6 +17,22 @@ namespace Diploms.DataLayer
                 {
                     context.Roles.AddRange(Role.Admin, Role.Owner, Role.Student, Role.Teacher);
                     context.SaveChanges();
+                }
+                if(!context.Users.Any())
+                {
+                    context.Users.Add(new User{
+                        Id = 1,
+                        Login = "admin",
+                        PasswordHash = @"WgHWgYQpzkpETS0VemCGE15u2LNPjTbtocMdxtqLll8=",
+                        Roles = new List<UserRole> 
+                        {
+                            new UserRole 
+                            {
+                                UserId = 1,
+                                RoleId = 1
+                            }
+                        }
+                    });
                 }
             }
         }
