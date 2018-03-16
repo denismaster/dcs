@@ -1,4 +1,4 @@
-namespace Diploms.Dto
+namespace Diploms.Dto.Groups
 {
     public class GroupListItem
     {

@@ -1,6 +1,6 @@
-namespace Diploms.Dto
+namespace Diploms.Dto.Groups
 {
-    public class GroupEditItem
+    public class GroupEditDto
     {
         public int? Id {get;set;}
         public string Name {get;set;}
