@@ -1,6 +1,6 @@
 namespace Diploms.Dto
 {
-    public class TeacherEditItem
+    public class TeacherEditDto
     {
         public int? Id {get;set;}
         public string FIO {get;set;}
