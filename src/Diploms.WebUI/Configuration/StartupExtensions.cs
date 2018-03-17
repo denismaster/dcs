@@ -46,6 +46,7 @@ namespace Diploms.WebUI.Configuration
         public static IServiceCollection AddTeachers(this IServiceCollection services)
         {
             services.AddScoped<IRepository<Teacher>, RepositoryBase<Teacher>>();
+            services.AddScoped<IRepository<TeacherPosition>, RepositoryBase<TeacherPosition>>();
             services.AddScoped<TeachersService>();
             return services;
         }
