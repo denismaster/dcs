@@ -3,31 +3,24 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer/dist/pdf-viewer.component';
 
 @Component({
     selector: 'norm-control',
-    templateUrl: './norm-control.component.html'
+    templateUrl: './note.component.html'
 })
 export class NoteComponent {
-    pdfSrc: string | null = null;
-
-    @ViewChild(PdfViewerComponent) private pdfComponent: any;
-
-    search(stringToSearch: string) {
-        console.log(this.pdfComponent);
-        this.pdfComponent.pdfFindController.executeCommand('find', {
-            caseSensitive: false, findPrevious: undefined, highlightAll: true, phraseSearch: true, query: stringToSearch
-        });
+    code: string;
+    config = {
+        lineNumbers: true,
+        mode: "stex",
+        theme: 'default'
     }
-
-    onFileSelected() {
-        let $img: any = document.querySelector('#file');
-
-        if (typeof (FileReader) !== 'undefined') {
-            let reader = new FileReader();
-
-            reader.onload = (e: any) => {
-                this.pdfSrc = e.target.result;
-            };
-
-            reader.readAsArrayBuffer($img.files[0]);
+    constructor() {
+        this.code = `\\documentclass[12pt]{article}
+        \\begin{document}
+        @foreach(var student in Model.Students)
+        {
+          \\paragraph
+          @student.Name\\\\@student.FIO\\\\student.Group\\\\
         }
+        \\end{document}
+        `
     }
 }

@@ -20,6 +20,7 @@ import { HttpModule } from '@angular/http';
 import { LoginGuard } from './auth/guards/login.guard';
 import { UserMenuComponent } from './components/navmenu/user-menu.component';
 import { NormControlModule } from './norm-control/norm-control.module';
+import { NoteModule } from './note/note.module';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { NormControlModule } from './norm-control/norm-control.module';
         DepartmentsModule,
         SpecialitiesModule,
         NormControlModule,
+        NoteModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

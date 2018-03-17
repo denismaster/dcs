@@ -1,11 +1,20 @@
-<!--<card title="Превью ПЗ"  *ngIf="pdfSrc">
-    <card-body>
-        <pdf-viewer #pdfViewer [src]="pdfSrc" [render-text]="true" style="display: block;" [show-all]="false">
-        </pdf-viewer>
-    </card-body>
-</card>
-<card title="Замечания" *ngIf="!pdfSrc">
-    <card-body>
-        <input (change)="onFileSelected()" type="file" id="file" *ngIf="!pdfSrc">
-    </card-body>
-</card>-->
+<div class="row">
+    <div class="col-md-6">
+        <card title="Код">
+            <card-body>
+                <codemirror [(ngModel)]="code"
+                    [config]="config"
+                >
+                </codemirror>
+            </card-body>
+        </card>
+    </div>
+    <div class="col-md-6">
+        <card title="Превью">
+            <card-body>
+                <pdf-viewer #pdfViewer [src]="pdfSrc" [render-text]="true" style="display: block;" [show-all]="false">
+                </pdf-viewer>
+            </card-body>
+        </card>
+    </div>
+</div>
