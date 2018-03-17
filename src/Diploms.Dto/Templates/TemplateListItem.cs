@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Diploms.Dto
 {
-    public class TemplateListItem
+    public class TemplateEditDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
