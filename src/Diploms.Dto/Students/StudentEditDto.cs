@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 namespace Diploms.Dto
 {
-    public class StudentListItem
+    public class StudentEditDto
     {
         public int Id { get; set; }
         public string FIO { get; set; }
-        public string Group { get; set; }
+        public int GroupId { get; set; }
+        public string Group{ get; set; }
         public string DiplomWork { get; set; }
         public int? DiplomWorkId {get;set;}
         public string Teacher { get; set; }
