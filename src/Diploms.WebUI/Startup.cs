@@ -45,9 +45,16 @@ namespace Diploms.WebUI
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
 
             services.AddAutoMapper();
+            
             services.AddInstitutes();
             services.AddDepartments();
             services.AddSpecialities();
+            services.AddGroups();
+            services.AddTeachers();
+            services.AddStudents();
+            services.AddDiplomWorks();
+            services.AddTemplates();
+
             services.AddDbContext<DiplomContext>();
 
             services.AddJWTTokens().AddAuthPolicy()
