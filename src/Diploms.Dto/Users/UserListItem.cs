@@ -1,4 +1,4 @@
-namespace DiplomContentSystem.Dto
+namespace DiplomContentSystem.Dto.Usersrbym 
 {
     public class UserListItem
     {

@@ -1,6 +1,6 @@
-namespace Diploms.Dto
+namespace Diploms.Dto.Users
 {
-    public class UserEditItem
+    public class UserEditDto
     {
         public int? Id {get;set;}
         public string Login {get;set;}
