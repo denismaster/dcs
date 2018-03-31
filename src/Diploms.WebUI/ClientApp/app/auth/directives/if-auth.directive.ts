@@ -14,7 +14,7 @@ export class IfAuthDirective {
     }
 
     ngOnInit() {
-        this.subscription = this.auth.authStateChanges$.subscribe(isLoggedIn => {
+        this.subscription = this.auth.authStateChanges$.distinct().subscribe(isLoggedIn => {
             if (isLoggedIn) {
                 if (this.show) {
                     this.viewContainer.createEmbeddedView(this.templateRef);
@@ -29,5 +29,13 @@ export class IfAuthDirective {
                 }
             }
         });
+    }
+
+    ngOnDestroy() {
+        //Called once, before the instance is destroyed.
+        //Add 'implements OnDestroy' to the class.
+        if(!this.subscription) return;
+
+        this.subscription.unsubscribe();
     }
 }
