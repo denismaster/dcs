@@ -21,6 +21,7 @@ import { LoginGuard } from './auth/guards/login.guard';
 import { UserMenuComponent } from './components/navmenu/user-menu.component';
 import { NormControlModule } from './norm-control/norm-control.module';
 import { NoteModule } from './note/note.module';
+import { GroupsModule } from './groups/groups.module';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { NoteModule } from './note/note.module';
         InstitutesModule,
         DepartmentsModule,
         SpecialitiesModule,
+        GroupsModule,
         NormControlModule,
         NoteModule,
         RouterModule.forRoot([
