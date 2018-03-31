@@ -1,6 +1,6 @@
 namespace Diploms.Dto.Groups
 {
-    public class GroupListItem
+    public class GroupListDto
     {
         public int Id {get;set;}
         public string Name {get;set;}

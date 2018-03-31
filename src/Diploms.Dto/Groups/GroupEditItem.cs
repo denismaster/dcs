@@ -4,6 +4,6 @@ namespace Diploms.Dto.Groups
     {
         public int? Id {get;set;}
         public string Name {get;set;}
-        public int SpecialityId {get;set;}
+        public int DepartmentId {get;set;}
     }
 }
