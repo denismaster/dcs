@@ -34,6 +34,8 @@ namespace Diploms.DataLayer
                         }
                     });
                 }
+
+                context.SaveChanges();
             }
         }
         private static bool AllMigrationsApplied(this DiplomContext context)
