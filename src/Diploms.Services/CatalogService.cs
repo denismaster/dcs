@@ -7,14 +7,14 @@ using Diploms.Dto.Departments;
 
 namespace Diploms.Services
 {
-    public class CrudService<TEntity, TGetOneModel, TAddModel, TEditModel> 
-        : ICrudService<TEntity,TGetOneModel, TAddModel, TEditModel>
+    public class CatalogService<TEntity, TGetOneModel, TAddModel, TEditModel> 
+        : ICatalogService<TEntity,TGetOneModel, TAddModel, TEditModel>
         where TEntity : BaseEntity
     {
         protected readonly IMapper _mapper;
         protected readonly IRepository<TEntity> _repository;
 
-        public CrudService(IRepository<TEntity> repository, IMapper mapper)
+        public CatalogService(IRepository<TEntity> repository, IMapper mapper)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

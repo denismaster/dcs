@@ -6,7 +6,7 @@ using Diploms.Dto;
 
 namespace Diploms.Services.Teachers
 {
-    public class TeachersService : CrudService<Teacher, TeacherEditDto, TeacherEditDto, TeacherEditDto>
+    public class TeachersService : CatalogService<Teacher, TeacherEditDto, TeacherEditDto, TeacherEditDto>
     {
         public TeachersService(IRepository<Teacher> repository, IMapper mapper) : base(repository, mapper)
         {

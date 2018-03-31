@@ -7,7 +7,7 @@ using Diploms.Dto.Departments;
 
 namespace Diploms.Services
 {
-    public interface ICrudService<TEntity, TGetOneModel, TAddModel, TEditModel> where TEntity : BaseEntity
+    public interface ICatalogService<TEntity, TGetOneModel, TAddModel, TEditModel> where TEntity : BaseEntity
     {
         Task<TGetOneModel> GetOne(int id);
         Task<OperationResult> Add(TAddModel model);

@@ -7,7 +7,7 @@ using Diploms.Dto.Institutes;
 
 namespace Diploms.Services.Institutes
 {
-    public class InstitutesService : CrudService<Institute, InstituteEditDto, InstituteEditDto, InstituteEditDto>
+    public class InstitutesService : CatalogService<Institute, InstituteEditDto, InstituteEditDto, InstituteEditDto>
     {
         public InstitutesService(IRepository<Institute> repository, IMapper mapper) : base(repository, mapper)
         {
