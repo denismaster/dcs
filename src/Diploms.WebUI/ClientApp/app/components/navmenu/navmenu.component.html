@@ -21,6 +21,24 @@
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class='fa fa-user'></span> Данные
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a [routerLink]="['/teachers']">Преподаватели</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/students']">Студенты</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a [routerLink]="['/diploms']">Дипломные работы</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class='fa fa-gear'></span> Настройки
                         <span class="caret"></span>
                     </a>
