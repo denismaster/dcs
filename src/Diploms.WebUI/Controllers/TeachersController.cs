@@ -24,14 +24,16 @@ namespace Diploms.WebUI.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _repository.Get());
+            return Ok(await _service.GetList());
         }
 
         [HttpGet("select-list")]
         public async Task<IActionResult> GetAsSelectList()
         {
-            return Ok((await _repository.Get()).Select(item=>{
-                return new SelectListItem{
+            return Ok((await _repository.Get()).Select(item =>
+            {
+                return new SelectListItem
+                {
                     Text = item.FIO,
                     Value = item.Id.ToString()
                 };
@@ -52,32 +54,32 @@ namespace Diploms.WebUI.Controllers
         [HttpPut("add")]
         public async Task<IActionResult> Add([FromBody] TeacherEditDto model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(this.GetErrors(model));
             }
 
             OperationResult result = await _service.Add(model);
 
-            if(result.HasError) 
+            if (result.HasError)
                 return this.Unprocessable(result);
-            
+
             return Ok(result);
         }
 
         [HttpPost("edit/{id:int}")]
         public async Task<IActionResult> Edit(int id, [FromBody] TeacherEditDto model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(this.GetErrors(model));
             }
 
             OperationResult result = await _service.Edit(model);
 
-            if(result.HasError) 
+            if (result.HasError)
                 return this.Unprocessable(result);
-            
+
             return Ok(result);
         }
 

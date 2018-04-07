@@ -1,6 +1,6 @@
 namespace Diploms.Dto
 {
-    public class TeacherListItem
+    public class TeacherListDto
     {
         public int Id {get;set;}
         public string FIO {get;set;}
