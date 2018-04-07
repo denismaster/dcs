@@ -9,6 +9,8 @@ namespace Diploms.Services.Specialities
         public SpecialitiesMappings()
         {
             CreateMap<SpecialityEditDto, Speciality>();
+            CreateMap<Speciality, SpecialityListDto>()
+                .ForMember(c => c.Department, s => s.MapFrom(q => q.Department.Name));
         }
     }
 }

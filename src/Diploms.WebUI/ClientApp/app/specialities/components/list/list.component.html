@@ -14,6 +14,7 @@
                 <th>Название</th>
                 <th>Краткое название</th>
                 <th>Код</th>
+                <th>Кафедра</th>
                 <th>Действия</th>
             </tr>
         </thead>
@@ -24,11 +25,14 @@
                 <td>{{ item.shortName }}</td>
                 <td>{{ item.code }}</td>
                 <td>
+                    <a [routerLink]="['/departments', item.departmentId]">{{item.department}}</a>
+                </td>
+                <td>
                     <a [routerLink]="['/specialities', item.id]">Редактировать</a>
                 </td>
             </tr>
         </tbody>
-        <tfoot table-footer [colCount]="5" *ngIf="isLoading"></tfoot>
+        <tfoot table-footer [colCount]="6" *ngIf="isLoading"></tfoot>
     </table>
     <card-footer>
         <table-pagination></table-pagination>
