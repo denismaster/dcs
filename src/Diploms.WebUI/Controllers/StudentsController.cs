@@ -24,7 +24,7 @@ namespace Diploms.WebUI.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _repository.Get());
+            return Ok(await _service.GetList());
         }
 
         [HttpGet("select-list")]
@@ -50,7 +50,7 @@ namespace Diploms.WebUI.Controllers
         }
 
         [HttpPut("add")]
-        public async Task<IActionResult> Add([FromBody] StudentEditDto model)
+        public async Task<IActionResult> Add([FromBody] StudentAddDto model)
         {
             if(!ModelState.IsValid)
             {
