@@ -2,9 +2,8 @@
     <card title="Новая группа">
         <card-body>
             <input-text title="Название" placeholder="Введите название" [control]="form.controls['name']"></input-text>
-            <input-text title="Краткое название" [control]="form.controls['shortName']"></input-text>
-            <input-select [control]="form.controls['department']" title="Кафедра" placeholder="Выберите кафедру" [options]="departmentsOptions">
-            </input-select>
+            <input-select [control]="form.controls['department']" title="Кафедра" placeholder="Выберите кафедру" [options]="departmentsOptions"></input-select>
+            <input-select [control]="form.controls['speciality']" title="Специальность" placeholder="Выберите специальность" [options]="specialitiesOptions"></input-select>
         </card-body>
         <card-footer>
             <ok-cancel-buttons okTitle="Добавить" (okClick)="submit(form.value)" [okDisabled]="!form.valid" (cancelClick)="goBack()"></ok-cancel-buttons>

@@ -22,6 +22,17 @@ namespace Diploms.WebUI.Controllers
             _service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
+        [HttpGet("select-list")]
+        public async Task<IActionResult> GetAsSelectList()
+        {
+            return Ok((await _repository.Get()).Select(item=>{
+                return new SelectListItem{
+                    Text = item.Name,
+                    Value = item.Id.ToString()
+                };
+            }));
+        }
+
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {

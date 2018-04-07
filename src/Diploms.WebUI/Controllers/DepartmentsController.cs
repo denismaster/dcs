@@ -39,7 +39,7 @@ namespace Diploms.WebUI.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _repository.Get());
+            return Ok(await _service.GetList());
         }
 
         [HttpGet("{id:int}")]

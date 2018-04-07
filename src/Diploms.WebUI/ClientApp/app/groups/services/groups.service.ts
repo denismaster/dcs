@@ -19,6 +19,10 @@ export class GroupsService {
         return this.http.get<SelectListItem[]>(this.baseUrl + 'api/departments/select-list');
     }
 
+    public getSpecialities(): Observable<SelectListItem[]> {
+        return this.http.get<SelectListItem[]>(this.baseUrl + 'api/specialities/select-list');
+    }
+
     public getGroup(id: number | string): Observable<Group> {
         return this.http.get<Group>(this.baseUrl + 'api/groups/' + id);
     }

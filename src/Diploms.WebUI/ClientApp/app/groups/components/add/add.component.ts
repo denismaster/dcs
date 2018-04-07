@@ -15,6 +15,7 @@ export class GroupsAddComponent {
     form: FormGroup;
     errors: string[] | undefined = [];
     departmentsOptions: SelectListItem[] = [];
+    specialitiesOptions: SelectListItem[] = [];
 
     constructor(
         private service: GroupsService,
@@ -24,18 +25,21 @@ export class GroupsAddComponent {
     ) {
         this.form = this.formBuilder.group({
             "name": ["", Validators.required],
-            "shortName": [""],
-            "department": ["", Validators.required]
+            "department": ["", Validators.required],
+            "speciality": ["", Validators.required],
         });
     }
 
     ngOnInit() {
         this.service.getDepartments().subscribe(items => this.departmentsOptions = items);
+        this.service.getSpecialities().subscribe(items => this.specialitiesOptions = items);
     }
 
     submit(form: any) {
         this.service.addGroup({
-            name: form.name, shortName: form.shortName, instituteId: form.institute
+            name: form.name,
+            departmentId: form.department,
+            specialityId: form.speciality
         }).subscribe(result => this.checkResult(result));
     }
 

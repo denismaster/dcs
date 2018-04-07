@@ -13,10 +13,13 @@ namespace Diploms.DataLayer
         {
             if (context.AllMigrationsApplied())
             {
+                if (!context.Periods.Any())
+                {
+                    context.Periods.Add(Period.Current);
+                }
                 if (!context.Roles.Any())
                 {
                     context.Roles.AddRange(Role.Admin, Role.Owner, Role.Student, Role.Teacher);
-                    context.SaveChanges();
                 }
                 if(!context.Users.Any())
                 {
@@ -34,7 +37,6 @@ namespace Diploms.DataLayer
                         }
                     });
                 }
-
                 context.SaveChanges();
             }
         }

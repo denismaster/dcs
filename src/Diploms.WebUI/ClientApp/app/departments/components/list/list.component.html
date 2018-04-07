@@ -13,6 +13,7 @@
                 <th>№</th>
                 <th>Название</th>
                 <th>Краткое название</th>
+                <th>Институт</th>
                 <th>Действия</th>
             </tr>
         </thead>
@@ -21,6 +22,9 @@
                 <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.shortName }}</td>
+                <td>
+                    <a [routerLink]="['/institutes', item.instituteId]">{{item.institute}}</a>
+                </td>
                 <td>
                     <a [routerLink]="['/departments', item.id]">Редактировать</a>
                 </td>

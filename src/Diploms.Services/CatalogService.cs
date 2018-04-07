@@ -30,7 +30,7 @@ namespace Diploms.Services
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<IEnumerable<TListModel>> GetList()
+        public virtual async Task<IEnumerable<TListModel>> GetList()
         {
             var entities = await _repository.Get();
 

@@ -9,9 +9,10 @@ namespace Diploms.Core
     {
         public static Period Current = new Period()
         {
-            StartDate = new DateTime(2016, 9, 01),
-            EndDate = new DateTime(2017, 6, 30),
-            Name = "2016/2017 учебный год"
+            Id = 1,
+            StartDate = new DateTime(2017, 9, 01),
+            EndDate = new DateTime(2018, 6, 30),
+            Name = "2017/2018 учебный год"
         };
         public string Name { get; set; }
         public DateTime StartDate { get; set; }

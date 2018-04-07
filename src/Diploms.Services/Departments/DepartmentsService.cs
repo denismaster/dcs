@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Diploms.Core;
@@ -11,6 +12,13 @@ namespace Diploms.Services.Departments
     {
         public DepartmentsService(IRepository<Department> repository, IMapper mapper) : base(repository, mapper)
         {
+        }
+
+        public override async Task<IEnumerable<DepartmentListDto>> GetList()
+        {
+            var entities = await _repository.Get(includes: department=>department.Institute);
+
+            return _mapper.Map<IEnumerable<DepartmentListDto>>(entities);
         }
     }
 }

@@ -22,9 +22,17 @@ namespace Diploms.DataLayer
         /// Получение всех объектов
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> Get()
+        public async Task<IEnumerable<T>> Get(params Expression<Func<T, object>>[] includes)
         {
-            return await _context.Set<T>().AsNoTracking().ToListAsync();
+            IQueryable<T> query = _context.Set<T>();
+            if (includes != null)
+            {
+                foreach (var includeElement in includes)
+                {
+                    query = query.Include(includeElement);
+                }
+            }
+            return await query.AsNoTracking().ToListAsync();
         }
 
         /// <summary>
@@ -38,7 +46,7 @@ namespace Diploms.DataLayer
             var query = _context.Set<T>().AsNoTracking();
             return await query.FirstOrDefaultAsync(entity => entity.Id == id);
         }
-        
+
         /// <summary>
         /// Добавление объекта
         /// </summary>
@@ -47,7 +55,7 @@ namespace Diploms.DataLayer
         {
             _context.Set<T>().AddAsync(item);
         }
-        
+
         /// <summary>
         /// Обновление объекта
         /// </summary>
@@ -56,7 +64,7 @@ namespace Diploms.DataLayer
         {
             _context.Set<T>().Update(item);
         }
-        
+
         /// <summary>
         /// Удаление объекта
         /// </summary>
@@ -65,7 +73,7 @@ namespace Diploms.DataLayer
         {
             _context.Set<T>().Remove(item);
         }
-        
+
         /// <summary>
         /// Сохранение изменений в репозитории
         /// </summary>

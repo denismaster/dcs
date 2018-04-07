@@ -9,7 +9,8 @@ namespace Diploms.Services.Departments
         public DepartmentsMappings()
         {
             CreateMap<DepartmentEditDto, Department>();
-            CreateMap<Department, DepartmentEditDto>();
+            CreateMap<Department, DepartmentListDto>()
+                .ForMember(c=>c.Institute, s=>s.MapFrom(q=>q.Institute.ShortName));
         }
     }
 }
