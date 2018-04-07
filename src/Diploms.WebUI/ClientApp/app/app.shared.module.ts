@@ -22,6 +22,7 @@ import { UserMenuComponent } from './components/navmenu/user-menu.component';
 import { NormControlModule } from './norm-control/norm-control.module';
 import { NoteModule } from './note/note.module';
 import { GroupsModule } from './groups/groups.module';
+import { TeachersModule } from './teachers/teachers.module';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { GroupsModule } from './groups/groups.module';
         DepartmentsModule,
         SpecialitiesModule,
         GroupsModule,
+        TeachersModule,
         NormControlModule,
         NoteModule,
         RouterModule.forRoot([
