@@ -17,6 +17,10 @@ namespace Diploms.DataLayer
                 {
                     context.Periods.Add(Period.Current);
                 }
+                if (!context.TeachersPositions.Any())
+                {
+                    context.TeachersPositions.AddRange(TeacherPosition.HighTeacher, TeacherPosition.Professor, TeacherPosition.Doctor);
+                }
                 if (!context.Roles.Any())
                 {
                     context.Roles.AddRange(Role.Admin, Role.Owner, Role.Student, Role.Teacher);
