@@ -41,9 +41,16 @@ namespace Diploms.DataLayer
         /// <param name="id">Идентификатор объекта</param>
         /// <param name="includes"></param>
         /// <returns></returns>
-        public async Task<T> Get(int id)
+        public async Task<T> Get(int id, params Expression<Func<T, object>>[] includes)
         {
             var query = _context.Set<T>().AsNoTracking();
+            if (includes != null)
+            {
+                foreach (var includeElement in includes)
+                {
+                    query = query.Include(includeElement);
+                }
+            }
             return await query.FirstOrDefaultAsync(entity => entity.Id == id);
         }
 

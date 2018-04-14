@@ -32,13 +32,13 @@
                     <div class="form-group">
                         <label class="control-label">Утверждена</label>
                         <p class="form-control-static">
-                            {{ work.isAccepted }}
+                            {{ work.isAccepted ? "Да" : "Нет" }}
                         </p>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Дата утверждения</label>
                         <p class="form-control-static">
-                            {{ work.acceptedDate }}
+                            {{ work.acceptDate | date: 'dd.MM.yyyy' }}
                         </p>
                     </div>
                 </div>

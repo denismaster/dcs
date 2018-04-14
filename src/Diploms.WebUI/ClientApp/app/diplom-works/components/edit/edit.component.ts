@@ -30,7 +30,7 @@ export class DiplomsEditComponent implements OnInit {
 
     ngOnInit() {
         this.service.getDiplom(this.id).subscribe(result => {
-            
+            this.work = result;
         })
     } 
     

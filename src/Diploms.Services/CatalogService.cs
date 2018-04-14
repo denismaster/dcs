@@ -37,7 +37,7 @@ namespace Diploms.Services
             return _mapper.Map<IEnumerable<TListModel>>(entities);
         }
 
-        public async Task<TGetOneModel> GetOne(int id)
+        public virtual async Task<TGetOneModel> GetOne(int id)
         {
             var entity = await _repository.Get(id);
 

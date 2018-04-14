@@ -22,5 +22,9 @@ export class DiplomsListComponent {
 export interface Diplom {
     id: number;
     name: string;
-    shortName: string;
+    description:string;
+    isAccepted:boolean;
+    acceptDate:Date;
+    teacher: string;
+    students:string[]
 }
