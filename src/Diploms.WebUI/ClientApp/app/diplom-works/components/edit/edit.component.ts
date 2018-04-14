@@ -11,8 +11,9 @@ import { AlertService } from '../../../shared/alert/services/alert.service';
 })
 export class DiplomsEditComponent implements OnInit {
     errors: string[] | undefined = undefined;
-    form: FormGroup;
     id: number;
+
+    work:any={};
 
     constructor(
         private router: Router,
@@ -25,21 +26,16 @@ export class DiplomsEditComponent implements OnInit {
         if (!this.id) {
             router.navigateByUrl("['/404']");
         }
-        this.form = this.formBuilder.group({
-            "id": [this.id, Validators.required],
-            "name": ["", Validators.required],
-            "shortName": [""]
-        });
     }
 
     ngOnInit() {
         this.service.getDiplom(this.id).subscribe(result => {
-            this.form.setValue(result);
+            
         })
     } 
     
     submit(form: any) {
-        this.service.editDiplom(this.id, form).subscribe(result => this.checkResult(result));
+        this.service.editDiplom(this.id, {}).subscribe(result => this.checkResult(result));
     }
 
     public goBack(): void {

@@ -1,20 +1,61 @@
-<form [formGroup]="form">
-    <card title="Дипломная работа">
-        <card-header>
-            <div class="btn-group btn-group-sm pull-right">
-                <button type="button" class="btn btn-danger" (click)="remove()">
-                    <i class="fa fa-trash"></i>
-                    Удалить
-                </button>
+<div class="row">
+    <div class="col-md-6">
+        <card title="Дипломная работа">
+            <card-header>
+                <div class="btn-group btn-group-sm pull-right">
+                    <a [routerLink]="['/calendar', id]" class="btn btn-success">
+                        <i class="fa fa-time"></i>
+                        Календарный план
+                    </a>
+                </div>
+            </card-header>
+            <card-body>
+                <div class="form">
+                    <div class="form-group">
+                        <label class="control-label">Тема работы</label>
+                        <p class="form-control-static">
+                            {{ work.name }}
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Студент</label>
+                        <p class="form-control-static">
+                            {{ work.students }}
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Руководитель</label>
+                        <p class="form-control-static">
+                            {{ work.teacher }}
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Утверждена</label>
+                        <p class="form-control-static">
+                            {{ work.isAccepted }}
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Дата утверждения</label>
+                        <p class="form-control-static">
+                            {{ work.acceptedDate }}
+                        </p>
+                    </div>
+                </div>
+
+            </card-body>
+        </card>
+    </div>
+    <div class="col-md-6">
+        <div class="btn-toolbar">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default">Добавить материал...</button>
             </div>
-        </card-header>
-        <card-body>
-            <input-text title="Название" placeholder="Введите название" [control]="form.controls['name']"></input-text>
-            <input-text title="Краткое название" [control]="form.controls['shortName']"></input-text>
-        </card-body>
-        <card-footer>
-            <ok-cancel-buttons okTitle="Редактировать" (okClick)="submit(form.value)" [okDisabled]="!form.valid" (cancelClick)="goBack()"></ok-cancel-buttons>
-            <error-list [errors]="errors"></error-list>
-        </card-footer>
-    </card>
-</form>
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default" disabled>Утвердить тему</button>
+                <button type="button" class="btn btn-default">Допустить</button>
+                <button type="button" class="btn btn-warning">Недопуск</button>
+            </div>
+        </div>
+    </div>
+</div>
