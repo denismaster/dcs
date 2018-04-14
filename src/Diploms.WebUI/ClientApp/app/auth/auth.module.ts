@@ -38,7 +38,7 @@ export class AuthModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: AuthModule,
-            providers: [TokenService]
+            providers: [AuthStore,TokenService]
         };
     }
 }

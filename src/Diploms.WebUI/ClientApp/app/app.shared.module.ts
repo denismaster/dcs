@@ -33,7 +33,7 @@ import { DiplomsModule } from './diplom-works/diploms.module';
         UserMenuComponent,
         CounterComponent,
         SignInComponent,
-        HomeComponent
+        HomeComponent,
     ],
     providers: [
         AlertService,

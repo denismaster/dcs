@@ -18,6 +18,8 @@ import { TextAreaComponent } from './forms/input-area/input-area.component';
 import { DateInputComponent } from './forms/input-date/input-date.component';
 import { FileListComponent } from '../files/components/file-list.component';
 import { FilesModule } from '../files/files.module';
+import { AuthModule } from '../auth/auth.module';
+import { CommentsComponent } from './comments/comments.component';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -29,6 +31,7 @@ import { FilesModule } from '../files/files.module';
         FormsModule, 
         ReactiveFormsModule,
         RTModule,
+        AuthModule,
     ],
     declarations: [
         CardComponent,
@@ -43,6 +46,7 @@ import { FilesModule } from '../files/files.module';
         TablePaginationComponent,
         TableStateComponent,
         TableFooterComponent,
+        CommentsComponent,
     ],
     exports: [
         CommonModule,
@@ -62,6 +66,7 @@ import { FilesModule } from '../files/files.module';
         TablePaginationComponent,
         TableStateComponent,
         TableFooterComponent,
+        CommentsComponent,
     ],
     providers: [
     ],
