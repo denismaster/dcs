@@ -6,6 +6,7 @@ import { DiplomsAddComponent } from './components/add/add.component';
 import { DiplomsEditComponent } from './components/edit/edit.component';
 import { DiplomsService } from './services/diploms.service';
 import { FilesModule } from '../files/files.module';
+import { NormControlResultsComponent } from './components/norm-control-results/norm-control-results.component';
 
 @NgModule({
     imports: [
@@ -17,6 +18,7 @@ import { FilesModule } from '../files/files.module';
         DiplomsListComponent,
         DiplomsAddComponent,
         DiplomsEditComponent,
+        NormControlResultsComponent,
     ],
     exports: [
         DiplomsListComponent,
