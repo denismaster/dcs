@@ -14,6 +14,8 @@ import { TablePaginationComponent } from './table-pagination/table-pagination.co
 import { TableStateComponent } from './table-state/table-state.component';
 import { TableFooterComponent } from './table-footer.component';
 import { InputSelectComponent } from './forms/input-select/input-select.component';
+import { TextAreaComponent } from './forms/input-area/input-area.component';
+import { DateInputComponent } from './forms/input-date/input-date.component';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -30,6 +32,8 @@ import { InputSelectComponent } from './forms/input-select/input-select.componen
         CardComponent,
         LoadingIndicatorComponent,
         TextInputComponent,
+        TextAreaComponent,
+        DateInputComponent,
         InputSelectComponent,
         OkCancelEditButtonsComponent,
         ErrorListComponent,
@@ -49,6 +53,8 @@ import { InputSelectComponent } from './forms/input-select/input-select.componen
         ErrorListComponent,
         LoadingIndicatorComponent,
         TextInputComponent,
+        TextAreaComponent,
+        DateInputComponent,
         InputSelectComponent,
         AlertComponent,
         TablePaginationComponent,

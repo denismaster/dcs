@@ -1,0 +1,7 @@
+<div class="form-group" [class.has-error]="!control.valid && control.touched">
+    <label class="control-label">{{title}}</label>
+    <textarea [name]="name" class="form-control" [formControl]="control" [placeholder]="placeholder" rows="10"></textarea>
+    <div class="text-danger help-block">
+        <ng-content></ng-content>
+    </div>
+</div>
