@@ -14,8 +14,9 @@ import { SelectListItem } from '../../../shared/select-list-item';
 export class DiplomsAddComponent {
     form: FormGroup;
     errors: string[] | undefined = [];
-    groupsOptions: SelectListItem[] = [];
-
+    teachersOptions: SelectListItem[] = [];
+    studentsOptions: SelectListItem[] = [];
+    
     constructor(
         private service: DiplomsService,
         private router: Router,
@@ -23,19 +24,20 @@ export class DiplomsAddComponent {
         private alertService: AlertService
     ) {
         this.form = this.formBuilder.group({
-            "fio": ["", Validators.required],
-            "group": ["", Validators.required],
+            "name": ["", Validators.required],
+            "description": [""],
+            "teacherId": ["", Validators.required],
+            "studentId": ["", Validators.required],
         });
     }
 
     ngOnInit() {
-        this.service.getGroups().subscribe(items => this.groupsOptions = items);
+        this.service.getTeachers().subscribe(items => this.teachersOptions = items);
+        this.service.getStudents().subscribe(items => this.studentsOptions = items);
     }
 
     submit(form: any) {
-        this.service.addDiplom({
-            fio:form.fio, groupId: form.group
-        }).subscribe(result => this.checkResult(result));
+        this.service.addDiplom(form).subscribe(result => this.checkResult(result));
     }
 
     checkResult(result: OperationResult) {

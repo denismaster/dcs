@@ -9,8 +9,8 @@ namespace Diploms.Core
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         public int TeacherId { get; set; }
         public Teacher Teacher { get; set; }

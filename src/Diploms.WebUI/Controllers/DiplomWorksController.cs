@@ -9,7 +9,7 @@ using Diploms.Services.DiplomWorks;
 
 namespace Diploms.WebUI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/diploms")]
     public class DiplomWorksController : Controller
     {
         private readonly IRepository<DiplomWork> _repository;
@@ -24,7 +24,7 @@ namespace Diploms.WebUI.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _repository.Get());
+            return Ok(await _service.GetList());
         }
 
         [HttpGet("{id:int}")]
@@ -39,7 +39,7 @@ namespace Diploms.WebUI.Controllers
         }
 
         [HttpPut("add")]
-        public async Task<IActionResult> Add([FromBody] DiplomWorkEditDto model)
+        public async Task<IActionResult> Add([FromBody] DiplomWorkAddDto model)
         {
             if(!ModelState.IsValid)
             {

@@ -11,10 +11,11 @@
         <thead>
             <tr>
                 <th>№</th>
-                <th>ФИО</th>
-                <th>Группа</th>
+                <th>Название</th>
+                <th>Дата утверждения работы</th>
+                <th>Дата защиты работы</th>
+                <th>Дипломник</th>
                 <th>Руководитель</th>
-                <th>Дипломная работа</th>
                 <th>Действия</th>
             </tr>
         </thead>
@@ -23,26 +24,23 @@
                 <td>{{ item.id }}</td>
                 <td>
                     <a [routerLink]="[item.id]">
-                        {{ item.fio }}
+                        {{ item.name }}
                     </a>
                 </td>
                 <td>
-                    <a [routerLink]="['/groups', item.groupId]">{{item.group}}</a>
+                    {{ item.startDate | date: 'dd.MM.yyyy'}}
                 </td>
                 <td>
-                    <a *ngIf="item.diplomWorkId" [routerLink]="['/diploms/', item.diplomWorkId]">
-                        {{ item.diplomWork }}
-                    </a>
-                    <a *ngIf="!item.diplomWorkId" class="btn btn-default btn-sm" [routerLink]="['/diploms/add/', item.id]">
-                        Добавить дипломную работу
+                    {{ item.endDate | date: 'dd.MM.yyyy' }}
+                </td>
+                <td>
+                    <a [routerLink]="['/students', item.studentId]">
+                        {{ item.student }}
                     </a>
                 </td>
                 <td>
-                    <a *ngIf="item.teacherId" [routerLink]="['/teachers/edit/', item.teacherId]">
+                    <a [routerLink]="['/teachers', item.teacherId]">
                         {{ item.teacher }}
-                    </a>
-                    <a *ngIf="!item.teacher" class="btn btn-default btn-sm" [routerLink]="['/teachers/select/', item.id]">
-                        Добавить руководителя
                     </a>
                 </td>
                 <td>
@@ -50,7 +48,7 @@
                 </td>
             </tr>
         </tbody>
-        <tfoot table-footer [colCount]="6" *ngIf="isLoading"></tfoot>
+        <tfoot table-footer [colCount]="7" *ngIf="isLoading"></tfoot>
     </table>
     <card-footer>
         <table-pagination></table-pagination>

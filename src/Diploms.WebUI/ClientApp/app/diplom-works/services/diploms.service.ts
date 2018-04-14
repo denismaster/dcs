@@ -15,8 +15,12 @@ export class DiplomsService {
         return this.http.get<Diplom[]>(this.baseUrl + 'api/diploms');
     }
 
-    public getGroups(): Observable<SelectListItem[]> {
-        return this.http.get<SelectListItem[]>(this.baseUrl + 'api/groups/select-list');
+    public getTeachers(): Observable<SelectListItem[]> {
+        return this.http.get<SelectListItem[]>(this.baseUrl + 'api/teachers/select-list');
+    }
+
+    public getStudents(): Observable<SelectListItem[]> {
+        return this.http.get<SelectListItem[]>(this.baseUrl + 'api/students/select-list');
     }
 
     public getDiplom(id: number | string): Observable<Diplom> {
