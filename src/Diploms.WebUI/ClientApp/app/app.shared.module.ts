@@ -24,6 +24,7 @@ import { NoteModule } from './note/note.module';
 import { GroupsModule } from './groups/groups.module';
 import { TeachersModule } from './teachers/teachers.module';
 import { StudentsModule } from './students/students.module';
+import { DiplomsModule } from './diplom-works/diploms.module';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { StudentsModule } from './students/students.module';
         GroupsModule,
         TeachersModule,
         StudentsModule,
+        DiplomsModule,
         NormControlModule,
         NoteModule,
         RouterModule.forRoot([

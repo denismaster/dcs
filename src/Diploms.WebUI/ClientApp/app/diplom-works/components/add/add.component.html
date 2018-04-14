@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+    <card title="Новая дипломная работа">
+        <card-body>
+            <input-text title="ФИО" placeholder="Введите ФИО" [control]="form.controls['fio']"></input-text>
+            <input-select [control]="form.controls['group']" title="Группа" placeholder="Выберите группу" [options]="groupsOptions"></input-select>
+        </card-body>
+        <card-footer>
+            <ok-cancel-buttons okTitle="Добавить" (okClick)="submit(form.value)" [okDisabled]="!form.valid" (cancelClick)="goBack()"></ok-cancel-buttons>
+            <error-list [errors]="errors"></error-list>
+        </card-footer>
+    </card>
+</form>
