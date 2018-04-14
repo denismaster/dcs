@@ -1,0 +1,19 @@
+<card [title]="title">
+    <card-header>
+        <div class="btn-group btn-group-sm pull-right">
+            <button type="button" class="btn btn-default" (click)="addFile()">
+                Добавить...
+            </button>
+        </div>
+    </card-header>
+    <div class="list-group">
+        <a class="list-group-item text-center" *ngIf="!files||files.length==0">
+            Нет файлов.
+        </a>
+        <a class="list-group-item" *ngFor="let file of files.files">
+            <p class="list-group-item-text">
+                {{ file.name }} ({{ file.size }} Мб)
+            </p>
+        </a>
+    </div>
+</card>

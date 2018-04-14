@@ -5,10 +5,12 @@ import { DiplomsRoutesModule } from './diploms.routes.module';
 import { DiplomsAddComponent } from './components/add/add.component';
 import { DiplomsEditComponent } from './components/edit/edit.component';
 import { DiplomsService } from './services/diploms.service';
+import { FilesModule } from '../files/files.module';
 
 @NgModule({
     imports: [
         SharedModule,
+        FilesModule,
         DiplomsRoutesModule
     ],
     declarations: [

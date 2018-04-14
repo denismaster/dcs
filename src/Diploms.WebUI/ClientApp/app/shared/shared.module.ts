@@ -16,6 +16,8 @@ import { TableFooterComponent } from './table-footer.component';
 import { InputSelectComponent } from './forms/input-select/input-select.component';
 import { TextAreaComponent } from './forms/input-area/input-area.component';
 import { DateInputComponent } from './forms/input-date/input-date.component';
+import { FileListComponent } from '../files/components/file-list.component';
+import { FilesModule } from '../files/files.module';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -26,7 +28,7 @@ import { DateInputComponent } from './forms/input-date/input-date.component';
         RouterModule, 
         FormsModule, 
         ReactiveFormsModule,
-        RTModule
+        RTModule,
     ],
     declarations: [
         CardComponent,
