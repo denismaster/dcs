@@ -6,6 +6,7 @@
     <div class="panel-body" *ngIf="showBody">
         <ng-content select="card-body"></ng-content>
     </div>
+    <ng-content select=".list-group"></ng-content>
     <ng-content select="table[card-table]"></ng-content>
     <div class="panel-footer">
         <ng-content select="card-footer"></ng-content>
