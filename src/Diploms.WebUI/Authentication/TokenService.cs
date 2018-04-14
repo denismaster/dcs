@@ -25,7 +25,8 @@ namespace Diploms.WebUI.Authentication
 
         public async Task<ObjectResult> IssueToken(LoginDto user, JwtIssuerOptions _jwtOptions, JsonSerializerSettings _serializerSettings)
         {
-            if (await _repository.GetUserAsync(user.Username) == null)
+            var dbUser = await _repository.GetUserAsync(user.Username);
+            if (dbUser == null)
             {
                 var authenticationResult = new
                 {
@@ -60,16 +61,18 @@ namespace Diploms.WebUI.Authentication
             var encodedJwt = CreateJWTToken(claims, _jwtOptions.TokenExpiration , _jwtOptions);
             var encodedRefreshToken = CreateJWTToken(claims, expiration , _jwtOptions);
 
-            return TokenResult(encodedJwt, encodedRefreshToken, user.RememberMe ? (int)_jwtOptions.RememberValidFor.TotalSeconds : (int)_jwtOptions.ValidFor.TotalSeconds, _jwtOptions, _serializerSettings);
+            return TokenResult(encodedJwt, encodedRefreshToken, dbUser.Login,dbUser.Id,  user.RememberMe ? (int)_jwtOptions.RememberValidFor.TotalSeconds : (int)_jwtOptions.ValidFor.TotalSeconds, _jwtOptions, _serializerSettings);
         }
 
-        private ObjectResult TokenResult(string token, string refreshToken, double expires, JwtIssuerOptions _jwtOptions, JsonSerializerSettings _serializerSettings)
+        private ObjectResult TokenResult(string token, string refreshToken, string userName, int userId, double expires, JwtIssuerOptions _jwtOptions, JsonSerializerSettings _serializerSettings)
         {
             var response = new
             {
                 token = token,
                 refreshToken = refreshToken,
-                expires = expires
+                expires = expires,
+                userId,
+                userName
             };
             var json = JsonConvert.SerializeObject(response, _serializerSettings);
             return new OkObjectResult(json);
@@ -105,7 +108,7 @@ namespace Diploms.WebUI.Authentication
             var encodedJwt = CreateJWTToken(claims, _jwtOptions.TokenExpiration , _jwtOptions);
             var encodedRefreshToken = CreateJWTToken(claims, expiration , _jwtOptions);
 
-            return TokenResult(encodedJwt, encodedRefreshToken, (int)_jwtOptions.ValidFor.TotalSeconds, _jwtOptions, _serializerSettings);
+            return TokenResult(encodedJwt, encodedRefreshToken, user, 0, (int)_jwtOptions.ValidFor.TotalSeconds, _jwtOptions, _serializerSettings);
         }
 
         public void ThrowIfInvalidOptions(JwtIssuerOptions options)
@@ -163,19 +166,19 @@ namespace Diploms.WebUI.Authentication
         }
 
         //TODO: Implement refreshing.
-        private Task<ClaimsIdentity> GetClaimsIdentity(string user)
+        private async Task<ClaimsIdentity> GetClaimsIdentity(string user)
         {
-            var dbUser = new User(user);
+            var dbUser = await _repository.GetUserAsync(user);
             if (dbUser != null)
             {
-                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(dbUser.Login, "Token"),
-                    dbUser.IsAdmin
+                return new ClaimsIdentity(new GenericIdentity(dbUser.Login, "Token"),
+                    dbUser.Login == "admin"
                     ? new Claim[] { new Claim(AuthConsts.ClaimUserType, AuthConsts.RoleAdmin) }
                     : new Claim[] { new Claim(AuthConsts.ClaimUserType, AuthConsts.RoleUser
-                    ) }));
+                    ) });
             }
 
-            return Task.FromResult<ClaimsIdentity>(null);
+            return null;
         }
         internal class User
         {

@@ -45,7 +45,7 @@ export class UserMenuComponent implements OnInit {
                 this.username = undefined;
                 return;
             }
-            this.username = "logged in"
+            this.username = info.userName
         })
     }
 
