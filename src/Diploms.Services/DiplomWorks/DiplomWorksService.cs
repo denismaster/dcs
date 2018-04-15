@@ -43,6 +43,13 @@ namespace Diploms.Services.DiplomWorks
             return _mapper.Map<DiplomWorkGetDto>(entity);
         }
 
+        public async Task<byte[]> GetMaterial(int id)
+        {
+            var material = await _materialsRepository.Get(id);
+
+            return material.Data;
+        }
+
         public async Task<IEnumerable<DiplomMaterialDto>> GetMaterials(int diplomId)
         {
             var materials = await _materialsRepository.Get(x=>x.DiplomWorkId==diplomId);

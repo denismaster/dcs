@@ -112,5 +112,11 @@ namespace Diploms.WebUI.Controllers
         {
             return Ok(await _service.GetMaterials(id));
         }
+
+        [HttpGet("materials/{id:int}")]
+        public async Task<IActionResult> GetMaterial(int id)
+        {
+            return new FileContentResult(await _service.GetMaterial(id), "application/pdf");
+        }
     }
 }
