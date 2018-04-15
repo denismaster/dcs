@@ -18,7 +18,7 @@ export class FileListComponent {
     }
 
     downloadFile(file: File) {
-        this.http.get(`/api/diploms/materials/${file.id}`).subscribe((response: any) => {
+        this.http.get(`/api/diploms/materials/${file.id}`,  {responseType: 'blob'}).subscribe((response: any) => {
             let blob = new Blob([response], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
             FileSaver.saveAs(blob, file.name);
         })
