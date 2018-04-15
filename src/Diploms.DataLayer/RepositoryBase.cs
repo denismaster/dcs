@@ -36,6 +36,28 @@ namespace Diploms.DataLayer
         }
 
         /// <summary>
+        /// Получение всех объектов
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            if (includes != null)
+            {
+                foreach (var includeElement in includes)
+                {
+                    query = query.Include(includeElement);
+                }
+            }
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            return await query.AsNoTracking().ToListAsync();
+        }
+
+
+        /// <summary>
         /// Получение объекта по Id
         /// </summary>
         /// <param name="id">Идентификатор объекта</param>

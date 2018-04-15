@@ -14,6 +14,13 @@ export interface NormControlResult {
     templateUrl: './norm-control-results.component.html'
 })
 export class NormControlResultsComponent {
-    @Input() public results: NormControlResult[] = []
+    @Input() public results: NormControlResult[] = [{
+        id:1,
+        controller:"Волкова Анастасия Викторовна",
+        controllerId: 2,
+        hasError:false,
+        errors:[],
+        date: new Date(2018,5,12)
+    }]
     constructor() { }
 }

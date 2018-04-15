@@ -61,6 +61,7 @@ namespace Diploms.WebUI.Configuration
         public static IServiceCollection AddDiplomWorks(this IServiceCollection services)
         {
             services.AddScoped<IRepository<DiplomWork>, RepositoryBase<DiplomWork>>();
+            services.AddScoped<IRepository<DiplomWorkMaterial>, RepositoryBase<DiplomWorkMaterial>>();
             services.AddScoped<DiplomWorksService>();
             return services;
         }

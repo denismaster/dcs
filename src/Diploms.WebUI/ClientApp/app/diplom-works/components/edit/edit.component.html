@@ -58,7 +58,11 @@
             </div>
         </div>
         <br>
-        <file-list title="Материалы" [files]="[]"></file-list>
+        <file-list title="Материалы" [files]="files"></file-list>
+        <input #file type="file" multiple (change)="upload(file.files)" accept=".pdf,.doc,.docx">
+        <span *ngIf="uploadProgress > 0 && uploadProgress < 100">
+            {{uploadProgress}}%
+        </span>
         <norm-control-results></norm-control-results>
     </div>
 </div>

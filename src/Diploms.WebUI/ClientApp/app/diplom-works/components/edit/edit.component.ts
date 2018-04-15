@@ -4,6 +4,8 @@ import { DiplomsService } from '../../services/diploms.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OperationResult } from '../../../shared/models/operation-result';
 import { AlertService } from '../../../shared/alert/services/alert.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { File } from '../../../files/models/file';
 
 @Component({
     selector: 'diploms-edit',
@@ -12,8 +14,10 @@ import { AlertService } from '../../../shared/alert/services/alert.service';
 export class DiplomsEditComponent implements OnInit {
     errors: string[] | undefined = undefined;
     id: number;
-
+    public uploadProgress: number=0;
     work:any={};
+
+    files: File[] = [];
 
     constructor(
         private router: Router,
@@ -32,6 +36,8 @@ export class DiplomsEditComponent implements OnInit {
         this.service.getDiplom(this.id).subscribe(result => {
             this.work = result;
         })
+
+        this.service.getMaterials(this.id).subscribe(result=>this.files = result);
     } 
     
     submit(form: any) {
@@ -56,5 +62,23 @@ export class DiplomsEditComponent implements OnInit {
 
     remove(){
         this.service.deleteDiplom(this.id).subscribe(result=> this.checkResult(result));
+    }
+
+
+    upload(files:any) {
+        if (files.length === 0)
+            return;
+
+        const formData = new FormData();
+
+        for (let file of files)
+            formData.append(file.name, file);
+
+         this.service.uploadMaterial(this.id, formData).subscribe(event => {
+                if (event.type === HttpEventType.UploadProgress)
+                    this.uploadProgress = Math.round(100 * event.loaded / (event.total || 100));
+                else if (event instanceof HttpResponse)
+                    console.log('Files uploaded!');
+            });
     }
 }

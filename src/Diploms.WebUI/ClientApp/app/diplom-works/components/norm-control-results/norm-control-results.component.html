@@ -20,7 +20,7 @@
             <tr *ngFor="let item of results">
                 <td>
                     <a [routerLink]="['/norm-control',item.id]">
-                        {{ item.name }}
+                        {{ item.id }}
                     </a>
                 </td>
                 <td>
@@ -33,6 +33,9 @@
                 </td>
                 <td>
                     {{ item.hasErrors ? item.errors.length : 0 }}
+                </td>
+                <td>
+                        {{ !item.hasErrors ? "Пройдено" : "Не пройдено" }}
                 </td>
             </tr>
         </tbody>

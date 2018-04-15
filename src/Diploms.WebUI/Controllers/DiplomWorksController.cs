@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Diploms.Core;
 using Diploms.Dto;
 using Diploms.Services.DiplomWorks;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace Diploms.WebUI.Controllers
 {
@@ -41,32 +43,32 @@ namespace Diploms.WebUI.Controllers
         [HttpPut("add")]
         public async Task<IActionResult> Add([FromBody] DiplomWorkAddDto model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(this.GetErrors(model));
             }
 
             OperationResult result = await _service.Add(model);
 
-            if(result.HasError) 
+            if (result.HasError)
                 return this.Unprocessable(result);
-            
+
             return Ok(result);
         }
 
         [HttpPost("edit/{id:int}")]
         public async Task<IActionResult> Edit(int id, [FromBody] DiplomWorkEditDto model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(this.GetErrors(model));
             }
 
             OperationResult result = await _service.Edit(model);
 
-            if(result.HasError) 
+            if (result.HasError)
                 return this.Unprocessable(result);
-            
+
             return Ok(result);
         }
 
@@ -84,6 +86,31 @@ namespace Diploms.WebUI.Controllers
             {
                 return BadRequest();
             }
+        }
+
+
+        [HttpPost("{id:int}/materials")]
+        public async Task<IActionResult> AddMaterial(IList<IFormFile> files, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var file = Request.Form.Files[0];
+                if(file==null) return BadRequest();
+                using (var memoryStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(memoryStream);    
+                    await _service.AddMaterial(id, file.Name, memoryStream.ToArray());
+                    return Ok();
+                }
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet("{id:int}/materials")]
+        public async Task<IActionResult> GetMaterials(int id)
+        {
+            return Ok(await _service.GetMaterials(id));
         }
     }
 }

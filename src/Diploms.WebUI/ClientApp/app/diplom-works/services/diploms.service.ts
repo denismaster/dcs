@@ -1,9 +1,11 @@
 import { Injectable, Inject } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Diplom } from "../components/list/list.component";
 import { OperationResult } from "../../shared/models/operation-result";
 import { SelectListItem } from "../../shared/select-list-item";
+import { RequestOptions } from "@angular/http";
+import { File } from '../../files/models/file';
 
 @Injectable()
 export class DiplomsService {
@@ -35,7 +37,19 @@ export class DiplomsService {
         return this.http.post<OperationResult>(`/api/diploms/edit/${id}`, model);
     }
 
-    public deleteDiplom(id:number|string): Observable<OperationResult>{
+    public deleteDiplom(id: number | string): Observable<OperationResult> {
         return this.http.delete<OperationResult>(`/api/diploms/delete/${id}`);
+    }
+
+    public getMaterials(id:number)  {
+        return this.http.get<File[]>(this.baseUrl + `api/diploms/${id}/materials`);
+    }
+
+    public uploadMaterial(id:number, formData:any) {
+        const req = new HttpRequest('POST', `/api/diploms/${id}/materials`, formData, {
+            reportProgress: true,
+        });
+
+        return this.http.request(req)
     }
 }

@@ -26,6 +26,8 @@ namespace Diploms.Services.DiplomWorks
                 .ForMember(u => u.IsAccepted, m => m.MapFrom(src => src.RemoveDate == null))
                 .ForMember(u => u.Students, m => m.MapFrom(src => src.Students.Select(s => s.FIO).ToList()))
                 .ForMember(u => u.StudentsId, m => m.MapFrom(src => src.Students.Select(s => s.Id).ToList()));
+
+            CreateMap<DiplomWorkMaterial, DiplomMaterialDto>();
         }
     }
 }

@@ -10,9 +10,9 @@
         <a class="list-group-item text-center" *ngIf="!files||files.length==0">
             Нет файлов.
         </a>
-        <a class="list-group-item" *ngFor="let file of files.files">
+        <a class="list-group-item" *ngFor="let file of files">
             <p class="list-group-item-text">
-                {{ file.name }} ({{ file.size }} Мб)
+                {{ file.name }} ({{ file.size }} байт)
             </p>
         </a>
     </div>

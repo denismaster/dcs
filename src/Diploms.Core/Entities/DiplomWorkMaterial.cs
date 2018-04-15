@@ -18,5 +18,7 @@ namespace Diploms.Core
         public DiplomWork DiplomWork { get; set; }
 
         public List<GostControlTry> GostControlTries { get; set; }
+
+        public int Size => Data.Length;
     }
 }
