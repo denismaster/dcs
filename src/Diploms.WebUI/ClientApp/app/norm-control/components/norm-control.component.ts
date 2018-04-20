@@ -1,33 +1,37 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { PdfViewerComponent } from 'ng2-pdf-viewer/dist/pdf-viewer.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from '../../shared/alert/services/alert.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'norm-control',
     templateUrl: './norm-control.component.html'
 })
-export class NormControlComponent {
-    pdfSrc: string | null = null;
+export class NormControlComponent implements OnInit{
+    pdfSrc: any = undefined;
+    id: number = 0;
 
-    @ViewChild(PdfViewerComponent) private pdfComponent: any;
-
-    search(stringToSearch: string) {
-        console.log(this.pdfComponent);
-        this.pdfComponent.pdfFindController.executeCommand('find', {
-            caseSensitive: false, findPrevious: undefined, highlightAll: true, phraseSearch: true, query: stringToSearch
-        });
+    constructor(
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private alertSerivce: AlertService,
+        private http: HttpClient
+    ) {
+        this.id = activatedRoute.snapshot.queryParams['fileId'];
+        if (!this.id) {
+            router.navigateByUrl("['/404']");
+        }
     }
 
-    onFileSelected() {
-        let $img: any = document.querySelector('#file');
-
-        if (typeof (FileReader) !== 'undefined') {
-            let reader = new FileReader();
-
-            reader.onload = (e: any) => {
-                this.pdfSrc = e.target.result;
+    ngOnInit(): void {
+        this.http.get(`/api/diploms/materials/${this.id}`,  {responseType: 'blob'}).subscribe((response: any) => {
+            let blob = new Blob([response], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+            const fileReader = new FileReader();
+            fileReader.onload = ($event:any) => {
+                this.pdfSrc = $event.target.result;
             };
-
-            reader.readAsArrayBuffer($img.files[0]);
-        }
+            fileReader.readAsArrayBuffer(blob);
+        })
     }
 }

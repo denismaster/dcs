@@ -12,6 +12,7 @@ export class FileListComponent {
 
     @Input() public title: string = "Файлы"
     constructor(private http: HttpClient) { }
+    @Input() public diplomId: number = 0;
 
     public get count(): number {
         return this.files ? this.files.length : 0;

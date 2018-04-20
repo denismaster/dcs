@@ -20,12 +20,15 @@
         </div>
     </card-body>
     <card-body>
+
+    </card-body>
+    <card-body>
         <pdf-viewer #pdfViewer [src]="pdfSrc" [render-text]="true" style="display: block;" [show-all]="false">
         </pdf-viewer>
     </card-body>
 </card>
 <card title="Замечания" *ngIf="!pdfSrc">
     <card-body>
-        <input (change)="onFileSelected()" type="file" id="file" *ngIf="!pdfSrc">
+        <loading></loading>
     </card-body>
 </card>
