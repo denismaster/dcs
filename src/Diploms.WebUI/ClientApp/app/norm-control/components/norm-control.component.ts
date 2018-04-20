@@ -3,6 +3,7 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer/dist/pdf-viewer.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../shared/alert/services/alert.service';
 import { HttpClient } from '@angular/common/http';
+import { NormControlError } from '../models/norm-control-error';
 
 @Component({
     selector: 'norm-control',
@@ -11,6 +12,8 @@ import { HttpClient } from '@angular/common/http';
 export class NormControlComponent implements OnInit{
     pdfSrc: any = undefined;
     id: number = 0;
+    page:number = 1;
+    errors: NormControlError[] = [];
 
     constructor(
         private router: Router,
@@ -33,5 +36,13 @@ export class NormControlComponent implements OnInit{
             };
             fileReader.readAsArrayBuffer(blob);
         })
+    }
+
+    nextPage(){
+        this.page++;
+    }
+
+    previousPage(){
+        this.page--;
     }
 }
