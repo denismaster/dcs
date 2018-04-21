@@ -3,11 +3,12 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer/dist/pdf-viewer.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../shared/alert/services/alert.service';
 import { HttpClient } from '@angular/common/http';
-import { NormControlError } from '../models/norm-control-error';
+import { NormControlError, NormControlErrorType } from '../models/norm-control-error';
 
 @Component({
     selector: 'norm-control',
-    templateUrl: './norm-control.component.html'
+    templateUrl: './norm-control.component.html',
+    styleUrls:['./norm-control.component.css']
 })
 export class NormControlComponent implements OnInit{
     pdfSrc: any = undefined;
@@ -45,4 +46,25 @@ export class NormControlComponent implements OnInit{
     previousPage(){
         this.page--;
     }
+
+    addError(){
+        this.errors.push(<NormControlError>{
+            page: this.page,
+            class:"error",
+            position: window.getSelection().toString() || "-",
+            type: NormControlErrorType.Warning,
+            description:""
+        });
+    }
+
+    addWarning(){
+        this.errors.push(<NormControlError>{
+            page: this.page,
+            class:"warning",
+            position: window.getSelection().toString() || "-",
+            type: NormControlErrorType.Warning,
+            description:""
+        });
+    }
+
 }

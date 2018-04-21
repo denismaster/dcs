@@ -2,9 +2,53 @@
     <div class="col-md-6">
         <card title="Код">
             <card-body>
-                <codemirror [(ngModel)]="code"
-                    [config]="config"
-                >
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <button class="btn btn-default" data-original-title="Bold - Ctrl+B">
+                            <i class="fa fa-bold"></i>
+                        </button>
+                        <button class="btn btn-default" data-original-title="Italic - Ctrl+I">
+                            <i class="fa fa-italic"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-default" data-original-title="Align Right">
+                            <i class="fa fa-align-right"></i>
+                        </button>
+                        <button class="btn btn-default" data-original-title="Align Center">
+                            <i class="fa fa-align-center"></i>
+                        </button>
+                        <button class="btn btn-default" data-original-title="Align Left">
+                            <i class="fa fa-align-left"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-default" data-original-title="List">
+                            <i class="fa fa-list"></i>
+                        </button>
+                        <button class="btn btn-default" data-original-title="Img">
+                            <i class="fa fa-image"></i>
+                        </button>
+                        <button class="btn btn-default" data-original-title="URL">
+                            <i class="fa fa-link"></i>
+                        </button>
+                        <button class="btn btn-default" data-original-title="URL">
+                            <i class="fa fa-table"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-default" data-original-title="Preview">
+                            Превью
+                        </button>
+                        <button class="btn btn-default" data-original-title="Save">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button class="btn btn-default" data-original-title="Cancel">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <codemirror [(ngModel)]="code" [config]="config">
                 </codemirror>
             </card-body>
         </card>
