@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6">
-        <card title="Код">
-            <card-body>
+        <card>
+            <card-header>
                 <div class="btn-toolbar">
                     <div class="btn-group">
                         <button class="btn btn-default" data-original-title="Bold - Ctrl+B">
@@ -48,6 +48,9 @@
                         </button>
                     </div>
                 </div>
+            </card-header>
+            <card-body>
+
                 <codemirror [(ngModel)]="code" [config]="config">
                 </codemirror>
             </card-body>
