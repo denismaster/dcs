@@ -21,7 +21,7 @@ namespace Diploms.Controllers
             _service = service;
         }
         [HttpPost("latex/preview")]
-        public async Task<IActionResult> GeneratePreviewLatex(string latex)
+        public async Task<IActionResult> GeneratePreviewLatex([FromBody] string latex)
         {
             var objectToSend = new {
                 data = latex

@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
-    imports: [SharedModule, NormControlRoutingModule, PdfViewerModule],
+    imports: [SharedModule, NormControlRoutingModule],
     declarations: [NormControlComponent],
     providers: [],
     schemas: [NO_ERRORS_SCHEMA]

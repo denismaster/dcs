@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { PdfViewerComponent } from 'ng2-pdf-viewer/dist/pdf-viewer.component';
 import { WideStore } from '../../shared/screen/wide.store';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'norm-control',
@@ -27,7 +27,10 @@ export class NoteComponent implements OnInit, OnDestroy {
     }
 
     previewCode() {
-        this.http.post(`/api/documents/latex/preview`, JSON.stringify(this.code), { responseType: 'blob' }).subscribe((response: any) => {
+        this.http.post(`/api/documents/latex/preview`, JSON.stringify(this.code),
+         { responseType: 'blob', 
+         headers: new HttpHeaders({ "Content-Type":"application/json" })
+         }).subscribe((response: any) => {
             let blob = new Blob([response], { type: "application/pdf" });
             const fileReader = new FileReader();
             fileReader.onload = ($event: any) => {
