@@ -59,7 +59,8 @@
     <div class="col-md-6">
         <card title="Превью">
             <card-body>
-                <pdf-viewer #pdfViewer [src]="pdfSrc" [render-text]="true" style="display: block;" [show-all]="false">
+                <span *ngIf="!pdfSrc" class="text-center">Превью недоступно</span>
+                <pdf-viewer *ngIf="pdfSrc" #pdfViewer [src]="pdfSrc" [render-text]="true" style="display: block;" [show-all]="false">
                 </pdf-viewer>
             </card-body>
         </card>

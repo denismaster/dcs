@@ -1,7 +1,0 @@
-@media (min-width: 1600px) {
-    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
-    .row.lg-wide{
-        margin-left:-100px;
-        margin-right: -100px;
-    }
-}

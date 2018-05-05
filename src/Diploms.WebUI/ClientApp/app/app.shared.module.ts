@@ -43,7 +43,7 @@ import { DiplomsModule } from './diplom-works/diploms.module';
         HttpModule,
         AuthModule,
         AuthModule.forRoot(),
-        SharedModule,
+        SharedModule.forRoot(),
         InstitutesModule,
         DepartmentsModule,
         SpecialitiesModule,

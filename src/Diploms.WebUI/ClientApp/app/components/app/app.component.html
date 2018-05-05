@@ -1,5 +1,5 @@
 <nav-menu></nav-menu>
-<div class='container'>
+<div [class.container-fluid]="isWide" [class.container]="!isWide">
     <div class='body-content'>
         <alert></alert>
         <router-outlet></router-outlet>

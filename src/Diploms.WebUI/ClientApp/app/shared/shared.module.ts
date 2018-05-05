@@ -20,6 +20,7 @@ import { FileListComponent } from '../files/components/file-list.component';
 import { FilesModule } from '../files/files.module';
 import { AuthModule } from '../auth/auth.module';
 import { CommentsComponent } from './comments/comments.component';
+import { WideStore } from './screen/wide.store';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -76,7 +77,9 @@ export class SharedModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule,
-            providers: []
+            providers: [
+                WideStore
+            ]
         };
     }
 }

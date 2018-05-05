@@ -1,16 +1,17 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { PdfViewerComponent } from 'ng2-pdf-viewer/dist/pdf-viewer.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../shared/alert/services/alert.service';
 import { HttpClient } from '@angular/common/http';
 import { NormControlError, NormControlErrorType } from '../models/norm-control-error';
+import { WideStore } from '../../shared/screen/wide.store';
 
 @Component({
     selector: 'norm-control',
     templateUrl: './norm-control.component.html',
     styleUrls:['./norm-control.component.css']
 })
-export class NormControlComponent implements OnInit{
+export class NormControlComponent implements OnInit, OnDestroy {
     pdfSrc: any = undefined;
     id: number = 0;
     page:number = 1;
@@ -20,6 +21,7 @@ export class NormControlComponent implements OnInit{
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private alertSerivce: AlertService,
+        private wide: WideStore,
         private http: HttpClient
     ) {
         this.id = activatedRoute.snapshot.queryParams['fileId'];
@@ -29,6 +31,7 @@ export class NormControlComponent implements OnInit{
     }
 
     ngOnInit(): void {
+        this.wide.setWideState(true);
         this.http.get(`/api/diploms/materials/${this.id}`,  {responseType: 'blob'}).subscribe((response: any) => {
             let blob = new Blob([response], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
             const fileReader = new FileReader();
@@ -37,6 +40,10 @@ export class NormControlComponent implements OnInit{
             };
             fileReader.readAsArrayBuffer(blob);
         })
+    }
+
+    ngOnDestroy(): void {
+        this.wide.setWideState(false);
     }
 
     nextPage(){
