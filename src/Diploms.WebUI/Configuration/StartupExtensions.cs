@@ -79,5 +79,11 @@ namespace Diploms.WebUI.Configuration
             services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
+
+        public static IServiceCollection AddDocumentGeneration(this IServiceCollection services)
+        {
+            services.AddScoped<Requests.RequestService>();
+            return services;
+        }
     }
 }

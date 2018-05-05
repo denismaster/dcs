@@ -17,12 +17,16 @@ namespace Diploms.Requests
             {
                 try
                 {
-                    var content = new StringContent(JsonConvert.SerializeObject(data,
-                    new JsonSerializerSettings()
-                    {
-                        ContractResolver = new CamelCasePropertyNamesContractResolver()
-                    }), System.Text.Encoding.UTF8, "application/json");
+                    var content = new StringContent(
+                        JsonConvert.SerializeObject(data, new JsonSerializerSettings()
+                        {
+                            ContractResolver = new CamelCasePropertyNamesContractResolver()
+                        }),
+                    System.Text.Encoding.UTF8, "application/json");
+
                     client.BaseAddress = new Uri("http://localhost:1337");
+
+                    System.Console.WriteLine(content.Headers.ContentType);
 
                     var address = isDocx ? "api/docx" : "api/latex";
 

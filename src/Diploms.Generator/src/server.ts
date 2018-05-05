@@ -24,7 +24,7 @@ export class Server {
         this.router.get("/sample", (request: Request, response: Response) => {
             this.routeHandler.sample(request, response);
         });
-        this.router.post("/convert", (request: Request, response: Response) => {
+        this.router.post("/latex", (request: Request, response: Response) => {
             this.routeHandler.convert(request, response);
         });
         this.router.post("/docx", (request:Request, response:Response)=>{

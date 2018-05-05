@@ -21,9 +21,12 @@ namespace Diploms.Controllers
             _service = service;
         }
         [HttpPost("latex/preview")]
-        public async Task<IActionResult> GeneratePreviewLatex([FromBody] string latex)
+        public async Task<IActionResult> GeneratePreviewLatex(string latex)
         {
-            var stream = await _service.SendRequest(latex, false);
+            var objectToSend = new {
+                data = latex
+            };
+            var stream = await _service.SendRequest(objectToSend , false);
             return new FileStreamResult(stream,"application/pdf");
         }
     }

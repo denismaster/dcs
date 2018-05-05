@@ -37,7 +37,7 @@
                         </button>
                     </div>
                     <div class="btn-group">
-                        <button class="btn btn-default" data-original-title="Preview">
+                        <button class="btn btn-default" data-original-title="Preview" (click)="previewCode()">
                             Превью
                         </button>
                         <button class="btn btn-default" data-original-title="Save">
@@ -50,7 +50,6 @@
                 </div>
             </card-header>
             <card-body>
-
                 <codemirror [(ngModel)]="code" [config]="config">
                 </codemirror>
             </card-body>
@@ -60,7 +59,7 @@
         <card title="Превью">
             <card-body>
                 <span *ngIf="!pdfSrc" class="text-center">Превью недоступно</span>
-                <pdf-viewer *ngIf="pdfSrc" #pdfViewer [src]="pdfSrc" [render-text]="true" style="display: block;" [show-all]="false">
+                <pdf-viewer #pdfViewer [src]="pdfSrc" [render-text]="true"  [original-size]="true" style="display: block;" [show-all]="true">
                 </pdf-viewer>
             </card-body>
         </card>

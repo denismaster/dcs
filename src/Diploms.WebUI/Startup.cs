@@ -55,6 +55,8 @@ namespace Diploms.WebUI
             services.AddDiplomWorks();
             services.AddTemplates();
 
+            services.AddDocumentGeneration();
+
             services.AddDbContext<DiplomContext>();
 
             services.AddJWTTokens().AddAuthPolicy()
