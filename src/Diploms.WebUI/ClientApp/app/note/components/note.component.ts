@@ -2,12 +2,17 @@ import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { PdfViewerComponent } from 'ng2-pdf-viewer/dist/pdf-viewer.component';
 import { WideStore } from '../../shared/screen/wide.store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CodemirrorComponent } from 'ng2-codemirror';
+import { applyAction } from '../latex-actions';
 
 @Component({
     selector: 'norm-control',
     templateUrl: './note.component.html'
 })
 export class NoteComponent implements OnInit, OnDestroy {
+
+    @ViewChild(CodemirrorComponent)
+    editor:CodemirrorComponent | undefined;
 
     code: string = "";
     pdfSrc: any = undefined;
@@ -38,5 +43,12 @@ export class NoteComponent implements OnInit, OnDestroy {
             };
             fileReader.readAsArrayBuffer(blob);
         })
+    }
+
+
+    actionHandler(action:string){
+        if(!this.editor) return;
+        const selectedText = this.editor.instance.getSelection('\n')
+        this.editor.instance.replaceSelection(applyAction(action,selectedText));
     }
 }
