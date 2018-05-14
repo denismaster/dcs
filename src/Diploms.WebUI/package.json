@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.0-alpha1",
   "scripts": {
-    "test": "karma start ClientApp/test/karma.conf.js"
+    "test": "karma start ClientApp/test/karma.conf.js",
+    "build": "webpakc --config webpack.config.vendor.js && webpack"
   },
   "devDependencies": {
     "@angular/animations": "4.3.6",
