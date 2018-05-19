@@ -5,6 +5,7 @@ import { AlertService } from '../../shared/alert/services/alert.service';
 import { HttpClient } from '@angular/common/http';
 import { NormControlError, NormControlErrorType } from '../models/norm-control-error';
 import { WideStore } from '../../shared/screen/wide.store';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'norm-control',
@@ -16,9 +17,11 @@ export class NormControlComponent implements OnInit, OnDestroy {
     id: number = 0;
     page:number = 1;
     errors: NormControlError[] = [];
+    form: FormGroup;
 
     constructor(
         private router: Router,
+        private formBuilder: FormBuilder,
         private activatedRoute: ActivatedRoute,
         private alertSerivce: AlertService,
         private wide: WideStore,
@@ -28,6 +31,32 @@ export class NormControlComponent implements OnInit, OnDestroy {
         if (!this.id) {
             router.navigateByUrl("['/404']");
         }
+
+        this.form = this.formBuilder.group({
+            "hasTeacherReport": [false],
+            "isEquatableToOrder": [false],
+            "hasTableOfContents": [false],
+            "hasIntroduction": [false],
+            "hasTeacherSignature": [false],
+            "hasConsultantsSignature": [false],
+            "hasSignedTask": [false],
+            "hasPracticalValue": [false],
+            "hasActualDescription": [false],
+            "hasGoalsAndObjectives": [false],
+            "hasPracticalSupposes": [false],
+            "hasStructure": [false],
+            "usedMathMethods": [false],
+            "isTablesGoodFormatted": [false],
+            "isPicturesGoodFormatted": [false],
+            "isSourcesGoodFormatted": [false],
+            "isShorthandsGoodFormatted": [false],
+            "isAppendixGoodFormatted": [false],
+            "hasLinksToFormulas": [false],
+            "hasLinksToTables": [false],
+            "hasLinksToPictures": [false],
+            "hasLinksToAppendixes": [false],
+        });
+
     }
 
     ngOnInit(): void {
