@@ -7,16 +7,18 @@ import { NormControlError, NormControlErrorType } from '../models/norm-control-e
 import { WideStore } from '../../shared/screen/wide.store';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NormControlService } from '../services/norm-control.service';
+import { MIMEType } from '../../shared/mime';
+import * as FileSaver from "file-saver";
 
 @Component({
     selector: 'norm-control',
     templateUrl: './norm-control.component.html',
-    styleUrls:['./norm-control.component.css']
+    styleUrls: ['./norm-control.component.css']
 })
 export class NormControlComponent implements OnInit, OnDestroy {
     pdfSrc: any = undefined;
     id: number = 0;
-    page:number = 1;
+    page: number = 1;
     errors: NormControlError[] = [];
     form: FormGroup;
 
@@ -38,14 +40,14 @@ export class NormControlComponent implements OnInit, OnDestroy {
             "hasTeacherReport": [false],
             "isEquatableToOrder": [false],
             "hasTableOfContents": [false],
-            "hasAbstract":[false],
+            "hasAbstract": [false],
             "hasIntroduction": [false],
             "hasTeacherSignature": [false],
             "hasConsultantsSignature": [false],
             "hasSignedTask": [false],
             "hasActualDescription": [false],
             "hasGoalsAndObjectives": [false],
-            "hasResearchSubjectAndObject":[false],
+            "hasResearchSubjectAndObject": [false],
             "hasPracticalSupposes": [false],
             "hasStructure": [false],
             "usedMathMethods": [false],
@@ -53,7 +55,7 @@ export class NormControlComponent implements OnInit, OnDestroy {
             "isPicturesGoodFormatted": [false],
             "isSourcesGoodFormatted": [false],
             "isShorthandsGoodFormatted": [false],
-            "hasShorthandsInText":[false],
+            "hasShorthandsInText": [false],
             "isAppendixGoodFormatted": [false],
             "hasLinksToFormulas": [false],
             "hasLinksToTables": [false],
@@ -66,10 +68,10 @@ export class NormControlComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.wide.setWideState(true);
-        this.http.get(`/api/diploms/materials/${this.id}`,  {responseType: 'blob'}).subscribe((response: any) => {
+        this.http.get(`/api/diploms/materials/${this.id}`, { responseType: 'blob' }).subscribe((response: any) => {
             let blob = new Blob([response], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
             const fileReader = new FileReader();
-            fileReader.onload = ($event:any) => {
+            fileReader.onload = ($event: any) => {
                 this.pdfSrc = $event.target.result;
             };
             fileReader.readAsArrayBuffer(blob);
@@ -80,36 +82,39 @@ export class NormControlComponent implements OnInit, OnDestroy {
         this.wide.setWideState(false);
     }
 
-    nextPage(){
+    nextPage() {
         this.page++;
     }
 
-    previousPage(){
+    previousPage() {
         this.page--;
     }
 
-    addError(){
+    addError() {
         this.errors.push(<NormControlError>{
             page: this.page,
-            class:"error",
+            class: "error",
             position: window.getSelection().toString() || "-",
             type: NormControlErrorType.Warning,
-            description:""
+            description: ""
         });
     }
 
-    addWarning(){
+    addWarning() {
         this.errors.push(<NormControlError>{
             page: this.page,
-            class:"warning",
+            class: "warning",
             position: window.getSelection().toString() || "-",
             type: NormControlErrorType.Warning,
-            description:""
+            description: ""
         });
     }
 
-    downloadNormControlDoc(){
-        this.service.createNormControlDocument(this.form.value);
+    downloadNormControlDoc() {
+        this.service.createNormControlDocument(this.form.value).subscribe(response => {
+            let blob = new Blob([response], { type: MIMEType.docx });
+            FileSaver.saveAs(blob, "Результат нормоконтроля.docx");
+        })
     }
 
 }

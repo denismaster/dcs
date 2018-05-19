@@ -31,6 +31,7 @@
     "docxtemplater": "^3.0.12",
     "express": "4.15.1",
     "jszip": "2.6.1",
+    "jszip-utils": "0.0.2",
     "latex": "0.0.1",
     "morgan": "^1.8.1",
     "ws": "2.2.0"

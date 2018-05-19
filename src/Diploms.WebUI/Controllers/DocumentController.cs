@@ -20,6 +20,7 @@ namespace Diploms.Controllers
             if (service == null) throw new ArgumentNullException(nameof(service));
             _service = service;
         }
+
         [HttpPost("latex/preview")]
         public async Task<IActionResult> GeneratePreviewLatex([FromBody] string latex)
         {
@@ -27,6 +28,13 @@ namespace Diploms.Controllers
                 data = latex
             };
             var stream = await _service.SendRequest(objectToSend , false);
+            return new FileStreamResult(stream,"application/pdf");
+        }
+
+        [HttpPost("norm-control-doc")]
+        public async Task<IActionResult> DownloadStages([FromBody] NormControlTryResultDto data)
+        {
+            var stream = await _service.SendRequest(data);
             return new FileStreamResult(stream,"application/pdf");
         }
     }

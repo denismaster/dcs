@@ -21,11 +21,8 @@ import { FilesModule } from '../files/files.module';
 import { AuthModule } from '../auth/auth.module';
 import { CommentsComponent } from './comments/comments.component';
 import { WideStore } from './screen/wide.store';
-<<<<<<< HEAD
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-=======
 import { CheckboxInputComponent } from './forms/input-checkbox/input-checkbox.component';
->>>>>>> b641935148ea441720933736fe6f20cf473e3be4
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */

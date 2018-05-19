@@ -33,14 +33,13 @@ export class RouteHandler {
         try {
 
             let content = fs
-                .readFileSync(path.resolve(__dirname, "..", "templates", "docx", 'calendar.docx'), 'binary');
+                .readFileSync(path.resolve(__dirname, "..", "templates", "docx", 'norm-control.docx'), 'binary');
             //console.log(content);
             let zip = new JSZip(content);
             let doc = new Docxtemplater();
             doc.loadZip(zip);
             const data = request.body;
             doc.setData(data);
-            console.log(data.stages[0].startDate instanceof Date);
             try {
                 doc.render()
             }
