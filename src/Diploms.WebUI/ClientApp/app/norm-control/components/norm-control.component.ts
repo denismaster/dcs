@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { NormControlError, NormControlErrorType } from '../models/norm-control-error';
 import { WideStore } from '../../shared/screen/wide.store';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { NormControlService } from '../services/norm-control.service';
 
 @Component({
     selector: 'norm-control',
@@ -25,6 +26,7 @@ export class NormControlComponent implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private alertSerivce: AlertService,
         private wide: WideStore,
+        private service: NormControlService,
         private http: HttpClient
     ) {
         this.id = activatedRoute.snapshot.queryParams['fileId'];
@@ -104,6 +106,10 @@ export class NormControlComponent implements OnInit, OnDestroy {
             type: NormControlErrorType.Warning,
             description:""
         });
+    }
+
+    downloadNormControlDoc(){
+        this.service.createNormControlDocument(this.form.value);
     }
 
 }
