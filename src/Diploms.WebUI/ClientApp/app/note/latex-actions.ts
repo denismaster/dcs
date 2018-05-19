@@ -6,6 +6,10 @@ export const LATEX_ACTIONS: {[key:string]:Action} = {
     "bold": {
         code: `\\textbf{$selection}`,
         mode: "replace"
+    },
+    "italic": {
+        code: `\\textit{$selection}`,
+        mode: "replace"
     }
 };
 
