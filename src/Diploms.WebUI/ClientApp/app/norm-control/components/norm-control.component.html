@@ -38,123 +38,31 @@
         <card title="Структура работы" [showFooter]="false">
             <card-body>
                 <div class="form">
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Отзыв руководителя
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Соответствует приказу
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Содержание(оформление)
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Аннотация(до 1 стр.)
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Введение(2-3 стр.)
-                            </label>
-                        </div>
-                    </div>
+                    <input-checkbox [control]="form.controls['hasTeacherReport']" title="Отзыв руководителя"></input-checkbox>
+                    <input-checkbox [control]="form.controls['isEquatableToOrder']" title="Соответствует приказу"></input-checkbox>
+                    <input-checkbox [control]="form.controls['hasTableOfContents']" title="Содержание(оформление)"></input-checkbox>
+                    <input-checkbox [control]="form.controls['hasAbstract']" title="Аннотация(до 1 стр.)"></input-checkbox>
+                    <input-checkbox [control]="form.controls['hasIntroduction']" title="Введение(2-3 стр.)"></input-checkbox>
                 </div>
             </card-body>
         </card>
         <card title="Титульный лист" [showFooter]="false">
             <card-body>
                 <div class="form">
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Подписи руководителя
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Подписи консультантов
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Задание заполненное и подписанное
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Практическое значение
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Структура работы
-                            </label>
-                        </div>
-                    </div>
+                    <input-checkbox [control]="form.controls['hasTeacherSignature']" title="Подписи руководителя"></input-checkbox>
+                    <input-checkbox [control]="form.controls['hasConsultantsSignature']" title="Подписи консультантов"></input-checkbox>
+                    <input-checkbox [control]="form.controls['hasSignedTask']" title="Задание заполненное и подписанное"></input-checkbox>
                 </div>
             </card-body>
         </card>
         <card title="Элементы введения" [showFooter]="false">
             <card-body>
                 <div class="form">
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Актуальность темы
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Цель и задачи
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Предмет и объект исследования
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Практическое значение
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Структура работы
-                            </label>
-                        </div>
-                    </div>
+                    <input-checkbox [control]="form.controls['hasActualDescription']" title="Актуальность темы"></input-checkbox>
+                    <input-checkbox [control]="form.controls['hasGoalsAndObjectives']" title="Цель и задачи"></input-checkbox>
+                    <input-checkbox [control]="form.controls['hasResearchSubjectAndObject']" title="Предмет и объект исследования"></input-checkbox>
+                    <input-checkbox [control]="form.controls['hasPracticalSupposes']" title="Практическое значение"></input-checkbox>
+                    <input-checkbox [control]="form.controls['hasStructure']" title="Структура работы"></input-checkbox>
                 </div>
             </card-body>
         </card>
@@ -175,92 +83,20 @@
     <card-body>
         <div class="form">
             <div class="col-md-6">
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Используются матметоды моделирования
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Оформление таблиц
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Оформление рисунков
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Список использовнных источников
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Список принятых сокращений
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Расшифровка сокращений в тексте
-                        </label>
-                    </div>
-                </div>
+                <input-checkbox [control]="form.controls['usedMathMethods']" title="Используются матметоды моделирования"></input-checkbox>
+                <input-checkbox [control]="form.controls['isTablesGoodFormatted']" title="Оформление таблиц"></input-checkbox>
+                <input-checkbox [control]="form.controls['isPicturesGoodFormatted']" title="Оформление рисунков"></input-checkbox>
+                <input-checkbox [control]="form.controls['isSourcesGoodFormatted']" title="Список использовнных источников"></input-checkbox>
+                <input-checkbox [control]="form.controls['isShorthandsGoodFormatted']" title="Список принятых сокращений"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasShorthandsInText']" title="Расшифровка сокращений в тексте"></input-checkbox>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Оформление приложений
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Ссылки на формулы
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Ссылки на приложения
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Ссылки на рисунки
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Ссылки на таблицы
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Ссылки на источники
-                        </label>
-                    </div>
-                </div>
+                <input-checkbox [control]="form.controls['isAppendixGoodFormatted']" title="Оформление приложений"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasLinksToFormulas']" title="Ссылки на формулы"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasLinksToAppendixes']" title="Ссылки на приложения"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasLinksToPictures']" title="Ссылки на рисунки"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasLinksToTables']" title="Ссылки на таблицы"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasLinksToSources']" title="Ссылки на источники"></input-checkbox>
             </div>
         </div>
     </card-body>
