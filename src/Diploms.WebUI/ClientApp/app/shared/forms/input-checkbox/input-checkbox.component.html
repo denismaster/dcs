@@ -1,0 +1,8 @@
+<div class="checkbox" [class.has-error]="!control.valid && control.touched">
+    <label>
+        <input type="checkbox" [formControl]="control"> {{title}}
+    </label>
+    <div class="text-danger help-block">
+        <ng-content></ng-content>
+    </div>
+</div>

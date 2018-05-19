@@ -21,6 +21,7 @@ import { FilesModule } from '../files/files.module';
 import { AuthModule } from '../auth/auth.module';
 import { CommentsComponent } from './comments/comments.component';
 import { WideStore } from './screen/wide.store';
+import { CheckboxInputComponent } from './forms/input-checkbox/input-checkbox.component';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -39,6 +40,7 @@ import { WideStore } from './screen/wide.store';
         LoadingIndicatorComponent,
         TextInputComponent,
         TextAreaComponent,
+        CheckboxInputComponent,
         DateInputComponent,
         InputSelectComponent,
         OkCancelEditButtonsComponent,
@@ -61,6 +63,7 @@ import { WideStore } from './screen/wide.store';
         LoadingIndicatorComponent,
         TextInputComponent,
         TextAreaComponent,
+        CheckboxInputComponent,
         DateInputComponent,
         InputSelectComponent,
         AlertComponent,
