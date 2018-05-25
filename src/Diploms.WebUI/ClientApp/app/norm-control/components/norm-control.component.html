@@ -37,33 +37,27 @@
     <div class="col-md-4">
         <card title="Структура работы" [showFooter]="false">
             <card-body>
-                <div class="form">
-                    <input-checkbox [control]="form.controls['hasTeacherReport']" title="Отзыв руководителя"></input-checkbox>
-                    <input-checkbox [control]="form.controls['isEquatableToOrder']" title="Соответствует приказу"></input-checkbox>
-                    <input-checkbox [control]="form.controls['hasTableOfContents']" title="Содержание(оформление)"></input-checkbox>
-                    <input-checkbox [control]="form.controls['hasAbstract']" title="Аннотация(до 1 стр.)"></input-checkbox>
-                    <input-checkbox [control]="form.controls['hasIntroduction']" title="Введение(2-3 стр.)"></input-checkbox>
-                </div>
+                <input-checkbox [control]="form.controls['hasTeacherReport']" title="Отзыв руководителя"></input-checkbox>
+                <input-checkbox [control]="form.controls['isEquatableToOrder']" title="Соответствует приказу"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasTableOfContents']" title="Содержание(оформление)"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasAbstract']" title="Аннотация(до 1 стр.)"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasIntroduction']" title="Введение(2-3 стр.)"></input-checkbox>
             </card-body>
         </card>
         <card title="Титульный лист" [showFooter]="false">
             <card-body>
-                <div class="form">
-                    <input-checkbox [control]="form.controls['hasTeacherSignature']" title="Подписи руководителя"></input-checkbox>
-                    <input-checkbox [control]="form.controls['hasConsultantsSignature']" title="Подписи консультантов"></input-checkbox>
-                    <input-checkbox [control]="form.controls['hasSignedTask']" title="Задание заполненное и подписанное"></input-checkbox>
-                </div>
+                <input-checkbox [control]="form.controls['hasTeacherSignature']" title="Подписи руководителя"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasConsultantsSignature']" title="Подписи консультантов"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasSignedTask']" title="Задание заполненное и подписанное"></input-checkbox>
             </card-body>
         </card>
         <card title="Элементы введения" [showFooter]="false">
             <card-body>
-                <div class="form">
-                    <input-checkbox [control]="form.controls['hasActualDescription']" title="Актуальность темы"></input-checkbox>
-                    <input-checkbox [control]="form.controls['hasGoalsAndObjectives']" title="Цель и задачи"></input-checkbox>
-                    <input-checkbox [control]="form.controls['hasResearchSubjectAndObject']" title="Предмет и объект исследования"></input-checkbox>
-                    <input-checkbox [control]="form.controls['hasPracticalSupposes']" title="Практическое значение"></input-checkbox>
-                    <input-checkbox [control]="form.controls['hasStructure']" title="Структура работы"></input-checkbox>
-                </div>
+                <input-checkbox [control]="form.controls['hasActualDescription']" title="Актуальность темы"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasGoalsAndObjectives']" title="Цель и задачи"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasResearchSubjectAndObject']" title="Предмет и объект исследования"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasPracticalSupposes']" title="Практическое значение"></input-checkbox>
+                <input-checkbox [control]="form.controls['hasStructure']" title="Структура работы"></input-checkbox>
             </card-body>
         </card>
         <card title="Действия" [showFooter]="false">
@@ -81,23 +75,21 @@
 
 <card title="Оформление" [showFooter]="false">
     <card-body>
-        <div class="form">
-            <div class="col-md-6">
-                <input-checkbox [control]="form.controls['usedMathMethods']" title="Используются матметоды моделирования"></input-checkbox>
-                <input-checkbox [control]="form.controls['isTablesGoodFormatted']" title="Оформление таблиц"></input-checkbox>
-                <input-checkbox [control]="form.controls['isPicturesGoodFormatted']" title="Оформление рисунков"></input-checkbox>
-                <input-checkbox [control]="form.controls['isSourcesGoodFormatted']" title="Список использовнных источников"></input-checkbox>
-                <input-checkbox [control]="form.controls['isShorthandsGoodFormatted']" title="Список принятых сокращений"></input-checkbox>
-                <input-checkbox [control]="form.controls['hasShorthandsInText']" title="Расшифровка сокращений в тексте"></input-checkbox>
-            </div>
-            <div class="col-md-6">
-                <input-checkbox [control]="form.controls['isAppendixGoodFormatted']" title="Оформление приложений"></input-checkbox>
-                <input-checkbox [control]="form.controls['hasLinksToFormulas']" title="Ссылки на формулы"></input-checkbox>
-                <input-checkbox [control]="form.controls['hasLinksToAppendixes']" title="Ссылки на приложения"></input-checkbox>
-                <input-checkbox [control]="form.controls['hasLinksToPictures']" title="Ссылки на рисунки"></input-checkbox>
-                <input-checkbox [control]="form.controls['hasLinksToTables']" title="Ссылки на таблицы"></input-checkbox>
-                <input-checkbox [control]="form.controls['hasLinksToSources']" title="Ссылки на источники"></input-checkbox>
-            </div>
+        <div class="col-md-6">
+            <input-checkbox [control]="form.controls['usedMathMethods']" title="Используются матметоды моделирования"></input-checkbox>
+            <input-checkbox [control]="form.controls['isTablesGoodFormatted']" title="Оформление таблиц"></input-checkbox>
+            <input-checkbox [control]="form.controls['isPicturesGoodFormatted']" title="Оформление рисунков"></input-checkbox>
+            <input-checkbox [control]="form.controls['isSourcesGoodFormatted']" title="Список использовнных источников"></input-checkbox>
+            <input-checkbox [control]="form.controls['isShorthandsGoodFormatted']" title="Список принятых сокращений"></input-checkbox>
+            <input-checkbox [control]="form.controls['hasShorthandsInText']" title="Расшифровка сокращений в тексте"></input-checkbox>
+        </div>
+        <div class="col-md-6">
+            <input-checkbox [control]="form.controls['isAppendixGoodFormatted']" title="Оформление приложений"></input-checkbox>
+            <input-checkbox [control]="form.controls['hasLinksToFormulas']" title="Ссылки на формулы"></input-checkbox>
+            <input-checkbox [control]="form.controls['hasLinksToAppendixes']" title="Ссылки на приложения"></input-checkbox>
+            <input-checkbox [control]="form.controls['hasLinksToPictures']" title="Ссылки на рисунки"></input-checkbox>
+            <input-checkbox [control]="form.controls['hasLinksToTables']" title="Ссылки на таблицы"></input-checkbox>
+            <input-checkbox [control]="form.controls['hasLinksToSources']" title="Ссылки на источники"></input-checkbox>
         </div>
     </card-body>
 </card>

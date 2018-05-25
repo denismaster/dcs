@@ -40,6 +40,7 @@ export class RouteHandler {
             doc.loadZip(zip);
             const data = request.body;
             doc.setData(data);
+            console.log(JSON.stringify(data))
             try {
                 doc.render()
             }
