@@ -35,6 +35,22 @@
         </card>
     </div>
     <div class="col-md-4">
+        <card title="Информация о работе" [showFooter]="false">
+            <card-body>
+                <div class="form-group">
+                    <label class="control-label">ФИО</label>
+                    <p class="form-control-static">{{info.fio}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Группа</label>
+                    <p class="form-control-static">{{info.group}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Тема работы</label>
+                    <p class="form-control-static">{{info.workName}}</p>
+                </div>
+            </card-body>
+        </card>
         <card title="Структура работы" [showFooter]="false">
             <card-body>
                 <input-checkbox [control]="form.controls['hasTeacherReport']" title="Отзыв руководителя"></input-checkbox>
@@ -63,6 +79,7 @@
         <card title="Действия" [showFooter]="false">
             <card-body>
                 <button type="button" class="btn btn-success" (click)="downloadNormControlDoc()">Скачать лист нормоконтроля</button>
+                <button type="button" *ngIf="!errors || errors.length==0" class="btn btn-success">Завершить</button>
             </card-body>
         </card>
     </div>

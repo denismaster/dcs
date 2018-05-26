@@ -11,14 +11,17 @@ namespace Diploms.Services.DiplomWorks
     public class DiplomWorksService : CatalogService<DiplomWork, DiplomWorkEditDto, DiplomWorkGetDto, DiplomWorkAddDto, DiplomWorkEditDto>
     {
         private readonly IRepository<DiplomWorkMaterial> _materialsRepository;
+        private readonly IRepository<Group> _groupRepository;
 
         public DiplomWorksService(
             IRepository<DiplomWork> repository,
             IRepository<DiplomWorkMaterial> materialsRepository,
+            IRepository<Group> groupRepository,
             IMapper mapper
         ) : base(repository, mapper)
         {
             _materialsRepository = materialsRepository;
+            _groupRepository  = groupRepository;
         }
 
         public override async Task<IEnumerable<DiplomWorkEditDto>> GetList()
@@ -80,6 +83,24 @@ namespace Diploms.Services.DiplomWorks
             }
 
             return result;
+        }
+
+        public async Task<DiplomWorkNormControlInfo> GetNormControlInfo(int id){
+            var entity = await _repository.Get(id,
+                work => work.Students
+            );
+
+            var student = entity.Students.FirstOrDefault();
+
+            if(student == null) throw new Exception();
+
+            var group = await _groupRepository.Get(student.GroupId);
+
+            return new DiplomWorkNormControlInfo{
+                Fio = student.FIO,
+                Group = group.Name,
+                WorkName = entity.Name
+            };
         }
     }
 }

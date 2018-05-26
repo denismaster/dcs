@@ -18,9 +18,16 @@ import * as FileSaver from "file-saver";
 export class NormControlComponent implements OnInit, OnDestroy {
     pdfSrc: any = undefined;
     id: number = 0;
+    diplomId: number = 0;
     page: number = 1;
     errors: NormControlError[] = [];
     form: FormGroup;
+
+    info = {
+        fio:"",
+        workName:"",
+        group:""
+    }
 
     constructor(
         private router: Router,
@@ -32,7 +39,8 @@ export class NormControlComponent implements OnInit, OnDestroy {
         private http: HttpClient
     ) {
         this.id = activatedRoute.snapshot.queryParams['fileId'];
-        if (!this.id) {
+        this.diplomId = activatedRoute.snapshot.params['diplomId'];
+        if (!this.id || !this.diplomId) {
             router.navigateByUrl("['/404']");
         }
 
@@ -68,6 +76,9 @@ export class NormControlComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.wide.setWideState(true);
+        this.http.get<{fio:string,workName:string,group:string}>(`/api/diploms/${this.diplomId}/norm-control-info`).subscribe(result=>{
+            this.info = result;
+        });
         this.http.get(`/api/diploms/materials/${this.id}`, { responseType: 'blob' }).subscribe((response: any) => {
             let blob = new Blob([response], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
             const fileReader = new FileReader();
@@ -111,7 +122,11 @@ export class NormControlComponent implements OnInit, OnDestroy {
     }
 
     downloadNormControlDoc() {
-        this.service.createNormControlDocument(this.form.value).subscribe(response => {
+        const dataToSend = {
+            ...this.form.value,
+            errors: this.errors.map(e=>e.position)
+        }
+        this.service.createNormControlDocument(dataToSend).subscribe(response => {
             let blob = new Blob([response], { type: MIMEType.docx });
             FileSaver.saveAs(blob, "Результат нормоконтроля.docx");
         })
