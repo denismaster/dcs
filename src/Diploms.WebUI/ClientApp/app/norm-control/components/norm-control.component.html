@@ -35,6 +35,28 @@
         </card>
     </div>
     <div class="col-md-4">
+        <card title="Общая информация" [showFooter]="false">
+            <card-body>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">ФИО</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">{{info.fio}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Группа</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">{{info.group}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Тема работы</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">{{info.workName}}</p>
+                    </div>
+                </div>
+            </card-body>
+        </card>
         <card title="Структура работы" [showFooter]="false">
             <card-body>
                 <input-checkbox [control]="form.controls['hasTeacherReport']" title="Отзыв руководителя"></input-checkbox>

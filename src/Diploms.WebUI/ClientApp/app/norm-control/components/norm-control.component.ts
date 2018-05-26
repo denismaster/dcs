@@ -18,9 +18,15 @@ import * as FileSaver from "file-saver";
 export class NormControlComponent implements OnInit, OnDestroy {
     pdfSrc: any = undefined;
     id: number = 0;
+    diplomId:number = 0;
     page: number = 1;
     errors: NormControlError[] = [];
     form: FormGroup;
+    info: {
+        fio:string,
+        workName:string,
+        group:string
+    } = { fio:"",workName:"",group:"" }
 
     constructor(
         private router: Router,
@@ -76,6 +82,7 @@ export class NormControlComponent implements OnInit, OnDestroy {
             };
             fileReader.readAsArrayBuffer(blob);
         })
+
     }
 
     ngOnDestroy(): void {
