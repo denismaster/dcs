@@ -118,5 +118,16 @@ namespace Diploms.WebUI.Controllers
         {
             return new FileContentResult(await _service.GetMaterial(id), "application/pdf");
         }
+
+        [HttpGet("{id:int}/norm-control-info")]
+        public async Task<IActionResult> GetNormControlInfo(int id)
+        {
+            var result = await _service.GetNormControlInfo(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound();
+        }
     }
 }

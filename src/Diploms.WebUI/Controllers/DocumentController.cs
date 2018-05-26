@@ -32,7 +32,7 @@ namespace Diploms.Controllers
         }
 
         [HttpPost("norm-control-doc")]
-        public async Task<IActionResult> DownloadStages([FromBody] NormControlTryResultDto data)
+        public async Task<IActionResult> CreateNormControlList([FromBody] NormControlTryResultDto data)
         {
             var stream = await _service.SendRequest(data);
             return new FileStreamResult(stream,"application/pdf");
