@@ -124,6 +124,8 @@ export class NormControlComponent implements OnInit, OnDestroy {
     downloadNormControlDoc() {
         const dataToSend = {
             ...this.form.value,
+            ...this.info,
+            date: new Date().toISOString().slice(0,10),
             errors: this.errors.map(e=>e.position)
         }
         this.service.createNormControlDocument(dataToSend).subscribe(response => {
