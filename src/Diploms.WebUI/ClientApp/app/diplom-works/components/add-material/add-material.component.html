@@ -9,6 +9,7 @@
                 <h4 class="modal-title" id="myModalLabel">Добавление материала</h4>
             </div>
             <div class="modal-body">
+                <input-select title="Тип материала" placeholder="Выберите тип" [options]="materialsOptions"></input-select>
                 <input #file type="file" multiple accept=".pdf,.doc,.docx,.tex">
                 <span *ngIf="uploadProgress > 0 && uploadProgress < 100">
                     {{uploadProgress}}%
@@ -16,7 +17,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                <button type="button" class="btn btn-success" (click)="upload(file.files)">Добавить</button>
+                <button type="button" class="btn btn-success">Добавить</button>
             </div>
         </div>
     </div>

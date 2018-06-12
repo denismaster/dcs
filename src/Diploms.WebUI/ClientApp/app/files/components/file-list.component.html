@@ -8,7 +8,8 @@
                 <a (click)="downloadFile(file)">{{ file.name }}
                     <!--({{ file.size }} байт)-->
                 </a>
-                <!-- <a [routerLink]="['/norm-control', diplomId]" [queryParams]="{fileId:file.id}">Нормоконтроль</a>-->
+                <span class="label label-info">{{ file.type }}</span>
+                <span *ngIf="file.isNotePart" class="label label-default">Часть ПЗ</span>
             </p>
         </a>
     </div>
