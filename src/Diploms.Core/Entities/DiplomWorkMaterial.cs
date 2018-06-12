@@ -11,6 +11,11 @@ namespace Diploms.Core
         public int Rank { get; set; }
         public byte[] Data { get; set; }
 
+        public bool IsNotePart { get; set; } = false;
+
+        public MaterialType MaterialType { get; set; } = MaterialType.Other;
+        public int MaterialTypeId { get; set; } = MaterialType.Other.Id;
+
         public int AuthorId { get; set; }
         public Student Author { get; set; }
 

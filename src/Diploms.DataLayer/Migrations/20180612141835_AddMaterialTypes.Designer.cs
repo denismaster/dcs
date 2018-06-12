@@ -11,9 +11,10 @@ using System;
 namespace Diploms.DataLayer.Migrations
 {
     [DbContext(typeof(DiplomContext))]
-    partial class DiplomContextModelSnapshot : ModelSnapshot
+    [Migration("20180612141835_AddMaterialTypes")]
+    partial class AddMaterialTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,8 +124,6 @@ namespace Diploms.DataLayer.Migrations
 
                     b.Property<bool>("IsNotePart");
 
-                    b.Property<int>("MaterialTypeId");
-
                     b.Property<string>("Name");
 
                     b.Property<int>("Rank");
@@ -136,8 +135,6 @@ namespace Diploms.DataLayer.Migrations
                     b.HasIndex("AuthorId");
 
                     b.HasIndex("DiplomWorkId");
-
-                    b.HasIndex("MaterialTypeId");
 
                     b.ToTable("DiplomWorkMaterials");
                 });
@@ -478,11 +475,6 @@ namespace Diploms.DataLayer.Migrations
                     b.HasOne("Diploms.Core.DiplomWork", "DiplomWork")
                         .WithMany("DiplomWorkMaterials")
                         .HasForeignKey("DiplomWorkId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Diploms.Core.MaterialType", "MaterialType")
-                        .WithMany()
-                        .HasForeignKey("MaterialTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

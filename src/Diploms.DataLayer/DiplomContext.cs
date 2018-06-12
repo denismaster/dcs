@@ -17,6 +17,7 @@ namespace Diploms.DataLayer
         public DbSet<Group> Groups { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Period> Periods { get; set; }
+        public DbSet<MaterialType> MaterialTypes { get; set; }
         public DbSet<DiplomWork> DiplomWorks { get; set; }
         public DbSet<DiplomWorkMaterial> DiplomWorkMaterials { get; set; }
         public DbSet<GostControlTry> GostControlTries { get; set; }

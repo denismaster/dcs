@@ -25,6 +25,22 @@ namespace Diploms.DataLayer
                 {
                     context.Roles.AddRange(Role.Admin, Role.Owner, Role.Student, Role.Teacher);
                 }
+                if (!context.MaterialTypes.Any())
+                {
+                    context.MaterialTypes.AddRange(
+                        MaterialType.Other,
+                        MaterialType.Image,
+                        MaterialType.LatexFile,
+                        MaterialType.Preambula, 
+                        MaterialType.Introduction, 
+                        MaterialType.Chapter,
+                        MaterialType.Subchapter,
+                        MaterialType.Conclusion,
+                        MaterialType.Bibliography,
+                        MaterialType.Abbreviations,
+                        MaterialType.Appendix
+                    );
+                }
                 if(!context.Users.Any())
                 {
                     context.Users.Add(new User{
