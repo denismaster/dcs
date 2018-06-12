@@ -14,7 +14,6 @@ import { File } from '../../../files/models/file';
 export class DiplomsEditComponent implements OnInit {
     errors: string[] | undefined = undefined;
     id: number;
-    public uploadProgress: number=0;
     work:any={};
 
     files: File[] = [];
@@ -37,9 +36,13 @@ export class DiplomsEditComponent implements OnInit {
             this.work = result;
         })
 
-        this.service.getMaterials(this.id).subscribe(result=>this.files = result);
+        this.updateMaterials();
     } 
     
+    private updateMaterials() {
+        this.service.getMaterials(this.id).subscribe(result => this.files = result);
+    }
+
     submit(form: any) {
         this.service.editDiplom(this.id, {}).subscribe(result => this.checkResult(result));
     }
@@ -62,23 +65,5 @@ export class DiplomsEditComponent implements OnInit {
 
     remove(){
         this.service.deleteDiplom(this.id).subscribe(result=> this.checkResult(result));
-    }
-
-
-    upload(files:any) {
-        if (files.length === 0)
-            return;
-
-        const formData = new FormData();
-
-        for (let file of files)
-            formData.append(file.name, file);
-
-         this.service.uploadMaterial(this.id, formData).subscribe(event => {
-                if (event.type === HttpEventType.UploadProgress)
-                    this.uploadProgress = Math.round(100 * event.loaded / (event.total || 100));
-                else if (event instanceof HttpResponse)
-                    console.log('Files uploaded!');
-            });
     }
 }

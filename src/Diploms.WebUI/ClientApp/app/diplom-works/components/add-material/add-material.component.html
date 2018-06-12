@@ -1,0 +1,23 @@
+<!-- Modal -->
+<div class="modal fade" id="addMaterialDialog" tabindex="-1" role="dialog" aria-labelledby="addMaterialDialoglLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Добавление материала</h4>
+            </div>
+            <div class="modal-body">
+                <input #file type="file" multiple accept=".pdf,.doc,.docx,.tex">
+                <span *ngIf="uploadProgress > 0 && uploadProgress < 100">
+                    {{uploadProgress}}%
+                </span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-success" (click)="upload(file.files)">Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>

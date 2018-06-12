@@ -7,6 +7,7 @@ import { DiplomsEditComponent } from './components/edit/edit.component';
 import { DiplomsService } from './services/diploms.service';
 import { FilesModule } from '../files/files.module';
 import { NormControlResultsComponent } from './components/norm-control-results/norm-control-results.component';
+import { DiplomsAddMaterialComponent } from './components/add-material/add-material.component';
 
 @NgModule({
     imports: [
@@ -19,11 +20,13 @@ import { NormControlResultsComponent } from './components/norm-control-results/n
         DiplomsAddComponent,
         DiplomsEditComponent,
         NormControlResultsComponent,
+        DiplomsAddMaterialComponent
     ],
     exports: [
         DiplomsListComponent,
         DiplomsAddComponent,
-        DiplomsEditComponent
+        DiplomsEditComponent,
+        DiplomsAddMaterialComponent
     ],
     providers: [ DiplomsService ],
     schemas: [NO_ERRORS_SCHEMA]
