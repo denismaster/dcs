@@ -4,6 +4,8 @@ import { WideStore } from '../../shared/screen/wide.store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CodemirrorComponent } from 'ng2-codemirror';
 import { applyAction } from '../latex-actions';
+import { DiplomsService } from '../../diplom-works/services/diploms.service';
+import { File } from '../../files/models/file';
 
 @Component({
     selector: 'norm-control',
@@ -14,6 +16,10 @@ export class NoteComponent implements OnInit, OnDestroy {
     @ViewChild(CodemirrorComponent)
     editor:CodemirrorComponent | undefined;
 
+    diplomId = 1;
+
+    files:File[] = [];
+
     code: string = "";
     pdfSrc: any = undefined;
     config = {
@@ -21,11 +27,13 @@ export class NoteComponent implements OnInit, OnDestroy {
         mode: "text/x-stex",
         theme: 'default'
     }
-    constructor(private wide: WideStore, private http: HttpClient) {
+    constructor(private wide: WideStore, private service:DiplomsService, private http: HttpClient) {
     }
 
     ngOnInit(): void {
         this.wide.setWideState(true);
+
+        this.service.getMaterials(this.diplomId).subscribe(result=>this.files = result);
     }
     ngOnDestroy(): void {
         this.wide.setWideState(false);

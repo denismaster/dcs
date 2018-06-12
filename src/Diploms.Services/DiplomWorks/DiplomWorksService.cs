@@ -55,7 +55,7 @@ namespace Diploms.Services.DiplomWorks
 
         public async Task<IEnumerable<DiplomMaterialDto>> GetMaterials(int diplomId)
         {
-            var materials = await _materialsRepository.Get(x=>x.DiplomWorkId==diplomId);
+            var materials = await _materialsRepository.Get(x=>x.DiplomWorkId==diplomId, material=>material.MaterialType);
 
             return _mapper.Map<IEnumerable<DiplomMaterialDto>>(materials);
         }

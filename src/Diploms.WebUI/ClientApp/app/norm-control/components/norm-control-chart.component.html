@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-md-6">
+        <card title="Статистика нормоконтроля">
+            <card-body>
+                <div style="display: block">
+                    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas>
+                </div>
+            </card-body>
+        </card>
+    </div>
+    <div class="col-md-6">
+        <card title="Недавний нормоконтроль" [showBody]="false">
+            <table card-table class='table table-bordered table-striped'>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Студент</th>
+                        <th>Группа</th>
+                        <th>Дата</th>
+                        <th>Ошибок</th>
+                        <th>Результат</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of results">
+                        <td>
+                            <a [routerLink]="['/norm-control',item.id]">
+                                {{ item.id }}
+                            </a>
+                        </td>
+                        <td>
+                            <a [routerLink]="[item.controllerId]">
+                                {{ item.controller }}
+                            </a>
+                        </td>
+                        <td>
+                            <a [routerLink]="[item.controllerId]">
+                                {{ item.group }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ item.date | date: 'dd.MM.yyyy' }}
+                        </td>
+                        <td>
+                            {{ item.hasErrors ? item.errors.length : 0 }}
+                        </td>
+                        <td>
+                            {{ !item.hasErrors ? "Пройдено" : "Не пройдено" }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </card>
+    </div>
+</div>
+<div class="row">
+    <card title="Статистика по группам">
+        <card-body>
+            <div class="col-md-4" *ngFor="let group of groups">
+                <canvas baseChart [data]="group.data" [options]="{
+                    title:{
+                        display:true,
+                        text: group.name
+                    }
+                }" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas>
+            </div>
+        </card-body>
+    </card>
+</div>

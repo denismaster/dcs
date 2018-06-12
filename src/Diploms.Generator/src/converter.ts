@@ -3,7 +3,7 @@ const latex = require("latex");
 export class Converter {
     public convert(source: string | string[]): Stream {
         try {
-            return latex(source) as Stream;
+            return latex(source, { command: "xelatex" }) as Stream;
         } catch (e) {
             throw new Error("something bad with latex.")
         }

@@ -1,7 +1,12 @@
+using System;
+using System.Collections.Generic;
+
 namespace Diploms.Dto
 {
     public class NormControlTryResultDto
     {
+        public string FIO { get;set; }
+        public List<string> Errors {get;set;}
         public bool HasTeacherReport { get; set; }
         public bool IsEquatableToOrder { get; set; }
         public bool HasTableOfContents { get; set; }

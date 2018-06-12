@@ -59,7 +59,7 @@
         </div>
         <br>
         <file-list title="Материалы" [files]="files" [diplomId]="id"></file-list>
-        <input #file type="file" multiple (change)="upload(file.files)" accept=".pdf,.doc,.docx">
+        <input #file type="file" multiple (change)="upload(file.files)" accept=".pdf,.doc,.docx,.tex">
         <span *ngIf="uploadProgress > 0 && uploadProgress < 100">
             {{uploadProgress}}%
         </span>

@@ -12,9 +12,12 @@
         </a>
         <a class="list-group-item" *ngFor="let file of files">
             <p class="list-group-item-text">
-                <a (click)="downloadFile(file)">{{ file.name }} ({{ file.size }} байт)</a> |
-        <a [routerLink]="['/norm-control', diplomId]" [queryParams]="{fileId:file.id}">Нормоконтроль</a>
-        </p>
+                <a (click)="downloadFile(file)">{{ file.name }}
+                    <!--({{ file.size }} байт)-->
+                </a>
+                <!-- <a [routerLink]="['/norm-control', diplomId]" [queryParams]="{fileId:file.id}">Нормоконтроль</a>-->
+                
+            </p>
         </a>
     </div>
 </card>
