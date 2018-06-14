@@ -107,6 +107,18 @@ namespace Diploms.WebUI.Controllers
             return BadRequest();
         }
 
+        [HttpPost("{id:int}/materials/{type:int}")]
+        public async Task<IActionResult> AddMaterial(int id, int type)
+        {
+            if (ModelState.IsValid)
+            {
+                await _service.AddMaterial(id,type);
+                return Ok();
+            }
+
+            return BadRequest();
+        }
+
         [HttpGet("{id:int}/materials")]
         public async Task<IActionResult> GetMaterials(int id)
         {

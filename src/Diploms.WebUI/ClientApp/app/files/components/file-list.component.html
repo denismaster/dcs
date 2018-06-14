@@ -3,7 +3,7 @@
         <a class="list-group-item text-center" *ngIf="!files||files.length==0">
             Нет файлов.
         </a>
-        <a class="list-group-item" *ngFor="let file of files">
+        <a class="list-group-item" *ngFor="let file of files" (click)="onItemSelected(file)">
             <p class="list-group-item-text">
                 <a (click)="downloadFile(file)">{{ file.name }}
                     <!--({{ file.size }} байт)-->

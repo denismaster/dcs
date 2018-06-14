@@ -10,6 +10,7 @@ namespace Diploms.Services.DiplomWorks
 {
     public class DiplomWorksService : CatalogService<DiplomWork, DiplomWorkEditDto, DiplomWorkGetDto, DiplomWorkAddDto, DiplomWorkEditDto>
     {
+        private readonly string templatePath = "../../templates/";
         private readonly IRepository<DiplomWorkMaterial> _materialsRepository;
         private readonly IRepository<Group> _groupRepository;
 
@@ -21,7 +22,7 @@ namespace Diploms.Services.DiplomWorks
         ) : base(repository, mapper)
         {
             _materialsRepository = materialsRepository;
-            _groupRepository  = groupRepository;
+            _groupRepository = groupRepository;
         }
 
         public override async Task<IEnumerable<DiplomWorkEditDto>> GetList()
@@ -55,9 +56,46 @@ namespace Diploms.Services.DiplomWorks
 
         public async Task<IEnumerable<DiplomMaterialDto>> GetMaterials(int diplomId)
         {
-            var materials = await _materialsRepository.Get(x=>x.DiplomWorkId==diplomId, material=>material.MaterialType);
+            var materials = await _materialsRepository.Get(x => x.DiplomWorkId == diplomId, material => material.MaterialType);
 
             return _mapper.Map<IEnumerable<DiplomMaterialDto>>(materials);
+        }
+
+        public virtual async Task<OperationResult> AddMaterial(int id, int typeId)
+        {
+            var result = new OperationResult();
+            var work = await this.GetOne(id);
+            string name=null;
+            byte[] data=null;
+            try
+            {
+                if (typeId==MaterialType.LatexFile.Id)
+                {
+                    data = System.IO.File.ReadAllBytes(this.templatePath + "main.tex");
+                    name = "main.tex";
+                }
+                if (data == null || name==null) throw new System.IO.FileNotFoundException();
+                var material = new DiplomWorkMaterial
+                {
+                    Name = name,
+                    Data = data,
+                    DiplomWorkId = id,
+                    MaterialTypeId = MaterialType.LatexFile.Id,
+                    MaterialType = null,
+                    IsNotePart = true,
+                    AuthorId = work.StudentsId.FirstOrDefault(),
+                };
+                material.CreateDate = DateTime.UtcNow;
+                _materialsRepository.Add(material);
+
+                await _materialsRepository.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                result.Errors.Add(e.Message);
+            }
+
+            return result;
         }
 
         public virtual async Task<OperationResult> AddMaterial(int id, string name, byte[] data)
@@ -66,7 +104,8 @@ namespace Diploms.Services.DiplomWorks
             var work = await this.GetOne(id);
             try
             {
-                var material = new DiplomWorkMaterial{
+                var material = new DiplomWorkMaterial
+                {
                     Name = name,
                     Data = data,
                     DiplomWorkId = id,
@@ -85,18 +124,20 @@ namespace Diploms.Services.DiplomWorks
             return result;
         }
 
-        public async Task<DiplomWorkNormControlInfo> GetNormControlInfo(int id){
+        public async Task<DiplomWorkNormControlInfo> GetNormControlInfo(int id)
+        {
             var entity = await _repository.Get(id,
                 work => work.Students
             );
 
             var student = entity.Students.FirstOrDefault();
 
-            if(student == null) throw new Exception();
+            if (student == null) throw new Exception();
 
             var group = await _groupRepository.Get(student.GroupId);
 
-            return new DiplomWorkNormControlInfo{
+            return new DiplomWorkNormControlInfo
+            {
                 Fio = student.FIO,
                 Group = group.Name,
                 WorkName = entity.Name

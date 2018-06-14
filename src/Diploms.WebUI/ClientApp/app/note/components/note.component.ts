@@ -33,7 +33,7 @@ export class NoteComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.wide.setWideState(true);
 
-        this.service.getMaterials(this.diplomId).subscribe(result=>this.files = result);
+        this.service.getMaterials(this.diplomId).map(files=>files.filter(f=>f.isNotePart)).subscribe(result=>this.files = result);
     }
     ngOnDestroy(): void {
         this.wide.setWideState(false);
@@ -58,5 +58,9 @@ export class NoteComponent implements OnInit, OnDestroy {
         if(!this.editor) return;
         const selectedText = this.editor.instance.getSelection('\n')
         this.editor.instance.replaceSelection(applyAction(action,selectedText));
+    }
+
+    onFileSelected($event:File){
+        alert($event.isNotePart);
     }
 }

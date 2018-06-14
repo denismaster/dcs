@@ -11,59 +11,77 @@ declare var $: any;
     templateUrl: './add-material.component.html'
 })
 export class DiplomsAddMaterialComponent {
+    form: FormGroup;
     @Input() public id: number = 0;
     @Output() public onMaterialCreated = new EventEmitter<any>();
     public uploadProgress: number = 0;
 
-    materialsOptions: SelectListItem[]=[
+    materialsOptions: SelectListItem[] = [
         {
-            text:"ПЗ в формате LaTeX",
-            value:"3"
+            text: "ПЗ в формате LaTeX",
+            value: "3"
         },
         {
-            text:"Преамбула",
-            value:"4"
+            text: "Преамбула",
+            value: "4"
         },
         {
-            text:"Введение",
-            value:"5"
+            text: "Введение",
+            value: "5"
         },
         {
-            text:"Раздел",
-            value:"6"
+            text: "Раздел",
+            value: "6"
         },
         {
-            text:"Подраздел",
-            value:"7"
+            text: "Подраздел",
+            value: "7"
         },
         {
-            text:"Заключение",
-            value:"8"
-        }        
+            text: "Заключение",
+            value: "8"
+        }
     ]
 
     constructor(
         private formBuilder: FormBuilder,
         private service: DiplomsService,
         private alertSerivce: AlertService,
-    ) { }
+    ) {
+        this.form = this.formBuilder.group({
+            "type": ["", Validators.required],
+        });
+    }
 
     upload(files: any) {
-        if (files.length === 0)
-            return;
+        this.form.controls["type"].updateValueAndValidity();
+        if (this.form.value.type>8) {
+            console.log("formdata");
+            if (files.length === 0)
+                return;
 
-        const formData = new FormData();
+            const formData = new FormData();
 
-        for (let file of files)
-            formData.append(file.name, file);
+            for (let file of files)
+                formData.append(file.name, file);
 
-        this.service.uploadMaterial(this.id, formData).subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress)
-                this.uploadProgress = Math.round(100 * event.loaded / (event.total || 100));
-            else if (event instanceof HttpResponse) {
-               // ($("#addMaterialDialog") as any).modal("hide");
-                this.onMaterialCreated.emit();
-            }
-        });
+
+            this.service.uploadMaterial(this.id, formData).subscribe(event => {
+                if (event.type === HttpEventType.UploadProgress)
+                    this.uploadProgress = Math.round(100 * event.loaded / (event.total || 100));
+                else if (event instanceof HttpResponse) {
+                    // ($("#addMaterialDialog") as any).modal("hide");
+                    this.onMaterialCreated.emit();
+                }
+            });
+        }
+        else {
+            this.service.uploadMaterialByType(this.id, this.form.value.type)
+                .subscribe(event => {
+                    this.onMaterialCreated.emit();
+                })
+        }
+
+
     }
 }

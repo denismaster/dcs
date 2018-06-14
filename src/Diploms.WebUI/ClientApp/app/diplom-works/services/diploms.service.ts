@@ -52,4 +52,9 @@ export class DiplomsService {
 
         return this.http.request(req)
     }
+
+    public uploadMaterialByType(id:number, typeId:number){
+        console.log("typeId:", typeId)
+        return this.http.post<any>(this.baseUrl + `api/diploms/${id}/materials/${typeId}`, {});
+    }
 }

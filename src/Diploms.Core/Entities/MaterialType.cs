@@ -4,9 +4,9 @@ namespace Diploms.Core
 {
     public class MaterialType : IEntity
     {
-        public static MaterialType Other = new MaterialType() { Name = "Изображение" };
-        public static MaterialType Image = new MaterialType() { Name = "Изображение" };
-        public static MaterialType LatexFile = new MaterialType() { Name = "ПЗ в формате LATEX" };
+        public static MaterialType Other = new MaterialType() { Id = 1, Name = "Изображение" };
+        public static MaterialType Image = new MaterialType() { Id =2 , Name = "Изображение" };
+        public static MaterialType LatexFile = new MaterialType() {  Id=3, Name = "ПЗ в формате LATEX" };
 
         public static MaterialType Preambula = new MaterialType() { Name = "Преамбула" };
         public static MaterialType Introduction = new MaterialType() { Name = "Введение" };
