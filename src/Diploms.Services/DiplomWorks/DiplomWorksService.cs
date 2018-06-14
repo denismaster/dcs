@@ -54,6 +54,13 @@ namespace Diploms.Services.DiplomWorks
             return material.Data;
         }
 
+        public async Task<string> GetMaterialTextContent(int id)
+        {
+            var material = await _materialsRepository.Get(id);
+            if (material.IsNotePart != true) throw new InvalidOperationException();
+            return System.Text.Encoding.Default.GetString(material.Data);
+        }
+
         public async Task<IEnumerable<DiplomMaterialDto>> GetMaterials(int diplomId)
         {
             var materials = await _materialsRepository.Get(x => x.DiplomWorkId == diplomId, material => material.MaterialType);
@@ -65,16 +72,21 @@ namespace Diploms.Services.DiplomWorks
         {
             var result = new OperationResult();
             var work = await this.GetOne(id);
-            string name=null;
-            byte[] data=null;
+            string name = null;
+            byte[] data = null;
             try
             {
-                if (typeId==MaterialType.LatexFile.Id)
+                if (typeId == MaterialType.LatexFile.Id)
                 {
                     data = System.IO.File.ReadAllBytes(this.templatePath + "main.tex");
                     name = "main.tex";
                 }
-                if (data == null || name==null) throw new System.IO.FileNotFoundException();
+                if (typeId == MaterialType.Preambula.Id)
+                {
+                    data = System.IO.File.ReadAllBytes(this.templatePath + "preamble.tex");
+                    name = "preabmle.tex";
+                }
+                if (data == null || name == null) throw new System.IO.FileNotFoundException();
                 var material = new DiplomWorkMaterial
                 {
                     Name = name,

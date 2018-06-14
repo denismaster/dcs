@@ -128,8 +128,17 @@ namespace Diploms.WebUI.Controllers
         [HttpGet("materials/{id:int}")]
         public async Task<IActionResult> GetMaterial(int id)
         {
-            return new FileContentResult(await _service.GetMaterial(id), "application/pdf");
+            var material = await _service.GetMaterial(id);
+            return new FileContentResult(material, "application/pdf");
         }
+        
+        [HttpGet("materials/{id:int}/text")]
+        public async Task<IActionResult> GetMaterialText(int id)
+        {
+            var material = await _service.GetMaterialTextContent(id);
+            return Ok(material);
+        }
+
 
         [HttpGet("{id:int}/norm-control-info")]
         public async Task<IActionResult> GetNormControlInfo(int id)

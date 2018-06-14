@@ -44,7 +44,7 @@ export class DiplomsService {
     public getMaterials(id:number)  {
         return this.http.get<File[]>(this.baseUrl + `api/diploms/${id}/materials`);
     }
-
+    
     public uploadMaterial(id:number, formData:any) {
         const req = new HttpRequest('POST', `/api/diploms/${id}/materials`, formData, {
             reportProgress: true,

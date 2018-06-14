@@ -61,6 +61,9 @@ export class NoteComponent implements OnInit, OnDestroy {
     }
 
     onFileSelected($event:File){
-        alert($event.isNotePart);
+        const options = {responseType: 'text' as 'text'};
+        this.http.get(`/api/diploms/materials/${$event.id}/text`, options).subscribe((response: string) => {
+            this.code = response
+        })
     }
 }
