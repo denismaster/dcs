@@ -121,6 +121,8 @@ namespace Diploms.Services.DiplomWorks
                     Name = name,
                     Data = data,
                     DiplomWorkId = id,
+                    MaterialTypeId = MaterialType.Other.Id,
+                    MaterialType = null,
                     AuthorId = work.StudentsId.FirstOrDefault(),
                 };
                 material.CreateDate = DateTime.UtcNow;

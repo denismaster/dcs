@@ -4,7 +4,7 @@ namespace Diploms.Core
 {
     public class MaterialType : IEntity
     {
-        public static MaterialType Other = new MaterialType() { Id = 1, Name = "Изображение" };
+        public static MaterialType Other = new MaterialType() { Id = 13, Name = "Изображение" };
         public static MaterialType Image = new MaterialType() { Id =2 , Name = "Изображение" };
         public static MaterialType LatexFile = new MaterialType() {  Id=3, Name = "ПЗ в формате LATEX" };
 

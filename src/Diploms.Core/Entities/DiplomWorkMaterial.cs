@@ -13,7 +13,7 @@ namespace Diploms.Core
 
         public bool IsNotePart { get; set; } = false;
 
-        public MaterialType MaterialType { get; set; } = MaterialType.Other;
+        public MaterialType MaterialType { get; set; } 
         public int MaterialTypeId { get; set; } = MaterialType.Other.Id;
 
         public int AuthorId { get; set; }

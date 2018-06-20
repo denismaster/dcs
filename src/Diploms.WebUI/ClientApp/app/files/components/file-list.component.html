@@ -10,6 +10,7 @@
                 </a>
                 <span class="label label-info">{{ file.type }}</span>
                 <span *ngIf="file.isNotePart" class="label label-default">Часть ПЗ</span>
+                <a [routerLink]="['/norm-control/', diplomId]" [queryParams]="{fileId:file.id}" class="btn btn-default btn-sm" *ngIf="!isInNote && !file.isNotePart && file.name.endsWith('.pdf')">Нормконтроль</a>
             </p>
         </a>
     </div>

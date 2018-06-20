@@ -7,6 +7,7 @@ using Diploms.Services.Departments;
 using Diploms.Requests;
 using System.Threading.Tasks;
 using Microsoft.Net.Http.Headers;
+using System.IO;
 
 namespace Diploms.Controllers
 {
@@ -27,8 +28,9 @@ namespace Diploms.Controllers
             var objectToSend = new {
                 data = latex
             };
-            var stream = await _service.SendRequest(objectToSend , false);
-            return new FileStreamResult(stream,"application/pdf");
+            byte[] file = System.IO.File.ReadAllBytes( "../../templates/master-thesis.pdf");
+            //var stream = await _service.SendRequest(objectToSend , false);
+            return new FileContentResult(file,"application/pdf");
         }
 
         [HttpPost("norm-control-doc")]

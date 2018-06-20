@@ -6,6 +6,9 @@ namespace Diploms.Dto
     public class NormControlTryResultDto
     {
         public string FIO { get;set; }
+        public string Date {get;set;}
+        public string WorkName {get;set;}
+        public string Group {get;set;}
         public List<string> Errors {get;set;}
         public bool HasTeacherReport { get; set; }
         public bool IsEquatableToOrder { get; set; }

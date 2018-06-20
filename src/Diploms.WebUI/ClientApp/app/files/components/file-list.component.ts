@@ -8,6 +8,7 @@ import * as FileSaver from "file-saver";
     templateUrl: './file-list.component.html'
 })
 export class FileListComponent {
+    @Input() isInNote: boolean = false;
     @Input() public files: File[] = [];
 
     @Input() public title: string = "Файлы"

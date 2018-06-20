@@ -10,7 +10,18 @@ export const LATEX_ACTIONS: {[key:string]:Action} = {
     "italic": {
         code: `\\textit{$selection}`,
         mode: "replace"
-    }
+    },
+    "center":{
+        code: `\\begin{center}\n$selection\n\\end{center}`,
+        mode: "replace"
+    },
+    "table": { code:`\\begin{tabular}{ | c | c | c | }
+    \\hline 
+    $selection &  &  \\\\\\hline
+     &  &  \\\\\\hline
+     &  &  \\\\\\hline
+     \\hline
+  \end{tabular}`, mode: "replace"}
 };
 
 export function applyAction(action_name:string, selection:string):string{

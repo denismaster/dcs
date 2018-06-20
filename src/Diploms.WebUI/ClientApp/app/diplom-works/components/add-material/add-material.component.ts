@@ -49,7 +49,7 @@ export class DiplomsAddMaterialComponent {
         private alertSerivce: AlertService,
     ) {
         this.form = this.formBuilder.group({
-            "type": ["", Validators.required],
+            "type": [12, Validators.required],
         });
     }
 

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-2">
-        <file-list title="Материалы" [files]="files" [diplomId]="diplomId" (onFileSelected)="onFileSelected($event)"></file-list>
+        <file-list [isInNote]="true" title="Материалы" [files]="files" [diplomId]="diplomId" (onFileSelected)="onFileSelected($event)"></file-list>
     </div>
     <div class="col-md-6">
         <card>
@@ -18,7 +18,7 @@
                         <button class="btn btn-default" data-original-title="Align Right">
                             <i class="fa fa-align-right"></i>
                         </button>
-                        <button class="btn btn-default" data-original-title="Align Center">
+                        <button class="btn btn-default" (click)="actionHandler('center')"  data-original-title="Align Center">
                             <i class="fa fa-align-center"></i>
                         </button>
                         <button class="btn btn-default" data-original-title="Align Left">
@@ -55,12 +55,12 @@
                             <div class="container" style="max-width: 250px">
                                 <div class="form">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Строк">
+                                        <input type="text" value="3" class="form-control" placeholder="Строк">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Столбцов">
+                                        <input type="text" value="3" class="form-control" placeholder="Столбцов">
                                     </div>
-                                    <button class="btn btn-primary">Добавить</button>
+                                    <button (click)="actionHandler('table')" class="btn btn-primary">Добавить</button>
                                 </div>
                             </div>
                         </ul>
